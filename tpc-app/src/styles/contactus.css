@@ -1,0 +1,70 @@
+/* ContactUs.module.css */
+
+.container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .navLinks {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navLinks li {
+    margin-left: 20px;
+  }
+  
+  .navLinks a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navLinks a:hover {
+    text-decoration: underline;
+  }
+  
+  .chairperson, .manager, .staff, .committee {
+    margin: 20px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
+  }
+  
+  .details {
+    line-height: 1.6;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+  }
+  
