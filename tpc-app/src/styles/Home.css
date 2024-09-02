@@ -1,10 +1,13 @@
 
 /* <!--------------- NAVBAR --------------->*/
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: url('https://images.app.goo.gl/cAEXSansKEthBuWCA') no-repeat center center fixed;
-    background-size: cover;
+    background-size: flex;
+    z-index: 1;
+    overflow-x: hidden;
   }
   
   header {
@@ -15,17 +18,17 @@ body {
   }
   
   nav {
-    background-color: rgba(4,4,124,0.85); /* Adjust the color and transparency here */
+    background-color: rgb(4,4,124,0.85); /* Adjust the color and transparency here */
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
   nav .logo img {
     height: 50px; /* Set a specific height for the logo */
     width: auto;  /* Maintain the aspect ratio */
+    filter: invert(1) brightness(1000%);
   }
   
   nav ul {
@@ -41,7 +44,7 @@ body {
   }
   
   nav ul li a {
-    color: white;
+    color: white; 
     text-decoration: none;
     padding: 0.5rem 1rem;
     transition: background 0.3s ease, color 0.3s ease;
@@ -49,24 +52,8 @@ body {
   }
   
   nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.3);
-    color: rgb(255, 69, 0); /* Change text color on hover */
+    color: rgb(241, 3, 3); /* Change text color on hover */
   }
-  
-  /* .social-media {
-    position:absolute;
-    display: flex;
-    bottom: 30px;
-    left: 700px;
-  }
-  
-  .social-media a {
-    display: block;
-    color: blue;
-    text-decoration: none;
-    margin: 15px 0;
-    font-size: 18px;
-  } */
   
   /* -------------HOME PAGE------------------ */
   
@@ -146,49 +133,32 @@ body {
      background: rgb(0,3,255);
   background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
   }
-  
-  /* <!------------ ANNOUNCEMENT ------------> */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-  }
-  
-  .announcements-section {
-    height: 55px;
-    margin-top: 40px;
-    margin-left: 49px;
-    margin-right: 49px;
-    margin-bottom: 20px;
-    background-color: rgba(4,4,124,0.85);
-    /* border: 4px double#fcfcfe;
-    border-color: red rgb(0, 0, 0); */
-    border: 4px solid   #fcfcfe;
-    overflow: hidden;
+
+  .social-media {
     display: flex;
-    align-items: center;
-    padding: 0 10px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  marquee {
-    font-size: 20px;
-    color: #fcfcfe;
-    white-space: nowrap;
-  }
-  
-  #content {
-    height:max-content;
-    padding-right: 6px;
-    /* border: 3px solid #010195; */
-    width: 20%;
-    font-size: 26px;
-    color: #fcfcfe;
-  }
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    position: absolute;
+    bottom: 140px;           /* Adjust as needed */
+    left: 50%;               /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 2;
+}
+
+.social-media a {
+    margin: 0 10px;          /* Adjust spacing between icons */
+    font-size: 18px;
+}
+
+.social-media img {
+    width: 24px;             /* Adjust icon size */
+    height: 24px;            /* Adjust icon size */
+    display: block;          /* Ensure images are treated as block elements */
+}
+
+
   /* <!-------------ABOUT US-----------------> */
-  
-  
+
   .about-container {
     margin-top: 40px;
     padding: 20px;
@@ -250,7 +220,13 @@ body {
   
   
   /* <!-------------STATISTICS---------------> */
-  
+  .container-counter {
+    /* Ensure it's not set to display: none; or visibility: hidden; */
+    display: flex; /* or any layout you need */
+    flex-direction: column; /* or row, based on your design */
+    align-items: center; /* or other alignment */
+    margin: 20px; /* or other spacing */
+  }
   .counters {
     width: 100%;
     left: 0;
@@ -318,24 +294,27 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+}
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+    margin: 50px 
   }
   
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem; /* Adjust the gap as needed */
-    margin-right: 400px;
-  }
-  
-  .chart {
-    padding: 2rem;
+  .chart-container {
     border: 1px solid #ff0000;
-    border-radius: 1rem;
+    border-radius: 5rem;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
-    flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis */
-    max-width: 300px; /* Ensure the max-width is set */
+    background: #fff; /* Background color for charts */
+    padding: 20px; /* Padding around charts */
+    flex: 1 1 300px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+  }
+  .chart-container canvas {
+    width: 100% !important; /* Ensure canvas scales to container size */
+    height: auto !important; /* Maintain aspect ratio */
   }
   /* Default styles for counters and charts */
   .counter, .chart {
@@ -543,86 +522,88 @@ body {
     100% {transform: translatex(-1000%)}
   }
   /* <!-------------FOOTER-------------------> */
-  
   footer {
     background-color: rgba(4,4,124,0.85);
     color: #fff;
     padding: 20px 0;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 50px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .footer-section {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .footer-section h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: white;
-  }
-  
-  .footer-section p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #fcfcfe;
-    text-align: left;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 8px;
-  }
-  
-  .footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
-  }
-  
-  .footer-section ul li a:hover {
-    color: #ff8c00;
-  }
-  
-  .social-icons {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .social-icon {
-    color: #ffffff;
-    font-size: 20px;
-    transition: color 0.3s;
-  }
-  
-  .social-icon:hover {
-    color: #ff8c00;
-  }
-  
-  .footer-bottom {
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.footer-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #fcfcfe;
+  text-align: left;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #ff8c00;
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 15px;            /* Space between icons */
+  align-items: center;  /* Center icons vertically if needed */
+}
+
+.footer-social-icon img {
+  width: 24px;          /* Size of the icons */
+  height: 24px;         /* Size of the icons */
+  transition: opacity 0.3s;
+}
+
+.footer-social-icon:hover img {
+  opacity: 0.8;        /* Optional: Slight change on hover */
+}
+
+.footer-bottom {
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
-  }
-  
-  .footer-bottom p {
+}
+
+.footer-bottom p {
     font-size: 14px;
     margin: 0;
-  }
-  
-  .footer-section contact {
+}
+
+.footer-section contact {
     color: white;
-  }
+}
+  
+  

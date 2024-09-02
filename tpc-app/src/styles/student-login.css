@@ -1,0 +1,176 @@
+
+.container-login {
+    display: flex;
+    width: 900px;
+    height: 600px;
+    background-color: #fff;
+    box-shadow: 13px 8px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex-wrap: nowrap;
+    padding: 0;
+}
+
+.left-section {
+    background-color: rgba(4, 4, 124, 0.85);
+    color: white;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.left-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+h2 {
+    color: white;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.left-section p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.right-section {
+    padding: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-section h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.role-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.role-tabs a {
+    text-decoration: none;
+    color: #7a7a7a;
+    padding: 10px;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.role-tabs a.active {
+    color: #000;
+}
+
+.role-tabs a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(4, 4, 124, 0.85);
+    width: 50%;
+    margin: auto;
+}
+
+.role-tabs a:hover {
+    color: rgba(4, 4, 124, 0.85);
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    padding: 15px;
+    background-color: rgba(4, 4, 124, 0.85);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: rgba(38, 38, 203, 0.9);
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.forgot-password-link {
+    color: #0066ff;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Space for the toggle button */
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    color: #333;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.signup-link {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.signup-link a {
+    color: #0066ff;
+    text-decoration: underline;
+}
