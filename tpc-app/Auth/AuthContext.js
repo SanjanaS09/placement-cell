@@ -1,32 +1,33 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth'; 
 
-// Create an AuthContext
-const AuthContext = React.createContext();
+import React, { useContext, useEffect, useState } from 'react';
+import { auth } from '../../src/firebaseConfig';
 
-// Create a provider component to wrap your app with the AuthContext
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+const AuthContext = React.createContext()
+export function useAuth(){
+    return useContext(AuthContext)
+}
+export function AuthProvider(){
+    const [currentUser, setCurrentUser] = useState()
 
-  useEffect(() => {
-    // Add an onAuthStateChanged listener to update the user state
-    const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
-      setUser(authUser);
-    });
+    function login(email,password){
+        return auth.signInWithEmailAndPassword(email,password)
+    }
+    useEffect(()=>{
+        const unsubscribe = auth.onAuthStateChanged(useer => {
+            setCurrentUser(user)
+            setLoading(false)
+        })
+        return unsubscribe
+    }, [])
 
-    // Cleanup the listener when the component unmounts
-    return () => unsubscribe();
-  }, [user]);
-
-  return (
-    <AuthContext.Provider value={{ user }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-// Create a custom hook to access the AuthContext
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+   
+    const value = {
+        currentUser,
+        login
+    }
+    return(
+        <AuthContext.Provider value = {_readValueToProps}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
