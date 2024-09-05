@@ -41,6 +41,12 @@ function StudentSignup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      createUserWithEmailandPassword(auth, email,password);
+      const user = auth.currentUser;
+      console.log(user);
+    }catch(error)
+    
     const newErrors = validateForm();
   
     firebase.auth().setPersistence('session').then(() =>
