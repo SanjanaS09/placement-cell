@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/student-login.css';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -7,6 +7,7 @@ import "firebase/compat/auth";
 function StudentLogin() {
   // State variables
   const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,24 @@ function StudentLogin() {
     if (!password) newErrors.password = 'Password is required';
     return newErrors;
   };
+
+  useEffect(() => {
+    try {
+      if (firebase.auth().currentUser.uid) {
+        setLoggedInUser(firebase.auth().currentUser.uid);
+        // Track successful login event
+        window.gtag("event", "session_continued", {
+          event_category: "loggned_in_with_persistence",
+          event_label: "logged_in",
+          user: firebase.auth().currentUser.email
+        });
+        navigate("/dashboard");
+      }
+    }
+    catch (error) {
+      console.log(error.message)
+    }
+  }, [setLoggedInUser, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault();
