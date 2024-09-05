@@ -13,7 +13,7 @@ export function AuthProvider(){
         return auth.signInWithEmailAndPassword(email,password)
     }
     useEffect(()=>{
-        const unsubscribe = auth.onAuthStateChanged(useer => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
         })
