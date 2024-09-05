@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/student-login.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
-/**
- * StudentLogin component
- * Handles student login functionality
- */
 function StudentLogin() {
   // State variables
   const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
-  /**
-   * Validates the login form
-   * @returns {Object} Error object
-   */
   const validateForm = () => {
     const newErrors = {};
     if (!fullname) newErrors.fullname = 'Name is required';
@@ -25,25 +19,36 @@ function StudentLogin() {
     return newErrors;
   };
 
-  /**
-   * Handles form submission
-   * @param {Event} e
-   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    if (Object.keys(newErrors).length === 0) {
-      // Perform login action here
-      console.log('Form submitted:', { fullname, password });
-    } else {
-      setErrors(newErrors);
-    }
+  
+    firebase.auth().setPersistence('session').then(() =>
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const loggedInUser = userCredential.user.uid;
+    setLoggedInUser(loggedInUser);
+          // Track successful login event
+          window.gtag("event", "login", {
+            event_category: "email/password",
+            event_label: "logged_in",
+          });
+          navigate("/StudentPage");
+        }))
+      .catch((error) => {
+        // Track login failed event
+        window.gtag("event", "login_failed", {
+          event_category: "email/password",
+          event_label: error.message,
+        });
+        // Handle login error
+        setErrors(error.message);
+        console.error("Login Error:", error);
+      });
   };
-
-  /**
-   * Toggles password visibility
-   */
-  const togglePasswordVisibility = () => {
+  const toggleShowPassword= () => {
     setShowPassword(!showPassword);
   };
 
@@ -84,9 +89,12 @@ function StudentLogin() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="button" onClick={togglePasswordVisibility} className="password-toggle">
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+            <div
+            className="toggleShowPassowrd"
+            onClick={toggleShowPassword}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </div>
           </div>
           {errors.password && <span className="error-message">{errors.password}</span>}
 
