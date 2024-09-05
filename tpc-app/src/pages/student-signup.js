@@ -70,73 +70,36 @@
 //   };
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { useNavigate ,  Link } from 'react-router-dom';
+import {createUserWithEmailAndPassword } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
 
-const SignIn = () => {
+const StudentSignup = () => {
   // Define state
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  // const [loggedInUser, setLoggedInUser] = useState(null);
+  const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState(null);
+  const [confirmPassword, setConfirmPassword ] = useState('');
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // Effect to check if the user is already logged in
-  useEffect(() => {
-    try {
-      const user = firebase.auth().currentUser;
-      if (user) {
-        setLoggedInUser(user.uid);
-        // Track successful login event
-        window.gtag("event", "session_continued", {
-          event_category: "logged_in_with_persistence",
-          event_label: "logged_in",
-          user: user.email
-        });
-        navigate("/StudentPage");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [setLoggedInUser, navigate]);
-
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleResigter = (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
-
-    if (newErrors.length > 0) {
-      setErrors(newErrors);
-      return;
+    let newErrors = {};
+    if (password !== confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
     }
-
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() =>
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(email, password)
-          .then((userCredential) => {
-            const loggedInUser = userCredential.user.uid;
-            setLoggedInUser(loggedInUser);
-            // Track successful login event
-            window.gtag("event", "login", {
-              event_category: "email/password",
-              event_label: "logged_in",
-            });
-            navigate("/StudentPage");
-          })
-      )
-      .catch((error) => {
-        // Track login failed event
-        window.gtag("event", "login_failed", {
-          event_category: "email/password",
-          event_label: error.message,
-        });
-        // Handle login error
-        setErrors(error.message);
-        console.error("Login Error:", error);
-      });
+    try {
+          createUserWithEmailAndPassword(auth, email, password);
+          const user = auth.curentUser;
+          console.log(user);
+          console.log("User Resigter Seccessfully");
+          navigate("/StudentPage")
+    } catch(error){
+      console.log(error.message)
+    }
   };
   const toggleShowPassword= () => {
     setShowPassword(!showPassword);
@@ -151,7 +114,7 @@ const SignIn = () => {
       </div>
       <div className="right-section">
         <h2>Signup</h2>
-        <form id="signupForm" onSubmit={handleSubmit}>
+        <form id="signupForm" onSubmit={handleResigter}>
           <div className="role-tabs">
             <Link to ="/student-signup" className="tab active">Student</Link>
             <Link to="/recruiter-signup" className="tab">Recruiter</Link>
