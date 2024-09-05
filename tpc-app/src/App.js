@@ -4,6 +4,7 @@ import Home from './pages/Home.js';
 import ContactUs from './pages/contactus.js';
 import StudentLogin from './pages/sudent-login.js';
 import StudentSignup from './pages/student-signup.js';
+import StudentPage from './pages/StudentPage.js';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/student-login" element={<StudentLogin />} />
         <Route path="/student-signup" element={<StudentSignup />} />
+        <Route path ="/StudentPage" element={<StudentPage />} />
       </Routes>
     </Router>
   );

@@ -72,7 +72,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate ,  Link } from 'react-router-dom';
 // import {createUserWithEmailAndPassword } from 'firebase/auth';
-// import {useAuth} from "../contexts/AuthContext"
+import {useAuth} from "../Auth/AuthContext"
 
 const StudentSignup = () => {
   // Define state
@@ -98,7 +98,7 @@ const StudentSignup = () => {
           console.log("User Resigter Seccessfully");
           navigate("/StudentPage")
     } catch(error){
-      console.log(error.message)
+      setErrors("Invalid email or password")
     }
   };
   const toggleShowPassword= () => {
