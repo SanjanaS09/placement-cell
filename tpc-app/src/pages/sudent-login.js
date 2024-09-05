@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/student-login.css';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -97,8 +97,24 @@ function StudentLogin() {
             onChange={(e) => setFullname(e.target.value)}
             required
           />
+          <input
+            type="text"
+            id="fullname"
+            placeholder="Name"
+            value={fullname}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           {errors.fullname && <span className="error-message">{errors.fullname}</span>}
-
+          <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <span className="error-message">{errors.email}</span>}
           <div className="password-container">
             <input
               type={showPassword ? 'text' : 'password'}
@@ -108,6 +124,7 @@ function StudentLogin() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            
             <div
             className="toggleShowPassowrd"
             onClick={toggleShowPassword}
