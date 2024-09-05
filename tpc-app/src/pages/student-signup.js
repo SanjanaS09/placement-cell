@@ -1,68 +1,132 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import '../styles/student-login.css';
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+// import React, { useState, useEffect } from 'react';
+// import { useNavigate, Link } from 'react-router-dom';
+// import '../styles/student-login.css';
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
 
-function StudentSignup() {
-  // State variables
-  const [fullname, setFullname] = useState('');
+// function StudentSignup() {
+//   // State variables
+//   const [fullname, setFullname] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [confirmPassword, setConfirmPassword ] = useState('');
+//   const [errors, setErrors] = useState({});
+//   const [showPassword, setShowPassword] = useState(false);
+//   const navigate = useNavigate();
+
+//   const validateForm = () => {
+//     const newErrors = {};
+//     if (!fullname) newErrors.fullname = 'Name is required';
+//     if (!password) newErrors.password = 'Password is required';
+//     return newErrors;
+//   };
+
+//   useEffect(() => {
+//     try {
+//       if (firebase.auth().currentUser.uid) {
+//         setLoggedInUser(firebase.auth().currentUser.uid);
+//         // Track successful login event
+//         window.gtag("event", "session_continued", {
+//           event_category: "loggned_in_with_persistence",
+//           event_label: "logged_in",
+//           user: firebase.auth().currentUser.email
+//         });
+//         navigate("/StudentPage");
+//       }
+//     }
+//     catch (error) {
+//       console.log(error.message)
+//     }
+//   }, [setLoggedInUser, navigate])
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const newErrors = validateForm();
+  
+//     firebase.auth().setPersistence('session').then(() =>
+//       firebase
+//         .auth()
+//         .signInWithEmailAndPassword(email, password)
+//         .then((userCredential) => {
+//           const loggedInUser = userCredential.user.uid;
+//     setLoggedInUser(loggedInUser);
+//           // Track successful login event
+//           window.gtag("event", "login", {
+//             event_category: "email/password",
+//             event_label: "logged_in",
+//           });
+//           navigate("/StudentPage");
+//         }))
+//       .catch((error) => {
+//         // Track login failed event
+//         window.gtag("event", "login_failed", {
+//           event_category: "email/password",
+//           event_label: error.message,
+//         });
+//         // Handle login error
+//         setErrors(error.message);
+//         console.error("Login Error:", error);
+//       });
+//   };
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+const SignIn = () => {
+  // Define state
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword ] = useState('');
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!fullname) newErrors.fullname = 'Name is required';
-    if (!password) newErrors.password = 'Password is required';
-    return newErrors;
-  };
-
+  // Effect to check if the user is already logged in
   useEffect(() => {
     try {
-      if (firebase.auth().currentUser.uid) {
-        setLoggedInUser(firebase.auth().currentUser.uid);
+      const user = firebase.auth().currentUser;
+      if (user) {
+        setLoggedInUser(user.uid);
         // Track successful login event
         window.gtag("event", "session_continued", {
-          event_category: "loggned_in_with_persistence",
+          event_category: "logged_in_with_persistence",
           event_label: "logged_in",
-          user: firebase.auth().currentUser.email
+          user: user.email
         });
-        navigate("/dashboard");
+        navigate("/StudentPage");
       }
+    } catch (error) {
+      console.log(error.message);
     }
-    catch (error) {
-      console.log(error.message)
-    }
-  }, [setLoggedInUser, navigate])
+  }, [setLoggedInUser, navigate]);
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      createUserWithEmailandPassword(auth, email,password);
-      const user = auth.currentUser;
-      console.log(user);
-    }catch(error)
-    
     const newErrors = validateForm();
-  
-    firebase.auth().setPersistence('session').then(() =>
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const loggedInUser = userCredential.user.uid;
-    setLoggedInUser(loggedInUser);
-          // Track successful login event
-          window.gtag("event", "login", {
-            event_category: "email/password",
-            event_label: "logged_in",
-          });
-          navigate("/StudentPage");
-        }))
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() =>
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const loggedInUser = userCredential.user.uid;
+            setLoggedInUser(loggedInUser);
+            // Track successful login event
+            window.gtag("event", "login", {
+              event_category: "email/password",
+              event_label: "logged_in",
+            });
+            navigate("/StudentPage");
+          })
+      )
       .catch((error) => {
         // Track login failed event
         window.gtag("event", "login_failed", {
@@ -100,7 +164,6 @@ function StudentSignup() {
             required
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
-            required
           />
           {errors.fullname && <span className="error-message">{errors.fullname}</span>}
           <input
@@ -138,7 +201,7 @@ function StudentSignup() {
           </div>
           <button type="submit">Signup</button>
         </form>
-        <p className="login-link">Already have an account? <Link to = "/student-login">Login.</a></p>
+        <p className="login-link">Already have an account? <Link to = "/student-login">Login.</Link></p>
       </div>
     </div>
     </div>
