@@ -42,7 +42,7 @@
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
 //     const newErrors = validateForm();
-  
+
 //     firebase.auth().setPersistence('session').then(() =>
 //       firebase
 //         .auth()
@@ -70,9 +70,11 @@
 //   };
 
 import React, { useState } from 'react';
-import { useNavigate ,  Link } from 'react-router-dom';
-import {createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../src/firebaseConfig';
+import { useNavigate, Link } from 'react-router-dom';
+// import {createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from "../Auth/AuthContext.js";
+// import {auth} from "../firebaseConfig";
+import '../styles/student-signup.css';
 
 const StudentSignup = () => {
   // Define state
@@ -80,93 +82,95 @@ const StudentSignup = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword ] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { signup } = useAuth()
 
-  const handleResigter = (e) => {
+  const handleResigter = async (e) => {
     e.preventDefault();
     let newErrors = {};
-    if (password !== confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
-    }
-    try {
-          createUserWithEmailAndPassword(auth, email, password);
-          const user = auth.curentUser;
-          console.log(user);
-          console.log("User Resigter Seccessfully");
-          navigate("/StudentPage")
-    } catch(error){
-      setErrors("Invalid email or password")
+    if (!fullname) newErrors.fullname = 'Full name is required';
+    if (password !== confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      try {
+        await signup(email, password);
+        console.log("User Registered Successfully");
+        navigate('/StudentPage');
+      } catch (error) {
+        setErrors({ auth: 'Invalid email or password' + error.message });
+      }
     }
   };
-  const toggleShowPassword= () => {
+  const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   return (
     <div className="body">
-    <div className="container-signup">
-      <div className="left-section">
-        <h2>Join Us as a Student!</h2>
-        <p>Sign up to gain access to exclusive resources, events, and more!</p>
+      <div className="container-signup">
+        <div className="left-section">
+          <h2>Join Us as a Student!</h2>
+          <p>Sign up to gain access to exclusive resources, events, and more!</p>
+        </div>
+        <div className="right-section">
+          <h2>Signup</h2>
+          <form id="signupForm" onSubmit={handleResigter}>
+            <div className="role-tabs">
+              <Link to="/student-signup" className="tab active">Student</Link>
+              <Link to="/recruiter-signup" className="tab">Recruiter</Link>
+              <Link to="/coordinator-signup" className="tab">Coordinator</Link>
+            </div>
+            <input
+              type="text"
+              id="fullname"
+              placeholder="Name"
+              required
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
+            />
+            {errors.fullname && <span className="error-message">{errors.fullname}</span>}
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email && <span className="error-message">{errors.email}</span>}
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errors.password && <span className="error-message">{errors.password}</span>}
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+            <div
+              className="toggleShowPassowrd"
+              onClick={toggleShowPassword}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </div>
+            <button type="submit" >Signup</button>
+          </form>
+          <p className="login-link">Already have an account? <Link to="/student-login">Login.</Link></p>
+        </div>
       </div>
-      <div className="right-section">
-        <h2>Signup</h2>
-        <form id="signupForm" onSubmit={handleResigter}>
-          <div className="role-tabs">
-            <Link to ="/student-signup" className="tab active">Student</Link>
-            <Link to="/recruiter-signup" className="tab">Recruiter</Link>
-            <Link to="/coordinator-signup" className="tab">Coordinator</Link>
-          </div>
-          <input
-            type="text"
-            id="fullname"
-            placeholder="Name"
-            required
-            value={fullname}
-            onChange={(e) => setFullname(e.target.value)}
-          />
-          {errors.fullname && <span className="error-message">{errors.fullname}</span>}
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errors.email && <span className="error-message">{errors.email}</span>}
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errors.password && <span className="error-message">{errors.password}</span>}
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            required
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
-          <div
-            className="toggleShowPassowrd"
-            onClick={toggleShowPassword}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </div>
-          <button type="submit">Signup</button>
-        </form>
-        <p className="login-link">Already have an account? <Link to = "/student-login">Login.</Link></p>
-      </div>
-    </div>
     </div>
   );
 }
