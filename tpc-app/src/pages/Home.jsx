@@ -145,9 +145,9 @@ function Home() {
                 <img id="college-img" src={homeImage} alt="college" />
                 <div className="login-buttons">
                     <div className="frame">
-                        <button onClick={() => navigate('/student-login')} className="custom-btn btn-1">Student</button>
-                        <button onClick={() => navigate('/recruiter-login')} className="custom-btn btn-1">Recruiters</button>
-                        <button onClick={() => navigate('/coordinator-login')} className="custom-btn btn-1"><span>TPO</span></button>
+                        <button onClick={() => navigate('/StudentLogin')} className="custom-btn btn-1">Student</button>
+                        <button onClick={() => navigate('/RecruiterLogin')} className="custom-btn btn-1">Recruiters</button>
+                        <button onClick={() => navigate('/CoordinatorLogin')} className="custom-btn btn-1"><span>TPO</span></button>
                     </div>
                 </div>
             </div>

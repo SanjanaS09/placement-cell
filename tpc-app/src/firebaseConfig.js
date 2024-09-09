@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,17 +14,8 @@ const firebaseConfig = {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// const database = firebase.database();
-// const db = firebase.firestore();
-
-// await firebase.auth().setPersistence('local')
-
-// export { db };
-// export default database;
-
-
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
+const database = getDatabase(app);
 
+export { auth, database };

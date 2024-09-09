@@ -1,20 +1,18 @@
-
 .container-login {
     display: flex;
     width: 900px;
     height: 600px;
     background-color: #fff;
-    box-shadow: 13px 8px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    flex-wrap: nowrap;
-    padding: 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: auto;
 }
 
 .left-section {
-    background-color: rgba(4, 4, 124, 0.85);
+    background:  rgba(4, 4, 124, 0.85);
     color: white;
     width: 50%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,13 +22,15 @@
 .left-section-content {
     text-align: center;
     color: white;
-    padding: 20px;
+    padding: 30px;
 }
 
 .left-section h2 {
     font-size: 36px;
     margin-bottom: 20px;
+    letter-spacing: 1px;
 }
+
 h2 {
     color: white;
     border-bottom: 2px solid white;
@@ -38,15 +38,13 @@ h2 {
 }
 
 .left-section p {
-    margin-bottom: 20px;
     font-size: 18px;
-    line-height: 1.5;
-    color: #fff;
+    line-height: 1.6;
     padding: 0 20px;
 }
 
 .right-section {
-    padding: 40px;
+    padding: 60px 50px;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -54,21 +52,24 @@ h2 {
 }
 
 .right-section h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
+    margin-bottom: 30px;
+    font-size: 35px;
     color: #333;
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .role-tabs {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(4, 4, 124, 0.85);
 }
 
 .role-tabs a {
@@ -76,9 +77,10 @@ form {
     color: #7a7a7a;
     padding: 10px;
     font-weight: bold;
+    font-size: 16px;
     position: relative;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .role-tabs a.active {
@@ -91,7 +93,7 @@ form {
     bottom: -1px;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     background-color: rgba(4, 4, 124, 0.85);
     width: 50%;
     margin: auto;
@@ -101,76 +103,119 @@ form {
     color: rgba(4, 4, 124, 0.85);
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"] {
     padding: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
+    width: 100%;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: rgba(4, 4, 124, 0.85);
+    outline: none;
 }
 
 button[type="submit"] {
-    padding: 15px;
+    padding: 15px 0;
     background-color: rgba(4, 4, 124, 0.85);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
 button[type="submit"]:hover {
-    background-color: rgba(38, 38, 203, 0.9);
+    background-color: rgba(30, 30, 156, 0.9);
+}
+
+button:disabled {
+    background-color: #ccc;
 }
 
 .error-message {
     color: red;
     font-size: 12px;
     margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
 }
 
 .forgot-password-link {
     color: #0066ff;
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: rgba(4, 4, 124, 0.85);
 }
 
 .password-container {
     position: relative;
-    display: flex;
-    align-items: center;
+    width: 100%;
 }
 
 .password-container input {
     width: 100%;
-    padding-right: 40px; /* Space for the toggle button */
+    padding: 15px;
+    padding-right: 50px; /* Adds space for the button inside the input */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
-.password-toggle {
+.password-container input:focus {
+    border-color: rgba(4, 4, 124, 0.85);
+    outline: none;
+}
+
+.toggleShowPassword {
     position: absolute;
     right: 10px;
+    top: calc(50% -10px); /* Adjusted 20px higher */
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     cursor: pointer;
     outline: none;
-    font-size: 20px;
-    color: #333;
+    font-size: 14px;
+    color: #0066ff;
+    padding: 0;
+    transition: color 0.3s ease;
+    width: 50px; /* Fixed width to prevent shifting */
+    text-align: center; /* Centers text inside the fixed-width button */
 }
 
-.password-toggle:focus {
-    outline: none;
+.toggleShowPassword:hover {
+    color: rgba(4, 4, 124, 0.85);
 }
 
 .signup-link {
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .signup-link a {
     color: #0066ff;
     text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: rgba(4, 4, 124, 0.85);
 }
