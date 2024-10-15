@@ -1,6 +1,26 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": "auth != null",  
+    ".write": "auth != null", 
+    "users": {
+      "Student": {
+        "$uid": {
+          ".read": "auth != null",  
+          ".write": "auth != null" 
+        }
+      },
+        "Recruiter": {
+        "$uid": {
+          ".read": "auth != null",  
+          ".write": "auth != null" 
+        }
+        },
+        "TPO": {
+        "$uid": {
+          ".read": "auth != null",  
+          ".write": "auth != null" 
+        }
+      }
+    }
   }
 }

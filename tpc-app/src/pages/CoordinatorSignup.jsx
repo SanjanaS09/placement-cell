@@ -1,116 +1,159 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from "../Auth/AuthContext.js";
-import '../styles/student-signup.css';
+import React, { useState, useEffect, useCallback } from 'react';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/storage'; // Import Firebase Storage
+import 'firebase/compat/database'; // Import Firebase Database
+import { v4 as uuidv4 } from 'uuid'; // For generating unique IDs
 
-const StudentSignup = () => {
-  const [fullname, setFullname] = useState('');
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const { signup } = useAuth()
+const ManageStudents = () => {
+  const [pdfFile, setPdfFile] = useState(null);
+  const [blogText, setBlogText] = useState('');
+  const [announcement, setAnnouncement] = useState('');
+  const [students, setStudents] = useState([]);
+  const [branchFilter, setBranchFilter] = useState('');
+  const [yearFilter, setYearFilter] = useState('');
 
-  const handleResigter = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setErrors("");
+  const storage = firebase.storage(); // Initialize Firebase Storage
+  const database = firebase.database(); // Initialize Firebase Database
 
-    let newErrors = {};
-    if (!fullname) newErrors.fullname = 'Full name is required';
-    if (passwordRef !== confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-
-    try {
-      const email = emailRef.current.value;
-      const password = passwordRef.current.value;
-
-      console.log('Attempting sign up with:', { email, password });
-
-      const newUserCredential = await signup(email, password);
-      const user = newUserCredential.user;
-
-      if (user) {
-        navigate('/TPOPage');
+  // Using useCallback to prevent re-creation of the function in each render
+  const fetchStudentData = useCallback(async () => {
+    const studentsRef = database.ref('students/');
+    studentsRef.once('value', (snapshot) => {
+      if (snapshot.exists()) {
+        setStudents(Object.values(snapshot.val()));
       }
-    } catch (error) {
-      console.error('Error during sign up:', error.message);
+    });
+  }, [database]);
 
-      if (error.code === 'auth/email-already-in-use') {
-        setErrors("This email is already associated with an account.");
-      } else {
-        setErrors("Failed to sign up");
-      }
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    fetchStudentData();
+  }, [fetchStudentData]); // Adding fetchStudentData as a dependency
+
+  const handleFileChange = (e) => {
+    setPdfFile(e.target.files[0]);
+  };
+
+  const handleUploadPdf = async () => {
+    if (pdfFile) {
+      const fileId = uuidv4();
+      const fileRef = storage.ref(`resources/${fileId}-${pdfFile.name}`);
+      await fileRef.put(pdfFile);
+      const fileURL = await fileRef.getDownloadURL();
+
+      database.ref(`resources/${fileId}`).set({
+        fileURL,
+        fileName: pdfFile.name,
+        createdOn: new Date().toLocaleString(),
+      });
+
+      alert('PDF Uploaded Successfully!');
+      setPdfFile(null);
     }
   };
 
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
+  const handleUploadBlog = () => {
+    const blogId = uuidv4();
+    database.ref(`blogs/${blogId}`).set({
+      blogText,
+      createdOn: new Date().toLocaleString(),
+    });
+    alert('Blog Posted Successfully!');
+    setBlogText('');
   };
 
+  const handleUploadAnnouncement = () => {
+    const announcementId = uuidv4();
+    database.ref(`announcements/${announcementId}`).set({
+      announcementText: announcement,
+      createdOn: new Date().toLocaleString(),
+    });
+    alert('Announcement Uploaded!');
+    setAnnouncement('');
+  };
+
+  const filteredStudents = students
+    .filter((student) => (branchFilter ? student.branch === branchFilter : true))
+    .filter((student) => (yearFilter ? student.year === yearFilter : true));
+
   return (
-    <div className="body">
-      <div className="container-signup">
-        <div className="left-section">
-          <h2>Join Us as a Student!</h2>
-          <p>Sign up to gain access to exclusive resources, events, and more!</p>
-        </div>
-        <div className="right-section">
-          <h2>Signup</h2>
-          <form id="signupForm" onSubmit={handleResigter}>
-            <div className="role-tabs">
-              <Link to="/StudentSignup" className="tab">Student</Link>
-              <Link to="/RecruiterSignup" className="tab">Recruiter</Link>
-              <Link to="/CoordinatorSignup" className="tab  active">Coordinator</Link>
-            </div>
-            <input
-              type="text"
-              id="fullname"
-              placeholder="Name"
-              required
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
-            />
-            {errors.fullname && <span className="error-message">{errors.fullname}</span>}
-            <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              required
-              ref={emailRef}
-            />
-            {errors.email && <span className="error-message">{errors.email}</span>}
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              placeholder="Password"
-              required
-              ref={passwordRef}
-            />
-            {errors.password && <span className="error-message">{errors.password}</span>}
-            <input
-              type={showPassword ? "text" : "password"}
-              id="confirmPassword"
-              placeholder="Confirm Password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
-            <button type="button" className="toggleShowPassword" onClick={toggleShowPassword}>
-              {showPassword ? "Hide Password" : "Show Password"}
-            </button>
-            <button type="submit" disabled={loading} >Signup</button>
-          </form>
-          <p className="login-link">Already have an account? <Link to="/CoordinatorLogin">Login.</Link></p>
-        </div>
+    <div>
+      <h1>Manage Students</h1>
+
+      {/* Upload PDF */}
+      <div>
+        <h3>Upload Resource (PDF)</h3>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUploadPdf}>Upload PDF</button>
+      </div>
+
+      {/* Write Blog */}
+      <div>
+        <h3>Write Blog</h3>
+        <textarea
+          value={blogText}
+          onChange={(e) => setBlogText(e.target.value)}
+          placeholder="Write your blog here..."
+        />
+        <button onClick={handleUploadBlog}>Post Blog</button>
+      </div>
+
+      {/* Post Announcement */}
+      <div>
+        <h3>Post Announcement</h3>
+        <textarea
+          value={announcement}
+          onChange={(e) => setAnnouncement(e.target.value)}
+          placeholder="Write an announcement here..."
+        />
+        <button onClick={handleUploadAnnouncement}>Post Announcement</button>
+      </div>
+
+      {/* Filter and Display Students */}
+      <div>
+        <h3>Filter Students</h3>
+        <label>
+          Branch:
+          <select onChange={(e) => setBranchFilter(e.target.value)}>
+            <option value="">All Branches</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            {/* Add more branches as needed */}
+          </select>
+        </label>
+
+        <label>
+          Year:
+          <select onChange={(e) => setYearFilter(e.target.value)}>
+            <option value="">All Years</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
+        </label>
+
+        <h3>Student Data</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Branch</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredStudents.map((student, index) => (
+              <tr key={index}>
+                <td>{student.name}</td>
+                <td>{student.branch}</td>
+                <td>{student.year}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
-}
+};
 
-export default StudentSignup;
+export default ManageStudents;
