@@ -1,175 +1,130 @@
-
-/* <!--------------- NAVBAR --------------->*/
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url('https://images.app.goo.gl/cAEXSansKEthBuWCA') no-repeat center center fixed;
-    background-size: flex;
-    z-index: 1;
-    overflow-x: hidden;
-  }
-  
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-  
-  nav {
-    background-color: rgb(4,4,124,0.85); /* Adjust the color and transparency here */
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  nav .logo img {
-    height: 50px; /* Set a specific height for the logo */
-    width: auto;  /* Maintain the aspect ratio */
-    filter: invert(1) brightness(1000%);
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1.0rem; /* Add space between the navigation items */
-  }
-  
-  nav ul li {
-    display: inline;
-  }
-  
-  nav ul li a {
-    color: white; 
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: background 0.3s ease, color 0.3s ease;
-    border-radius: 5px; /* Rounded corners for links */
-  }
-  
-  nav ul li a:hover {
-    color: rgb(241, 3, 3); /* Change text color on hover */
-  }
-  
-  /* -------------HOME PAGE------------------ */
-  
-  h1 {
-    position: relative;
-    text-align: center;
-    color: #fcfcfe;
-    font-size: 50px;
-    font-family: "Cormorant Garamond", serif;
-  }
-  
-  #college-img{
-    width: 100%;
-    height: 500px;
-  }
-  
-  p {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    text-align: center;
-    font-size: 18px;
-    color: #676767;
-  }
-  .home {
-    background-size: cover;
-    background-position: center;
-    height: 500px;
-    position: relative;
-  }
-  
-  #College{
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  .login-buttons {
-        top: 40%;
-        left: 60%;
-        position: absolute;
-        transform: translateY(-50%);
-  }
-  
-  .frame {
-    width: 10%;
-    margin: 40px auto;
-    text-align: center;
-  }
-  button {
-    margin: 20px;
-  }
-  .custom-btn {
-    width: 250px;
-    height: 60px;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-     7px 7px 20px 0px rgba(0,0,0,.1),
-     4px 4px 5px 0px rgba(0,0,0,.1);
-    outline: none;
-  }
-  
-  /* 1 */
-  .btn-1 {
-    background: rgb(4,4,124);
-    background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
-    border: none;
-  }
-  .btn-1:hover {
-     background: rgb(0,3,255);
-  background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
-  }
-
-  .social-media {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    position: absolute;
-    bottom: 140px;           /* Adjust as needed */
-    left: 50%;               /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-    z-index: 2;
+.home {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
 }
 
-.social-media a {
-    margin: 0 10px;          /* Adjust spacing between icons */
-    font-size: 18px;
+/* Navbar */
+nav {
+  background-color: rgba(4, 4, 124); /* Transparent blue background */
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo img {
+  height: 50px;
+  width: auto;
+}
+
+nav ul li a {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  color: rgb(241, 3, 3);
+}
+
+/* Home Section */
+.home-section {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  background-image: url(../assests/images/college.png); /* Ensure the background image is set */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 0 2rem;
+  z-index: 1;
+}
+
+.home-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Adjust the opacity to dim the background */
+  z-index: -1; /* Ensure it stays behind the text */
+}
+
+/* Updated Welcome Message */
+.welcome-message {
+  z-index: 1;
+  text-align: left;
+  color: white;
+}
+
+.welcome-message h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.welcome-message p {
+  font-size: 18px;
+  color: white;
+  max-width: 600px;
+  font-weight: 300;
+  margin-top: 0; /* Ensure there's no gap between the title and subtitle */
+}
+
+/* Login Buttons Section */
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  /* background: rgba(0, 0, 0, 0.5); Translucent black background for button container */
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.login-buttons button {
+  margin: 10px 0;
+  width: 300px;
+  height: 75px;
+  color: white;
+  background: rgba(4, 4, 124); /* Button color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-buttons button:hover {
+  background: rgb(21, 24, 197);
+}
+
+/* Social Media Icons */
+.social-media {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .social-media img {
-    width: 24px;             /* Adjust icon size */
-    height: 24px;            /* Adjust icon size */
-    display: block;          /* Ensure images are treated as block elements */
+  width: 30px;
+  height: 30px;
 }
-
 
   /* <!-------------ABOUT US-----------------> */
 
   .about-container {
-    margin-top: 40px;
+    margin: 50px auto;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(4, 4, 124, 0.9);
     text-align: center;
     max-width: 700px;
     overflow: hidden;
-    position: relative;
-    margin-left: 25%;
-    margin-bottom: 50px;
   }
   
   .about-container h1 {
@@ -181,29 +136,9 @@ body {
   .about-container p {
     font-size: 20px;
     line-height: 1.5;
-    color:  rgba(4, 4, 124, 0.9);;
+    color:  rgba(4, 4, 124, 0.85);;
   }
-  
-  @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-  }
-  
-  @keyframes slide {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-  }
-  
+    
   .about-container:hover h1,
   .about-container:hover p {
     animation: float 2s infinite;
@@ -226,6 +161,7 @@ body {
     flex-direction: column; /* or row, based on your design */
     align-items: center; /* or other alignment */
     margin: 20px; /* or other spacing */
+    z-index: 1;
   }
   .counters {
     width: 100%;
@@ -235,6 +171,7 @@ body {
     background: rgba(4, 4, 124, 0.85);
     color: #fcfcfe;
     text-align: center;
+    z-index: 10;
   }
   
   .counters > div {
@@ -244,10 +181,12 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 4em 2em;
   }
+
   .counter {
     position: relative;
+    z-index: 3;
+    color: #fcfcfe;
   }
-  
   
   .counter h1 {
     font-size: 3em;
@@ -289,12 +228,7 @@ body {
         transform: translateX(-50%);
     }
   }
-  body {
-    background: #fcfcfe;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+
   .charts-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -526,6 +460,9 @@ body {
     background-color: rgba(4,4,124,0.85);
     color: #fff;
     padding: 20px 0;
+}
+.footer-title h1{
+
 }
 
 .footer-content {

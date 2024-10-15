@@ -69,38 +69,27 @@ form {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
-    border-bottom: 1px solid rgba(4, 4, 124, 0.85);
+    border-bottom: 2px solid rgba(4, 4, 124, 0.85); /* Increased thickness for better visibility */
 }
 
-.role-tabs a {
-    text-decoration: none;
-    color: #7a7a7a;
+.role-tabs button {
+    background: none; /* No background for buttons */
+    border: none; /* No border */
+    color: #7a7a7a; /* Default text color */
     padding: 10px;
     font-weight: bold;
     font-size: 16px;
-    position: relative;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-.role-tabs a.active {
-    color: #000;
+.role-tabs button.active {
+    color: rgba(4, 4, 124, 0.85); /* Change text color for active tab */
+    border-bottom: 3px solid rgba(4, 4, 124, 0.85); /* Underline for active tab */
 }
 
-.role-tabs a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: rgba(4, 4, 124, 0.85);
-    width: 50%;
-    margin: auto;
-}
-
-.role-tabs a:hover {
-    color: rgba(4, 4, 124, 0.85);
+.role-tabs button:hover {
+    color: rgba(4, 4, 124, 0.85); /* Change color on hover */
 }
 
 input[type="email"],

@@ -1,0 +1,51 @@
+  .sidebar {
+    width: 200px;
+    background-color: #222;
+    color: white;
+    height: 100vh;
+    padding: 1rem;
+    transition: width 0.3s;
+    overflow: hidden;
+  }
+  
+  .sidebar.open {
+    width: 200px;
+  }
+  
+  .sidebar .toggle-btn {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-links li {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-links li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .container {
+    flex-grow: 1;
+    padding: 1rem;
+    transition: margin-left 0.3s;
+  }
+  
+  .container.shrink {
+    margin-left: 200px;
+  }
+  
+  .upload-section, .announcement-section, .view-data-section {
+    margin-bottom: 2rem;
+  }
+  

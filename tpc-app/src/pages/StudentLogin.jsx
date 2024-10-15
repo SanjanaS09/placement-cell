@@ -1,102 +1,97 @@
-import React, { useRef, useState } from 'react';
-import { useAuth } from '../Auth/AuthContext.js';
-import { getDatabase, ref, set } from 'firebase/database';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import database from '../firebaseConfig';
 import '../styles/student-login.css';
 
 function StudentLogin({ setLoggedInUser }) {
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const [showPassword, setShowPassword] = useState(false);
-    const { login } = useAuth();
-    const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState('');
+  const navigate = useNavigate();
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        setLoading(true);
-        setErrors("");
-        
-            try {
-                const loggedInUserCredential = await login(emailRef.current.value, passwordRef.current.value);
-                const user = loggedInUserCredential.user;
-        
-                if (user) {
-                    // Save user ID under Student category
-                    const db = getDatabase();
-                    const userRef = ref(db, 'User/Student/' + user.uid);
-                    await set(userRef, {
-                        uid: user.uid,
-                        email: user.email,
-                        // Add other user details if needed
-                    });
-        
-                    if (setLoggedInUser) {
-                        setLoggedInUser(user.uid);
-                    }
-                    navigate('/StudentPage');
-                }
-            } catch (error) {
-                setErrors("Failed to log in");
-                console.error("Error during login or saving user data:", error.message);
-            } finally {
-                setLoading(false);
-            }
-        }     
-    const toggleShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    return (
-        <div className="body">
-            <div className="container-login">
-                <div className="left-section">
-                    <div className="left-section-content">
-                        <h2>Welcome Back!</h2>
-                        <h3>Student Login</h3>
-                        <p>Access your account to explore job opportunities and manage your applications.</p>
-                    </div>
-                </div>
-                <div className="right-section">
-                    <h2>Login</h2>
-                    <form id="loginForm" onSubmit={handleSubmit}>
-                        <div className="role-tabs">
-                            <Link to="/StudentLogin" className="tab active">Student</Link>
-                            <Link to="/RecruiterLogin" className="tab">Recruiter</Link>
-                            <Link to="/CoordinatorLogin" className="tab">Coordinator</Link>
-                        </div>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Email"
-                            ref={emailRef}
-                            required
-                        />
-                        {errors.email && <span className="error-message">{errors.email}</span>}
-                        <div className="password-container">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                id="password"
-                                placeholder="Password"
-                                ref={passwordRef}
-                                required
-                            />
-                            <button type="button" className="toggleShowPassword" onClick={toggleShowPassword}>
-                                {showPassword ? "Hide" : "Show"}
-                            </button>
-                        </div>
-                        {errors.password && <span className="error-message">{errors.password}</span>}
+    try {
+      const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+      const loggedInUserId = userCredential.user.uid;
 
-                        <a href="/forgot-password" className="forgot-password-link">Forgot your password?</a>
-                        <button type="submit" disabled={loading} >Login</button>
+      // Fetch user data from the database
+      const userSnapshot = await database.ref(`users/Student/${loggedInUserId}`).once('value');
 
-                        <p className="signup-link">Don't have an account? <Link to="/StudentSignup">Sign up now.</Link></p>
-                    </form>
-                </div>
-            </div>
+      if (userSnapshot.exists()) {
+        const userData = userSnapshot.val();
+        setLoggedInUser(userData); // Set the logged-in user data
+
+        // Redirect to StudentPage if the user is a student
+        if (userData.role === 'Student') {
+          navigate('/StudentPage');
+        } else {
+          setErrors('Invalid role or access. Please contact support.');
+        }
+      } else {
+        setErrors('User data not found. Please check your credentials.');
+      }
+    } catch (error) {
+      setErrors('Login failed. Please check your credentials.');
+    }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  return (
+    <div className="body">
+      <div className="container-login">
+        <div className="left-section">
+          <div className="left-section-content">
+            <h2>Welcome Back!</h2>
+            <h3>Student Login</h3>
+            <p>Access your account to explore job opportunities and manage your applications.</p>
+          </div>
         </div>
-    );
+        <div className="right-section">
+          <h2>Login</h2>
+          <form id="loginForm" onSubmit={handleLogin}>
+            <div className="role-tabs">
+              <Link to="/StudentLogin" className="tab active">Student</Link>
+              <Link to="/RecruiterLogin" className="tab">Recruiter</Link>
+              <Link to="/CoordinatorLogin" className="tab">Coordinator</Link>
+            </div>
+            <input
+              className="col-10"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              className="col-10"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <div className="toggleShowPassword" onClick={toggleShowPassword}>
+              {showPassword ? 'Hide' : 'Show'}
+            </div>
+            {errors && <span className="error-message">{errors}</span>}
+            <a href="/forgot-password" className="forgot-password-link">Forgot your password?</a>
+            <button type="submit">Login</button>
+            <p className="signup-link">
+              Don't have an account? <Link to="/StudentSignup">Sign up now.</Link>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default StudentLogin;
