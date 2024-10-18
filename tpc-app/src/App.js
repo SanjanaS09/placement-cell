@@ -68,8 +68,8 @@ const App = () => {
         <Route path="/StudentSignup" element={<StudentSignup />} />
         <Route path="/RecruiterLogin" element={<RecruiterLogin setLoggedInUser={setLoggedInUser} />} />
         <Route path="/RecruiterSignup" element={<RecruiterSignup />} />
-        <Route path="/CoordinatorLogin" element={<TPOLogin setLoggedInUser={setLoggedInUser} />} />
-        <Route path="/CoordinatorSignup" element={<TPOSignup />} />
+        <Route path="/TPOLogin" element={<TPOLogin setLoggedInUser={setLoggedInUser} />} />
+        <Route path="/TPOSignup" element={<TPOSignup />} />
 
         {/* Role-based routes */}
         <Route
@@ -98,15 +98,20 @@ const App = () => {
             loggedInUser && role === 'Coordinator' ? (
               <TPOPage />
             ) : (
-              <Navigate to="/CoordinatorLogin" />
+              <Navigate to="/TPOLogin" />
             )
           }
         >
-          <Route path="ManageStudent" element={<ManageStudents />} />
-        </Route>
+          <Route path="ManageStudents" element={loggedInUser && role === 'Coordinator' ? (
+            <ManageStudents />
+          ) : (
+            <Navigate to="/TPOLogin" />
+          )} />
 
-        {/* Catch-all route */}
-        <Route path="*" element={<PageNotFound />} />
+          </Route>
+
+          {/* Catch-all route */}
+          <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

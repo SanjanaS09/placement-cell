@@ -4,7 +4,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import '../styles/student-login.css';
 
-function StudentLogin({ setLoggedInUser }) {
+function TPOLogin({ setLoggedInUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,7 @@ function StudentLogin({ setLoggedInUser }) {
     const user = firebase.auth().currentUser;
     if (user) {
       setLoggedInUser(user.uid);
-      navigate("/StudentPage");
+      navigate("/TPOPage");
     }
   }, [setLoggedInUser, navigate]);
 
@@ -55,7 +55,7 @@ function StudentLogin({ setLoggedInUser }) {
             <div className="role-tabs">
               <Link to="/StudentLogin" className="tab">Student</Link>
               <Link to="/RecruiterLogin" className="tab active">Recruiter</Link>
-              <Link to="/CoordinatorLogin" className="tab">Coordinator</Link>
+              <Link to="/TPOLogin" className="tab">Coordinator</Link>
             </div>
             <input
               className="col-10"
@@ -82,7 +82,7 @@ function StudentLogin({ setLoggedInUser }) {
             <button type="submit">Login</button>
 
             <p className="signup-link">
-              Don't have an account? <Link to={`/CoordinatorSignup`}>Sign up now.</Link>
+              Don't have an account? <Link to={`/TPOSignup`}>Sign up now.</Link>
             </p>
           </form>
         </div>
@@ -91,4 +91,4 @@ function StudentLogin({ setLoggedInUser }) {
   );
 }
 
-export default StudentLogin;
+export default TPOLogin;

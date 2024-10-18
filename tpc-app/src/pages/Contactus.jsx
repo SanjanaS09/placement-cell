@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/contactus.css'; 
 import logo from '../assests/images/sndt-logo.webp';
-import VilasSir from "../assests/images/coordinator.jpeg";
+import VilasKharat from "../assests/images/vilaskharat.jpg";
 
 const ContactUs = () => {
   return (
@@ -13,21 +13,19 @@ const ContactUs = () => {
         <ul className="nav-links">
           <li><a href="/Home">Home</a></li>
           <li><a href="/Home">About</a></li>
-          <li><a href="/contactus">Contact</a></li>
+          <li><a href="/Contactus">Contact</a></li>
         </ul>
       </nav>
       <div className="container-contactus">
         <section className="chairperson">
-          <h2>Chairperson</h2>
+          <h2>IIIC Co-ordinator</h2>
           <div className="profile">
-            <img src={VilasSir} alt="John Smith" />
+            <img src={VilasKharat} alt="VilasKharat" />
             <div className="details">
-              <h3>John Smith</h3>
-              <p>Professor of Business Management</p>
-              <p><strong>Email:</strong> <a href="mailto:john.smith@university.edu">john.smith@university.edu</a></p>
-              <p><strong>Secretary Name:</strong> Emily Johnson</p>
-              <p><strong>Secretary Email:</strong> <a href="mailto:emily.johnson@university.edu">emily.johnson@university.edu</a></p>
-              <p><strong>Secretary Phone:</strong> 123-456-7890</p>
+              <h3>Vilas Kharat</h3>
+              <p></p>
+              <p><strong>Email:</strong> <a href="mailto:vilas1221@gmail.com">vilas1221@gmail.com</a></p>
+              <p><strong>Phone:</strong> 123-456-7890</p>
             </div>
           </div>
         </section>
@@ -45,7 +43,7 @@ const ContactUs = () => {
         </section>
 
         <section className="staff">
-          <h2>Staff</h2>
+          <h2>Head of Departments</h2>
           <table>
             <thead>
               <tr>
@@ -53,7 +51,7 @@ const ContactUs = () => {
                 <th>Designation</th>
                 <th>Department</th>
                 <th>Email</th>
-                <th>Office Phone</th>
+                <th>Phone</th>
               </tr>
             </thead>
             <tbody>

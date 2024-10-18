@@ -60,7 +60,7 @@ function StudentLogin({ setLoggedInUser }) {
             <div className="role-tabs">
               <Link to="/StudentLogin" className="tab active">Student</Link>
               <Link to="/RecruiterLogin" className="tab">Recruiter</Link>
-              <Link to="/CoordinatorLogin" className="tab">Coordinator</Link>
+              <Link to="/TPOLogin" className="tab">Coordinator</Link>
             </div>
             <input
               className="col-10"

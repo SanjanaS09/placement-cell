@@ -43,7 +43,7 @@ const TPOPage = () => {
           {sidebarOpen ? 'Collapse' : 'Expand'}
         </button>
         <ul className="sidebar-links">
-          <li><Link to="/ManageStudent">Manage Student</Link></li>
+          <li><Link to="/ManageStudents">Manage Student</Link></li>
           <li><Link to="/manageRecruiter">Manage Recruiter</Link></li>
         </ul>
       </div>

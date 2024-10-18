@@ -1,0 +1,78 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .student-page {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Headings */
+  h1 {
+    color: #003366; /* Dark Blue */
+    text-align: center;
+  }
+  
+  h2 {
+    color: #00509e; /* Medium Blue */
+    border-bottom: 2px solid #00509e;
+    padding-bottom: 10px;
+  }
+  
+  /* Announcements */
+  .announcements ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .announcements ul li {
+    background-color: #e0f7ff; /* Light Blue */
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    color: #003366;
+  }
+  
+  /* Resume Upload */
+  .resume-upload input[type="file"] {
+    padding: 10px;
+    border: 2px solid #00509e;
+    border-radius: 5px;
+    color: #00509e;
+  }
+  
+  .resume-upload button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #00509e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .resume-upload button:hover {
+    background-color: #003366;
+  }
+  
+  /* Opportunities */
+  .opportunities ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .opportunities ul li {
+    background-color: #dceefb; /* Very Light Blue */
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    color: #003366;
+  }

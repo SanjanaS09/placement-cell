@@ -88,7 +88,7 @@ const RecruiterSignup = () => {
             <div className="role-tabs">
               <Link to="/StudentSignup" className="tab">Student</Link>
               <Link to="/RecruiterSignup" className="tab active">Recruiter</Link>
-              <Link to="/CoordinatorSignup" className="tab">Coordinator</Link>
+              <Link to="/TPOSignup" className="tab">Coordinator</Link>
             </div>
             <input
               type="text"

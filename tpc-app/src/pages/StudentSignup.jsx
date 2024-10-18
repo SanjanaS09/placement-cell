@@ -89,7 +89,7 @@ const StudentSignup = () => {
             <div className="role-tabs">
               <Link to="/StudentSignup" className="tab active">Student</Link>
               <Link to="/RecruiterSignup" className="tab">Recruiter</Link>
-              <Link to="/CoordinatorSignup" className="tab">Coordinator</Link>
+              <Link to="/TPOSignup" className="tab">Coordinator</Link>
             </div>
 
             {/* Fullname Input */}
