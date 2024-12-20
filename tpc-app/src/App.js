@@ -6,7 +6,6 @@ import 'firebase/compat/database';
 
 import Home from './pages/Home.jsx';
 import ContactUs from './pages/Contactus.jsx';
-import StudentLogin from './pages/StudentLogin.jsx';
 import StudentSignup from './pages/StudentSignup.jsx';
 import StudentPage from './pages/StudentPage.jsx';
 import RecruiterLogin from './pages/RecruiterLogin.jsx';
@@ -17,6 +16,9 @@ import TPOSignup from './pages/CoordinatorSignup.jsx';
 import TPOPage from './pages/TPOPage.jsx';
 import ManageStudents from './pages/ManageStudent.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
+
+import Login from './pages/LoginPage.jsx';
+import Signup from './pages/Signup.jsx';
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(null); // Store logged-in user ID
@@ -64,21 +66,22 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Contactus" element={<ContactUs />} />
-        <Route path="/StudentLogin" element={<StudentLogin setLoggedInUser={setLoggedInUser} />} />
         <Route path="/StudentSignup" element={<StudentSignup />} />
         <Route path="/RecruiterLogin" element={<RecruiterLogin setLoggedInUser={setLoggedInUser} />} />
         <Route path="/RecruiterSignup" element={<RecruiterSignup />} />
         <Route path="/TPOLogin" element={<TPOLogin setLoggedInUser={setLoggedInUser} />} />
         <Route path="/TPOSignup" element={<TPOSignup />} />
+        <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+        <Route path="/Signup" element={<Signup />} />
 
         {/* Role-based routes */}
         <Route
           path="/StudentPage"
           element={
-            loggedInUser && role === 'Student' ? (
+            loggedInUser ? (
               <StudentPage />
             ) : (
-              <Navigate to={role === 'Recruiter' ? "/RecruiterPage" : "/StudentLogin"} />
+              <Navigate to= "/Login" />
             )
           }
         />
@@ -88,7 +91,7 @@ const App = () => {
             loggedInUser && role === 'Recruiter' ? (
               <RecruiterPage />
             ) : (
-              <Navigate to={role === 'Student' ? "/StudentPage" : "/RecruiterLogin"} />
+              <Navigate to="/Login"/>
             )
           }
         />
@@ -98,14 +101,14 @@ const App = () => {
             loggedInUser && role === 'Coordinator' ? (
               <TPOPage />
             ) : (
-              <Navigate to="/TPOLogin" />
+              <Navigate to="/Login" />
             )
           }
         >
           <Route path="ManageStudents" element={loggedInUser && role === 'Coordinator' ? (
             <ManageStudents />
           ) : (
-            <Navigate to="/TPOLogin" />
+            <Navigate to="/Login" />
           )} />
 
           </Route>
