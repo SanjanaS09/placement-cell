@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
-import logo from '../assests/images/output-onlinepngtools.png';
+import logo from '../assets/images/sndt-logo.png';
 import '../styles/RecruiterPage.css';
 
 function RecruiterPage() {

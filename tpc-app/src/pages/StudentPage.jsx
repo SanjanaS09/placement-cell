@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import logo from '../assests/images/output-onlinepngtools.png';
-import  '../styles/StudentPage.css'
+import React, { useState } from 'react';
+import firebase from "firebase/compat/app";
+import logo from '../assets/images/sndt-logo.png';
+import '../styles/StudentPage.css'
 
 function StudentPage() {
     const [resume, setResume] = useState(null);
@@ -28,6 +29,21 @@ function StudentPage() {
                     <li><a href="/Recruitment Oppurunity">Recruitment Oppurunity</a></li>
                     <li><a href="/Resources">Resources</a></li>
                     <li><a href="/Profile">Profile</a></li>
+                    <li><button
+                        className="signout-btn"
+                        onClick={() => {
+                            firebase.auth().signOut()
+                            .then(() => {
+                                window.location.href = "/Login"; // Redirect to login page after sign out
+                            })
+                            .catch((error) => {
+                                console.error("Error during sign-out:", error);
+                                alert("Failed to sign out. Please try again.");
+                            });
+                        }}
+                    >
+                        Signout
+                    </button></li>
                 </ul>
             </nav>
             <div className="student-page">

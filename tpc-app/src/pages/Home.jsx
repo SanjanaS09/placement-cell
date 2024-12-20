@@ -1,23 +1,32 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import '../styles/Home.css';
 import { useNavigate, Link } from 'react-router-dom';
-import logo from '../assests/images/output-onlinepngtools.png';
-import JohnDoe from "../assests/images/1.jpg";
-import JaneSmith from "../assests/images/2.jpg";
-import MikeJohnson from "../assests/images/3.jpg";
-import ManIcon from "../assests/images/man-avatar-icon-free-vector.jpg";
-import VilasSir from "../assests/images/coordinator.jpeg";
-import LinkedIn from "../assests/images/linkedin.png";
-import Facebook from "../assests/images/facebook.png";
-import Instagram from "../assests/images/instagram.png";
-import Twitter from "../assests/images/twitter.png";
+import logo from '../assets/images/sndt-logo.png';
+import JohnDoe from "../assets/images/1.jpg";
+import JaneSmith from "../assets/images/2.jpg";
+import MikeJohnson from "../assets/images/3.jpg";
+import ManIcon from "../assets/images/man-avatar-icon-free-vector.jpg";
+import VilasSir from "../assets/images/vilasKharat.jpeg";
+import LinkedIn from "../assets/images/linkedin.png";
+import Facebook from "../assets/images/facebook.png";
+import Instagram from "../assets/images/instagram.png";
+import Twitter from "../assets/images/twitter.png";
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
+
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement);
 
+const importAll = (requireContext) =>
+  requireContext.keys().map(requireContext);
+
+const logos = importAll(
+  require.context("../assets/Company-logos", false, /\.(png|jpe?g|svg)$/)
+);
+
 function Home() {
   const navigate = useNavigate();
+  const [selectedRole, setSelectedRole] = useState('');
   const [counters, setCounters] = useState([
     { label: "Projects Completed", count: 156, value: 0 },
     { label: "Satisfied Clients", count: 227, value: 0 },
@@ -90,7 +99,7 @@ function Home() {
     labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
     datasets: [{
       label: 'Branch-wise Placements',
-      data: [12, 19, 3, 5, 2],
+      data: [100, 150, 125, 60, 75],
       backgroundColor: [
         'rgba(4, 4, 124, 0.7)',
         'rgba(36, 36, 164, 0.6)',
@@ -106,7 +115,7 @@ function Home() {
   const doughnutData = {
     labels: ['Oracle', 'Deutsche Bank PPO', 'JP Morgan Chase & Co. PPO', 'Barclays PPO (Pune)', 'VISA', 'Colgate Palmolive Internship'],
     datasets: [{
-      label: '# of Placements',
+      // label: '# of Placements',
       data: [1, 5, 1, 4, 4, 19, 1, 3, 2, 2, 5, 7, 16, 1, 34, 7, 14, 2, 4, 1, 4, 12, 5, 2, 1, 9, 2, 19,],
       backgroundColor: [
         'rgba(4, 4, 124, 0.7)',
@@ -154,6 +163,12 @@ function Home() {
     }],
   };
 
+  const handleRoleSelect = (role) => {
+    setSelectedRole(role);
+    // Navigate to the login page and pass selectedRole as state
+    navigate('/login', { state: { selectedRole: role } });
+  };
+
   return (
     <div>
       <div className="home">
@@ -172,13 +187,16 @@ function Home() {
         {/* HOME */}
         <div className="home-section">
           <div className="welcome-message">
-            <h1>Welcome To <br />Usha Mittal Institute of Technology</h1>
+            <h1>
+              <span className="offset-header offset-header-odd"><span>Welcome To </span></span><br />
+              <span className="offset-header offset-header-even"><span>Usha Mittal Institute of Technology</span></span>
+            </h1>
             <p> Empowering Women in Engineering: Where Innovation Meets Excellence.</p>
           </div>
           <div className="login-buttons">
-            <button onClick={() => navigate('/StudentLogin')} className="custom-btn btn-1">Student</button>
-            <button onClick={() => navigate('/RecruiterLogin')} className="custom-btn btn-1">Recruiters</button>
-            <button onClick={() => navigate('/TPOLogin')} className="custom-btn btn-1"><span>TPO</span></button>
+            <button onClick={() => handleRoleSelect('Student')}>Student</button>
+            <button onClick={() => handleRoleSelect('Recruiter')}>Recruiter</button>
+            <button onClick={() => handleRoleSelect('Coordinator')}>Coordinator</button>
           </div>
           <div className="social-media">
             <a href="https://in.linkedin.com/company/tpc-umit-sndt?trk=public_post_follow-view-profile" target="_blank" rel="noopener noreferrer" className="social-icon">
@@ -225,11 +243,11 @@ function Home() {
 
             <div className="chart-container">
               <h2>Company-wise Placements</h2>
-              <Doughnut data={doughnutData} />
+              <Doughnut data={doughnutData} width="200px" height="200px" />
             </div>
 
             <div className="chart-container">
-              <h2>Top Companies Visiting (Horizontal Bar)</h2>
+              <h2>Top Companies Visiting</h2>
               <Bar data={horiBarData} options={{ indexAxis: 'y' }} />
             </div>
 
@@ -237,220 +255,174 @@ function Home() {
               <h2>Yearly Placement Data</h2>
               <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} />
             </div>
-
-          {/* Update Section */}
-          <div className="update-section">
-            <h2>Latest Announcements</h2>
-            <ul>
-              <li>Admission to M.Tech and PhD programs</li>
-              <li>Faculty Recruitment 2024</li>
-              <li>JRF Recruitment</li>
-              <li>Internship Advertisement under ISEA Project</li>
-            </ul>
+          </div>
+          <div className='feed'>
+            <div className="elfsight-app-bac7a5aa-fa12-4ca3-a6a3-1c24c5b793a0" data-elfsight-app-lazy></div>
+            {/* Update Section */}
+            <div className="update-section">
+              <h2>Latest Announcements</h2>
+              <ul>
+                <li>Admission to M.Tech and PhD programs</li>
+                <li>Faculty Recruitment 2024</li>
+                <li>JRF Recruitment</li>
+                <li>Internship Advertisement under ISEA Project</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-      </div>
+        {/* HIGHEST PLACED */}
+        <section className="top-students">
+          <div className="student-card">
+            <img src={JohnDoe} alt="Student 1" className="student-photo" />
+            <div className="student-info">
+              <h3>John Doe</h3>
+              <p>"I am excited to start my journey at Google. The experience and learning at college prepared me well!"</p>
+              <p><strong>Package:</strong> $120,000</p>
+              <p><strong>Company:</strong> Google</p>
+            </div>
+          </div>
+          <div className="student-card">
+            <img src={JaneSmith} alt="Student 2" className="student-photo" />
+            <div className="student-info">
+              <h3>Jane Smith</h3>
+              <p>"Joining Microsoft is a dream come true! Thanks to the placement cell for their guidance."</p>
+              <p><strong>Package:</strong> $115,000</p>
+              <p><strong>Company:</strong> Microsoft</p>
+            </div>
+          </div>
+          <div className="student-card">
+            <img src={MikeJohnson} alt="Student 3" className="student-photo" />
+            <div className="student-info">
+              <h3>Mike Johnson</h3>
+              <p>"I am thrilled to be part of Amazon. The hard work has truly paid off!"</p>
+              <p><strong>Package:</strong> $110,000</p>
+              <p><strong>Company:</strong> Amazon</p>
+            </div>
+          </div>
+        </section>
 
-      {/* HIGHEST PLACED */}
-      <section className="top-students">
-        <div className="student-card">
-          <img src={JohnDoe} alt="Student 1" className="student-photo" />
-          <div className="student-info">
-            <h3>John Doe</h3>
-            <p>"I am excited to start my journey at Google. The experience and learning at college prepared me well!"</p>
-            <p><strong>Package:</strong> $120,000</p>
-            <p><strong>Company:</strong> Google</p>
-          </div>
-        </div>
-        <div className="student-card">
-          <img src={JaneSmith} alt="Student 2" className="student-photo" />
-          <div className="student-info">
-            <h3>Jane Smith</h3>
-            <p>"Joining Microsoft is a dream come true! Thanks to the placement cell for their guidance."</p>
-            <p><strong>Package:</strong> $115,000</p>
-            <p><strong>Company:</strong> Microsoft</p>
-          </div>
-        </div>
-        <div className="student-card">
-          <img src={MikeJohnson} alt="Student 3" className="student-photo" />
-          <div className="student-info">
-            <h3>Mike Johnson</h3>
-            <p>"I am thrilled to be part of Amazon. The hard work has truly paid off!"</p>
-            <p><strong>Package:</strong> $110,000</p>
-            <p><strong>Company:</strong> Amazon</p>
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <div className="testimonial-container">
-        <div className="testimonial-card">
-          <p className="testimonial-title">Hired across multiple profiles</p>
-          <p className="testimonial-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-          <div className="testimonial-author">
-            <img src={ManIcon} alt="Manish Nichani" className="author-photo" />
-            <p>Manish Nichani<br /><span>Airbnb</span></p>
-          </div>
-        </div>
-
-        <div className="testimonial-card">
-          <p className="testimonial-title">Best hiring platform</p>
-          <p className="testimonial-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-          <div className="testimonial-author">
-            <img src={ManIcon} alt="Sarah Miller" className="author-photo" />
-            <p>Sarah Miller<br /><span>Google</span></p>
-          </div>
-        </div>
-
-        <div className="testimonial-card">
-          <p className="testimonial-title">Hired across multiple profiles</p>
-          <p className="testimonial-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-          <div className="testimonial-author">
-            <img src={ManIcon} alt="Manish Nichani" className="author-photo" />
-            <p>Manish Nichani<br /><span>Airbnb</span></p>
-          </div>
-        </div>
-
-        <div className="testimonial-card">
-          <p className="testimonial-title">Hired across multiple profiles</p>
-          <p className="testimonial-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-          <div className="testimonial-author">
-            <img src={ManIcon} alt="Manish Nichani" className="author-photo" />
-            <p>Manish Nichani<br /><span>Airbnb</span></p>
-          </div>
-        </div>
-      </div>
-
-      {/* ------------TEACHERS MESSAGE---------  */}
-      <div className="message">
-        <div className="coordinator-message">
-          <img src={VilasSir} alt="Coordinator" className="coordinator-image" />
-          <div className="message-content">
-            <h2>Coordinator's Message</h2>
-            <p id="message">Welcome to the placement cell. We are dedicated to providing our students with the best career opportunities. Our team is here to assist you in achieving your professional goals. We believe in creating a supportive environment that fosters growth and development.</p>
-          </div>
-        </div>
-      </div>
-      <script src="message.js"></script>
-
-      {/* COMPANY LOGO */}
-      <div className="slider">
-        <div className="slider-text"><h1><b>Our Industry Recruiters</b></h1></div>
-        <div className="slide-track">
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/thumbs/2x/mcdonalds-black-logo.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/images/large/2x/starbucks-logo-black-and-white.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/general-electric-black-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/nfl-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/hogwarts-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/thumbs/2x/mcdonalds-black-logo.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/images/large/2x/starbucks-logo-black-and-white.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/general-electric-black-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/nfl-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/hogwarts-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/thumbs/2x/mcdonalds-black-logo.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/images/large/2x/starbucks-logo-black-and-white.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/general-electric-black-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/nfl-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-png-transparent.png" alt="" />
-          </div>
-          <div className="slide">
-            <img className="move" src="https://cdn.freebiesupply.com/logos/large/2x/hogwarts-logo-png-transparent.png" alt="" />
-          </div>
-        </div>
-      </div>
-
-      {/* FOOTER */}
-      <footer>
-        <div className="footer-title">
-          <img src={logo} alt="logo" />
-          <h1>IIIC UMIT</h1>
-
-        </div>
-        <div className="footer-content">
-          <div className="footer-section footer-social-media">
-            <h2>Follow Us</h2>
-            <div className="footer-social-icons">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
-                <img src={Facebook} alt="Facebook" />
-              </a>
-              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
-                <img src={Twitter} alt="Twitter" />
-              </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
-                <img src={LinkedIn} alt="LinkedIn" />
-              </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
-                <img src={Instagram} alt="Instagram" />
-              </a>
+        {/* TESTIMONIALS */}
+        <div className="testimonial-container">
+          <div className="testimonial-card">
+            <p className="testimonial-title">Hired across multiple profiles</p>
+            <p className="testimonial-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <div className="testimonial-author">
+              <img src={ManIcon} alt="Manish Nichani" className="author-photo" />
+              <p>Manish Nichani<br /><span>Airbnb</span></p>
             </div>
           </div>
 
-          <div className="footer-section links">
-            <h2>Quick Links</h2>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/events">Events</Link></li>
-            </ul>
+          <div className="testimonial-card">
+            <p className="testimonial-title">Best hiring platform</p>
+            <p className="testimonial-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <div className="testimonial-author">
+              <img src={ManIcon} alt="Sarah Miller" className="author-photo" />
+              <p>Sarah Miller<br /><span>Google</span></p>
+            </div>
           </div>
-          <div className="footer-section contact">
-            <h2>Connect</h2>
-            <p>Email: placement@college.edu</p>
-            <p>Phone: +123 456 7890</p>
-            <p>Address: 123 College Street, City, Country</p>
-            <p>Contact Us</p>
+
+          <div className="testimonial-card">
+            <p className="testimonial-title">Hired across multiple profiles</p>
+            <p className="testimonial-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <div className="testimonial-author">
+              <img src={ManIcon} alt="Manish Nichani" className="author-photo" />
+              <p>Manish Nichani<br /><span>Airbnb</span></p>
+            </div>
+          </div>
+
+          <div className="testimonial-card">
+            <p className="testimonial-title">Hired across multiple profiles</p>
+            <p className="testimonial-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <div className="testimonial-author">
+              <img src={ManIcon} alt="Manish Nichani" className="author-photo" />
+              <p>Manish Nichani<br /><span>Airbnb</span></p>
+            </div>
           </div>
         </div>
-        <div className="footer-bottom">
-          <p>&copy; 2024 Training and Placement Cell. All Rights Reserved.</p>
+
+        {/* ------------COORDINATORS MESSAGE---------  */}
+        <div className="message">
+          <div className="coordinator-message">
+            <img src={VilasSir} alt="Coordinator" className="coordinator-image" />
+            <div className="message-content">
+              <h2>Coordinator's Message</h2>
+              <p id="message">Welcome to the placement cell. We are dedicated to providing our students with the best career opportunities. Our team is here to assist you in achieving your professional goals. We believe in creating a supportive environment that fosters growth and development.</p>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
+        <script src="message.js"></script>
+
+        {/* COMPANY LOGO */}
+        <div className="slider">
+          <div className="slider-text">
+            <h1><b>Our Industry Recruiters</b></h1>
+          </div>
+          <div className="slide-track">
+            {logos.map((logo, index) => (
+              <div className="slide" key={index}>
+                <img className="move" src={logo} alt={`Company Logo ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FOOTER */}
+        <footer>
+          <div className="footer-title">
+            <img src={logo} alt="logo" width="150px" height="100px" />
+            <h1>IIIC UMIT</h1>
+
+          </div>
+          <div className="footer-content">
+            <div className="footer-section footer-social-media">
+              <h2>Follow Us</h2>
+              <div className="footer-social-icons">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                  <img src={Facebook} alt="Facebook" />
+                </a>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                  <img src={Twitter} alt="Twitter" />
+                </a>
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                  <img src={LinkedIn} alt="LinkedIn" />
+                </a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                  <img src={Instagram} alt="Instagram" />
+                </a>
+              </div>
+            </div>
+
+            <div className="footer-section links">
+              <h2>Quick Links</h2>
+              <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About Us</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/events">Events</Link></li>
+              </ul>
+            </div>
+            <div className="footer-section contact">
+              <h2>Connect</h2>
+              <p>Email: placement@college.edu</p>
+              <p>Phone: +123 456 7890</p>
+              <p>Address: 123 College Street, City, Country</p>
+              <p>Contact Us</p>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>&copy; 2024 Training and Placement Cell. All Rights Reserved.</p>
+          </div>
+        </footer>
+      </div>
     </div >
   );
 };

@@ -16,7 +16,7 @@ header {
 }
 
 nav {
-  background-color: rgb(4,4,124,0.85); /* Adjust the color and transparency here */
+  background-color: rgb(4,4,124); /* Adjust the color and transparency here */
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,6 @@ nav {
 nav .logo img {
   height: 50px; /* Set a specific height for the logo */
   width: auto;  /* Maintain the aspect ratio */
-  filter: invert(1) brightness(1000%);
 }
 
 nav ul {

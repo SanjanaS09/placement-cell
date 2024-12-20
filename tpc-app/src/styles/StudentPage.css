@@ -1,9 +1,22 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff; /* Light blue background */
     margin: 0;
     padding: 0;
+  }
+
+  .nav-links .signout-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+  
+  .nav-links .signout-btn:hover {
+    text-decoration: underline;
+    color: rgb(241, 3, 3);
   }
   
   .student-page {
@@ -16,12 +29,12 @@ body {
   }
   
   /* Headings */
-  h1 {
+  .student-page h1 {
     color: #003366; /* Dark Blue */
     text-align: center;
   }
   
-  h2 {
+  .student-page h2 {
     color: #00509e; /* Medium Blue */
     border-bottom: 2px solid #00509e;
     padding-bottom: 10px;

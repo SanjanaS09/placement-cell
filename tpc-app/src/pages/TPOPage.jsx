@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../assests/images/output-onlinepngtools.png';
+import logo from '../assets/images/sndt-logo.png';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 import  '../styles/TPOPage.css'
 

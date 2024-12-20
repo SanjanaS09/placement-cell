@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/contactus.css'; 
-import logo from '../assests/images/sndt-logo.webp';
-import VilasKharat from "../assests/images/vilaskharat.jpg";
+import logo from '../assets/images/sndt-logo.png';
+import VilasKharat from "../assets/images/vilasKharat.jpeg";
 
 const ContactUs = () => {
   return (
@@ -11,8 +11,8 @@ const ContactUs = () => {
           <img src={logo} alt="Logo" />
         </div>
         <ul className="nav-links">
-          <li><a href="/Home">Home</a></li>
-          <li><a href="/Home">About</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/">About</a></li>
           <li><a href="/Contactus">Contact</a></li>
         </ul>
       </nav>

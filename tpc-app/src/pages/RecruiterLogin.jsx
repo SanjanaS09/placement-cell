@@ -9,6 +9,7 @@ function RecruiterLogin({ setLoggedInUser }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState('');
+  const [activeTab, setActiveTab] = useState("Student"); // Default active tab
   const navigate = useNavigate();
 
   // Check for persisted user
@@ -54,9 +55,27 @@ function RecruiterLogin({ setLoggedInUser }) {
           <h2>Login</h2>
           <form id="loginForm" onSubmit={handleLogin}>
             <div className="role-tabs">
-              <Link to="/StudentLogin" className="tab">Student</Link>
-              <Link to="/RecruiterLogin" className="tab active">Recruiter</Link>
-              <Link to="/TPOLogin" className="tab">Coordinator</Link>
+              <Link
+                to="/StudentLogin"
+                className={`tab ${activeTab === "Student" ? "active" : ""}`}
+                onClick={() => setActiveTab("Student")}
+              >
+                Student
+              </Link>
+              <Link
+                to="/RecruiterLogin"
+                className={`tab ${activeTab === "Recruiter" ? "active" : ""}`}
+                onClick={() => setActiveTab("Recruiter")}
+              >
+                Recruiter
+              </Link>
+              <Link
+                to="/TPOLogin"
+                className={`tab ${activeTab === "Coordinator" ? "active" : ""}`}
+                onClick={() => setActiveTab("Coordinator")}
+              >
+                Coordinator
+              </Link>
             </div>
             <input
               className="col-10"
