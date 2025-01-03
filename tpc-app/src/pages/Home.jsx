@@ -99,7 +99,7 @@ function Home() {
     labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
     datasets: [{
       label: 'Branch-wise Placements',
-      data: [100, 150, 125, 60, 75],
+      data: [67, 69, 53, 17, 9],
       backgroundColor: [
         'rgba(4, 4, 124, 0.7)',
         'rgba(36, 36, 164, 0.6)',
@@ -113,23 +113,41 @@ function Home() {
   };
 
   const doughnutData = {
-    labels: ['Oracle', 'Deutsche Bank PPO', 'JP Morgan Chase & Co. PPO', 'Barclays PPO (Pune)', 'VISA', 'Colgate Palmolive Internship'],
+    labels: ['Oracle', 'Deutsche Bank', 'JP Morgan Chase & Co.', 'Barclays', 'VISA', 'Colgate','GE Aerospace','Providence ','KPMG', 'Deloitte USI', 'Veritas', 'Bank of Americe', 'Deloitte IN', 'Seimens', 'NVIDIA', 'Rite Technologies', 'NetWeaver', 'Amdocs', 'Accenture', 'Publicis Sapient', 'HSBC', 'Capgemini', ' ExcelR', 'Argon & Co.','IIDE', 'Eduvaz','Clever Tap'],
     datasets: [{
       // label: '# of Placements',
-      data: [1, 5, 1, 4, 4, 19, 1, 3, 2, 2, 5, 7, 16, 1, 34, 7, 14, 2, 4, 1, 4, 12, 5, 2, 1, 9, 2, 19,],
+      data: [1, 7, 2, 13, 4, 20, 3, 5, 9, 16, 1, 34, 14, 2, 5, 1, 4, 12, 5, 9, 2, 19, 2, 1, 10, 2, 1],
       backgroundColor: [
-        'rgba(4, 4, 124, 0.7)',
-        'rgba(36, 36, 164, 0.6)',
-        'rgba(53, 53, 163, 0.5)',
-        'rgba(105, 105, 182, 0.4)',
-        'rgba(139, 139, 198, 0.3)'
+        // 'rgba(4, 4, 124, 0.7)',
+        // 'rgba(36, 36, 164, 0.6)',
+        // 'rgba(53, 53, 163, 0.5)',
+        // 'rgba(105, 105, 182, 0.4)',
+        // 'rgba(139, 139, 198, 0.3)'
+        'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 
+        'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 
+        'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 
+        'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 
+        'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 
+        'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 
+        'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 
+        'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 
+        'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)'
       ],
       borderColor: [
-        'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)'
+        // 'rgb(4, 4, 152, 1)',
+        // 'rgb(4, 4, 152, 1)',
+        // 'rgb(4, 4, 152, 1)',
+        // 'rgb(4, 4, 152, 1)',
+        // 'rgb(4, 4, 152, 1)'
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)'
       ],
       borderWidth: 1,
     }],
