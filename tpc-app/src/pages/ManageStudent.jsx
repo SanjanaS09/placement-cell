@@ -1,23 +1,22 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/database'; // Import Firebase Database
+import React, { useState, useEffect, useCallback } from "react";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database"; // Import Firebase Database
 
-const ManageStudents = () => {
-  const [announcement, setAnnouncement] = useState('');
+const ManageStudent = () => {
+  const [announcement, setAnnouncement] = useState("");
   const [students, setStudents] = useState([]);
   const [branches, setBranches] = useState([]);
   const [years, setYears] = useState([]);
-  const [tenures, setTenures] = useState([]); // Tenure state
-  const [tenureFilter, setTenureFilter] = useState('');
-  const [branchFilter, setBranchFilter] = useState('');
-  const [yearFilter, setYearFilter] = useState('');
+  const [tenures, setTenures] = useState([]);
+  const [tenureFilter, setTenureFilter] = useState("");
+  const [branchFilter, setBranchFilter] = useState("");
+  const [yearFilter, setYearFilter] = useState("");
 
   const database = firebase.database(); // Initialize Firebase Database
 
-  // Fetch student data and available tenures, branches, and years
   const fetchStudentData = useCallback(async () => {
-    const studentRef = database.ref('students/');
-    studentRef.once('value', (snapshot) => {
+    const studentRef = database.ref("students/");
+    studentRef.once("value", (snapshot) => {
       if (snapshot.exists()) {
         const studentData = snapshot.val();
         const studentsList = [];
@@ -25,15 +24,14 @@ const ManageStudents = () => {
         const yearSet = new Set();
         const branchSet = new Set();
 
-        // Traverse the data to populate tenure, branch, and year
         Object.keys(studentData).forEach((tenure) => {
-          tenureList.push(tenure); // Collect all tenures (e.g., "2024-25", "2025-26")
+          tenureList.push(tenure);
           Object.keys(studentData[tenure]).forEach((year) => {
-            yearSet.add(year); // Collect unique years (e.g., "2nd", "3rd")
+            yearSet.add(year);
             Object.keys(studentData[tenure][year]).forEach((branch) => {
-              branchSet.add(branch); // Collect unique branches
+              branchSet.add(branch);
               const branchStudents = studentData[tenure][year][branch];
-              if (typeof branchStudents === 'object') {
+              if (typeof branchStudents === "object") {
                 Object.keys(branchStudents).forEach((studentName) => {
                   const studentInfo = branchStudents[studentName];
                   studentsList.push({
@@ -41,7 +39,7 @@ const ManageStudents = () => {
                     branch: branch,
                     year: year,
                     tenure: tenure,
-                    ...studentInfo, // Includes CGPA or other info
+                    ...studentInfo, // Includes additional student info
                   });
                 });
               }
@@ -49,10 +47,10 @@ const ManageStudents = () => {
           });
         });
 
-        setStudents(studentsList); // Set the fetched student data
-        setTenures(tenureList); // Set the available tenures
-        setYears([...yearSet]); // Set available years
-        setBranches([...branchSet]); // Set available branches
+        setStudents(studentsList);
+        setTenures(tenureList);
+        setYears([...yearSet]);
+        setBranches([...branchSet]);
       }
     });
   }, [database]);
@@ -62,16 +60,15 @@ const ManageStudents = () => {
   }, [fetchStudentData]);
 
   const handleUploadAnnouncement = () => {
-    const announcementId = new Date().getTime(); // Use timestamp as unique ID
+    const announcementId = new Date().getTime();
     database.ref(`announcements/${announcementId}`).set({
       announcementText: announcement,
       createdOn: new Date().toLocaleString(),
     });
-    alert('Announcement Uploaded!');
-    setAnnouncement('');
+    alert("Announcement Uploaded!");
+    setAnnouncement("");
   };
 
-  // Filter students first by tenure, then by year, then by branch
   const filteredStudents = students
     .filter((student) => (tenureFilter ? student.tenure === tenureFilter : true))
     .filter((student) => (yearFilter ? student.year === yearFilter : true))
@@ -144,6 +141,13 @@ const ManageStudents = () => {
               <th>Year</th>
               <th>Tenure</th>
               <th>CGPA</th>
+              <th>PNR No</th>
+              <th>Email</th>
+              <th>LinkedIn</th>
+              <th>GitHub</th>
+              <th>Address</th>
+              <th>DOB</th>
+              <th>Photograph</th>
             </tr>
           </thead>
           <tbody>
@@ -153,7 +157,36 @@ const ManageStudents = () => {
                 <td>{student.branch}</td>
                 <td>{student.year}</td>
                 <td>{student.tenure}</td>
-                <td>{student.CGPA || 'N/A'}</td>
+                <td>{student.CGPA || "N/A"}</td>
+                <td>{student.pnrNo || "N/A"}</td>
+                <td>{student.email || "N/A"}</td>
+                <td>
+                  {student.linkedinLink ? (
+                    <a href={student.linkedinLink} target="_blank" rel="noopener noreferrer">
+                      LinkedIn
+                    </a>
+                  ) : (
+                    "N/A"
+                  )}
+                </td>
+                <td>
+                  {student.githubLink ? (
+                    <a href={student.githubLink} target="_blank" rel="noopener noreferrer">
+                      GitHub
+                    </a>
+                  ) : (
+                    "N/A"
+                  )}
+                </td>
+                <td>{student.address || "N/A"}</td>
+                <td>{student.dob || "N/A"}</td>
+                <td>
+                  {student.photograph ? (
+                    <img src={student.photograph} alt="Student" width="50" />
+                  ) : (
+                    "N/A"
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -163,4 +196,4 @@ const ManageStudents = () => {
   );
 };
 
-export default ManageStudents;
+export default ManageStudent;

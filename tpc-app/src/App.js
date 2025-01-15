@@ -14,8 +14,9 @@ import RecruiterPage from './pages/RecruiterPage.jsx';
 import TPOLogin from './pages/CoordinatorLogin.jsx';
 import TPOSignup from './pages/CoordinatorSignup.jsx';
 import TPOPage from './pages/TPOPage.jsx';
-import ManageStudents from './pages/ManageStudent.jsx';
+import ManageStudent from './pages/ManageStudent.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
+// import ManageRecruiter from './pages/ManageRecruiter.jsx'
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
@@ -78,43 +79,33 @@ const App = () => {
         <Route
           path="/StudentPage"
           element={
-            loggedInUser && role === 'Student' ? (
+            loggedInUser ? (
               <StudentPage />
             ) : (
-              <Navigate to= "/Login" />
+              <Navigate to="/Login" />
             )
           }
         />
         <Route
           path="/RecruiterPage"
           element={
-            loggedInUser && role === 'Recruiter' ? (
+            loggedInUser ? (
               <RecruiterPage />
-            ) : (
-              <Navigate to="/Login"/>
-            )
-          }
-        />
-        <Route
-          path="/TPOPage/"
-          element={
-            loggedInUser && role === 'Coordinator' ? (
-              <TPOPage />
             ) : (
               <Navigate to="/Login" />
             )
           }
-        >
-          <Route path="ManageStudents" element={loggedInUser && role === 'Coordinator' ? (
-            <ManageStudents />
-          ) : (
-            <Navigate to="/Login" />
-          )} />
+        />
+        <Route path="/TPOPage" element={<TPOPage />}>
+          <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
+          <Route path="ManageStudent" element={<ManageStudent />} />
+          {/* <Route path="ManageRecruiter" element={<ManageRecruiter />} /> 
+          <Route path="Blog" element={<Blog />} />
+          <Route path="Announcements" element={<Announcements />} /> */}
+        </Route>
 
-          </Route>
-
-          {/* Catch-all route */}
-          <Route path="*" element={<PageNotFound />} />
+        {/* Catch-all route */}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

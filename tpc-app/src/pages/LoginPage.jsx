@@ -31,6 +31,7 @@ function LoginPage({ setLoggedInUser }) {
       if (activeRole === "Student") navigate("/StudentPage");
       else if (activeRole === "Recruiter") navigate("/RecruiterPage");
       else if (activeRole === "Coordinator") navigate("/TPOPage");
+      else navigate("/Login");
     } catch (error) {
       setErrors(error.message);
       console.error("Login Error:", error);
