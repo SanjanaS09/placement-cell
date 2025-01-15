@@ -104,7 +104,7 @@ function LoginPage({ setLoggedInUser }) {
               required
             />
             <div className="toggleShowPassword" onClick={toggleShowPassword}>
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? "Hide Password" : "Show Password"}
             </div>
             {errors && <span className="error-message">{errors}</span>}
 

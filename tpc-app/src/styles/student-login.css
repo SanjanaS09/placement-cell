@@ -59,7 +59,6 @@
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .role-tabs {
@@ -171,10 +170,6 @@ button:disabled {
 }
 
 .toggleShowPassword {
-    position: absolute;
-    right: 10px;
-    top: calc(50% -10px); /* Adjusted 20px higher */
-    transform: translateY(-50%);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -183,8 +178,8 @@ button:disabled {
     color: #0066ff;
     padding: 0;
     transition: color 0.3s ease;
-    width: 50px; /* Fixed width to prevent shifting */
-    text-align: center; /* Centers text inside the fixed-width button */
+    width: 200px; /* Fixed width to prevent shifting */
+    text-align: left; /* Centers text inside the fixed-width button */
 }
 
 .toggleShowPassword:hover {

@@ -78,7 +78,7 @@ const App = () => {
         <Route
           path="/StudentPage"
           element={
-            loggedInUser ? (
+            loggedInUser && role === 'Student' ? (
               <StudentPage />
             ) : (
               <Navigate to= "/Login" />
