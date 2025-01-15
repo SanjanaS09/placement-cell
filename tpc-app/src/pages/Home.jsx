@@ -294,28 +294,28 @@ function Home() {
           <div className="student-card">
             <img src={JohnDoe} alt="Student 1" className="student-photo" />
             <div className="student-info">
-              <h3>John Doe</h3>
-              <p>"I am excited to start my journey at Google. The experience and learning at college prepared me well!"</p>
-              <p><strong>Package:</strong> $120,000</p>
-              <p><strong>Company:</strong> Google</p>
+              <h3>Shruti Rane</h3>
+              <p>"I am excited to start my journey at Visa. The experience and learning at college prepared me well!"</p>
+              <p><strong>Package:</strong>INR 32,76,298 </p>
+              <p><strong>Company:</strong>Visa</p>
             </div>
           </div>
           <div className="student-card">
             <img src={JaneSmith} alt="Student 2" className="student-photo" />
             <div className="student-info">
-              <h3>Jane Smith</h3>
-              <p>"Joining Microsoft is a dream come true! Thanks to the placement cell for their guidance."</p>
-              <p><strong>Package:</strong> $115,000</p>
-              <p><strong>Company:</strong> Microsoft</p>
+              <h3>Kirtee Sinha</h3>
+              <p>"Joining Visa is a dream come true! Thanks to the placement cell for their guidance."</p>
+              <p><strong>Package:</strong>INR 32,76,297</p>
+              <p><strong>Company:</strong>Visa</p>
             </div>
           </div>
           <div className="student-card">
             <img src={MikeJohnson} alt="Student 3" className="student-photo" />
             <div className="student-info">
-              <h3>Mike Johnson</h3>
-              <p>"I am thrilled to be part of Amazon. The hard work has truly paid off!"</p>
-              <p><strong>Package:</strong> $110,000</p>
-              <p><strong>Company:</strong> Amazon</p>
+              <h3>Alam Sanjana</h3>
+              <p>"I am thrilled to be part of Visa. The hard work has truly paid off!"</p>
+              <p><strong>Package:</strong>INR 32,76,296</p>
+              <p><strong>Company:</strong>Visa</p>
             </div>
           </div>
         </section>
