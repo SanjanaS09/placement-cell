@@ -9,7 +9,7 @@ function LoginPage({ setLoggedInUser }) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState("");
-  const [activeRole, setActiveRole] = useState("Student"); // New state for role management
+  const [activeRole, setActiveRole] = useState('Student'); // New state for role management
   const navigate = useNavigate();
 
   // Set the logged-in user if one exists when the component mounts
@@ -37,15 +37,6 @@ function LoginPage({ setLoggedInUser }) {
     }
   };
 
-  const handleRoleChange = (role) => {
-    setActiveRole(role);
-
-    // Navigate to role-specific pages immediately
-    if (role === "Student") navigate("/StudentPage");
-    else if (role === "Recruiter") navigate("/RecruiterPage");
-    else if (role === "Coordinator") navigate("/TPOPage");
-  };
-
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
@@ -68,58 +59,61 @@ function LoginPage({ setLoggedInUser }) {
           <h2>Login</h2>
           <div className="role-tabs">
             <button
-              className={`tab ${activeRole === "Student" ? "active" : ""}`}
-              onClick={() => handleRoleChange("Student")}
+              type="button"
+              className={`tab ${activeRole === 'Student' ? 'active' : ''}`}
+              onClick={() => setActiveRole('Student')}
             >
               Student
             </button>
             <button
-              className={`tab ${activeRole === "Recruiter" ? "active" : ""}`}
-              onClick={() => handleRoleChange("Recruiter")}
+              type="button"
+              className={`tab ${activeRole === 'Recruiter' ? 'active' : ''}`}
+              onClick={() => setActiveRole('Recruiter')}
             >
               Recruiter
             </button>
             <button
-              className={`tab ${activeRole === "Coordinator" ? "active" : ""}`}
-              onClick={() => handleRoleChange("Coordinator")}
+              type="button"
+              className={`tab ${activeRole === 'Coordinator' ? 'active' : ''}`}
+              onClick={() => setActiveRole('Coordinator')}
             >
               Coordinator
             </button>
           </div>
-          <form id="loginForm" onSubmit={handleLogin}>
-            <input
-              className="col-10"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              className="col-10"
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <div className="toggleShowPassword" onClick={toggleShowPassword}>
-              {showPassword ? "Hide Password" : "Show Password"}
-            </div>
-            {errors && <span className="error-message">{errors}</span>}
+        <form id="loginForm" onSubmit={handleLogin}>
+          <input
+            className="col-10"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            className="col-10"
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <div className="toggleShowPassword" onClick={toggleShowPassword}>
+            {showPassword ? "Hide Password" : "Show Password"}
+          </div>
+          {errors && <span className="error-message">{errors}</span>}
 
-            <a href="/forgot-password" className="forgot-password-link">
-              Forgot your password?
-            </a>
-            <button type="submit">Login</button>
+          <a href="/forgot-password" className="forgot-password-link">
+            Forgot your password?
+          </a>
+          <button type="submit">Login</button>
 
-            <p className="signup-link">
-              Don't have an account? <Link to={`/Signup`}>Sign up now.</Link>
-            </p>
-          </form>
-        </div>
+          <p className="signup-link">
+            Don't have an account? <Link to={`/Signup`}>Sign up now.</Link>
+          </p>
+        </form>
       </div>
     </div>
+    </div >
   );
 }
 
