@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database"; // Import Firebase Database
+import '../styles/ManageStudent.css'
 
 const ManageStudent = () => {
   const [announcement, setAnnouncement] = useState("");
@@ -79,7 +80,7 @@ const ManageStudent = () => {
       <h1>Manage Students</h1>
 
       {/* Post Announcement */}
-      <div>
+      <div className="manage-box">
         <h3>Post Announcement</h3>
         <textarea
           value={announcement}
