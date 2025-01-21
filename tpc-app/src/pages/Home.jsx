@@ -207,7 +207,7 @@ function Home() {
           <div className="welcome-message">
             <h1>
               <span className="offset-header offset-header-odd"><span>Welcome To </span></span><br />
-              <span className="offset-header offset-header-even"><span>Usha Mittal Institute of Technology</span></span>
+              <span className="offset-header offset-header-even"><span>Industry Institute Interaction Cell</span></span>
             </h1>
             <p> Empowering Women in Engineering: Where Innovation Meets Excellence.</p>
           </div>
@@ -432,7 +432,7 @@ function Home() {
               <h2>Connect</h2>
               <p>Email: placement@college.edu</p>
               <p>Phone: +123 456 7890</p>
-              <p>Address: 123 College Street, City, Country</p>
+              <p>Address: 3RPJ+H5Q, Juhu-Tara Road, Sir Vitthaldas Vidyavihar, Santacruz(W), Mumbai, Maharashtra 400049</p>
               <p>Contact Us</p>
             </div>
           </div>

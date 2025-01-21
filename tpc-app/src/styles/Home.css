@@ -74,11 +74,13 @@ nav ul li a:hover {
   text-align: left;
   animation-delay: 0s;
   animation-fill-mode: forwards;
+  color: #fcfcfe;
 }
 .offset-header-even > span {
   text-align: right;
   animation-delay: 150ms;
   animation-fill-mode: both;
+  color: #fcfcfe;
 }
 
 @keyframes slideUp {

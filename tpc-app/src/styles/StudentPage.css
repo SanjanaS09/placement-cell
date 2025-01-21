@@ -1,91 +1,145 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
 
-  .nav-links .signout-btn {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    text-decoration: none;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6f2ff; /* Light blue background */
+  margin: 0;
+  padding: 0;
+}
+
+.student-page {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #ffffff; /* White card */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-top: 5px solid #007BFF; /* Bright blue border */
+}
+
+h1 {
+  text-align: center;
+  color: #004085; /* Deep blue */
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #004085; /* Deep blue */
+  margin-bottom: 5px;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #b8daff; /* Soft blue border */
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border: 1px solid #007BFF; /* Highlighted blue */
+  box-shadow: 0 0 5px #007BFF;
+}
+
+button {
+  background-color: #007BFF; /* Bright blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+input[type="file"] {
+  padding: 3px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+input::placeholder,
+select {
+  color: #6c757d; /* Neutral gray text for placeholders */
+}
+
+input,
+select {
+  background-color: #f8f9fa; /* Very light gray for input fields */
+}
+
+.student-page {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .nav-links .signout-btn:hover {
-    text-decoration: underline;
-    color: rgb(241, 3, 3);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .student-page {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+}
+
+
+.announcements-container {
+  max-width: 800px;
+  background-color: #007BFF; /* Bright blue background */
+  color: white; /* White text */
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  height: 40px;
+}
+
+.announcements {
+  display: flex;
+  animation: scroll 25s linear infinite;
+  white-space: nowrap;
+}
+
+.announcement-item {
+  margin-right: 50px; /* Space between announcements */
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/* Keyframes for scrolling animation */
+@keyframes scroll {
+  from {
+    transform: translateX(100%);
   }
-  
-  /* Headings */
-  .student-page h1 {
-    color: #003366; /* Dark Blue */
-    text-align: center;
+  to {
+    transform: translateX(-100%);
   }
-  
-  .student-page h2 {
-    color: #00509e; /* Medium Blue */
-    border-bottom: 2px solid #00509e;
-    padding-bottom: 10px;
-  }
-  
-  /* Announcements */
-  .announcements ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .announcements ul li {
-    background-color: #e0f7ff; /* Light Blue */
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 5px;
-    color: #003366;
-  }
-  
-  /* Resume Upload */
-  .resume-upload input[type="file"] {
-    padding: 10px;
-    border: 2px solid #00509e;
-    border-radius: 5px;
-    color: #00509e;
-  }
-  
-  .resume-upload button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #00509e;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .resume-upload button:hover {
-    background-color: #003366;
-  }
-  
-  /* Opportunities */
-  .opportunities ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .opportunities ul li {
-    background-color: #dceefb; /* Very Light Blue */
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 5px;
-    color: #003366;
-  }
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical; /* Allow resizing vertically */
+}
