@@ -129,7 +129,6 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
-    border-bottom: 2px solid rgba(4, 4, 124, 0.85);
 }
 
 .role-tabs button {

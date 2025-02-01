@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getDatabase, ref, push } from "firebase/database";
 
-const BlogPage = () => {
+const Blog = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [message, setMessage] = useState("");
@@ -66,5 +66,5 @@ const BlogPage = () => {
     );
   };
   
-  export default BlogPage;
+  export default Blog;
   

@@ -6,17 +6,14 @@ import 'firebase/compat/database';
 
 import Home from './pages/Home.jsx';
 import ContactUs from './pages/Contactus.jsx';
-import StudentSignup from './pages/StudentSignup.jsx';
 import StudentPage from './pages/StudentPage.jsx';
-import RecruiterLogin from './pages/RecruiterLogin.jsx';
-import RecruiterSignup from './pages/RecruiterSignup.jsx';
 import RecruiterPage from './pages/RecruiterPage.jsx';
-import TPOLogin from './pages/CoordinatorLogin.jsx';
-import TPOSignup from './pages/CoordinatorSignup.jsx';
 import TPOPage from './pages/TPOPage.jsx';
+import Blog from './pages/Blog.jsx'
+import Announcements from './pages/Announcements.jsx'
 import ManageStudent from './pages/ManageStudent.jsx';
+import ManageRecruiter from './pages/ManageRecruiter.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
-// import ManageRecruiter from './pages/ManageRecruiter.jsx'
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
@@ -67,11 +64,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Contactus" element={<ContactUs />} />
-        <Route path="/StudentSignup" element={<StudentSignup />} />
-        <Route path="/RecruiterLogin" element={<RecruiterLogin setLoggedInUser={setLoggedInUser} />} />
-        <Route path="/RecruiterSignup" element={<RecruiterSignup />} />
-        <Route path="/TPOLogin" element={<TPOLogin setLoggedInUser={setLoggedInUser} />} />
-        <Route path="/TPOSignup" element={<TPOSignup />} />
         <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} />} />
         <Route path="/Signup" element={<Signup />} />
 
@@ -96,18 +88,18 @@ const App = () => {
             )
           }
         />
-        {/* <Route path="/TPOPage" element={<TPOPage />}> */}
+        {/* <Route path="/TPOPage" element={<TPOPage />} > */}
           <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
           <Route path="ManageStudent" element={<ManageStudent />} />
-          {/* <Route path="ManageRecruiter" element={<ManageRecruiter />} /> 
+          <Route path="ManageRecruiter" element={<ManageRecruiter />} />
           <Route path="Blog" element={<Blog />} />
-          <Route path="Announcements" element={<Announcements />} /> */}
+          <Route path="Announcements" element={<Announcements />} />
         {/* </Route> */}
 
         {/* Catch-all route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </Router>
+    </Router >
   );
 };
 
