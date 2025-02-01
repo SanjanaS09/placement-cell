@@ -1,51 +1,38 @@
-  .sidebar {
-    width: 200px;
-    background-color: #222;
-    color: white;
-    height: 100vh;
-    padding: 1rem;
-    transition: width 0.3s;
-    overflow: hidden;
+
+   .tpo-container {
+    background-color: #0a192f;
+    color: #e0e0e0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
   }
   
-  .sidebar.open {
-    width: 200px;
+  h1, h2, h3 {
+    color: #64ffda;
   }
   
-  .sidebar .toggle-btn {
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
+  .recruiter-section, .student-section {
+    background-color: #112240;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
   }
   
-  .sidebar-links {
-    list-style: none;
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #64ffda;
+  }
+  
+  ul {
+    list-style-type: none;
     padding: 0;
   }
   
-  .sidebar-links li {
-    margin-bottom: 1rem;
-  }
-  
-  .sidebar-links li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .container {
-    flex-grow: 1;
-    padding: 1rem;
-    transition: margin-left 0.3s;
-  }
-  
-  .container.shrink {
-    margin-left: 200px;
-  }
-  
-  .upload-section, .announcement-section, .view-data-section {
-    margin-bottom: 2rem;
+  li {
+    background-color: #233554;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
   }
   

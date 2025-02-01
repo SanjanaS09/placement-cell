@@ -96,7 +96,7 @@ const App = () => {
             )
           }
         />
-        {/* <Route path="/TPOPage" element={<TPOPage />}> */}
+        <Route path="/TPOPage" element={<TPOPage />}/>
           <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
           <Route path="ManageStudent" element={<ManageStudent />} />
           {/* <Route path="ManageRecruiter" element={<ManageRecruiter />} /> 
