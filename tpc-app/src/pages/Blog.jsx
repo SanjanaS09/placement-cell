@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { getDatabase, ref, push } from "firebase/database";
+import { app } from "../firebaseConfig"; // ✅ Correct path
+
+
 
 const Blog = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [message, setMessage] = useState("");
+
+    const database = getDatabase(app);
   
     const handleSubmit = (e) => {
       e.preventDefault();
