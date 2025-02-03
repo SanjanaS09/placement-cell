@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { getDatabase, ref, push } from "firebase/database";
-import { app } from "../firebaseConfig"; // ✅ Correct path
-
-
 
 const Blog = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [message, setMessage] = useState("");
 
-    const database = getDatabase(app);
+    const database = getDatabase();
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -23,7 +20,7 @@ const Blog = () => {
       const newBlog = {
         title,
         content,
-        timestamp: Date.now(),
+        timestamp: new Date().toISOString,
       };
   
       push(blogRef, newBlog)

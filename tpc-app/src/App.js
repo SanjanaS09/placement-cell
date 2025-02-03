@@ -64,7 +64,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Contactus" element={<ContactUs />} />
-        <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+        <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} setRole={setRole} role={role} />} />
         <Route path="/Signup" element={<Signup />} />
 
         {/* Role-based routes */}
@@ -72,7 +72,7 @@ const App = () => {
           path="/StudentPage"
           element={
             loggedInUser ? (
-              <StudentPage />
+              <StudentPage role={role} />
             ) : (
               <Navigate to="/Login" />
             )
@@ -82,22 +82,33 @@ const App = () => {
           path="/RecruiterPage"
           element={
             loggedInUser ? (
-              <RecruiterPage />
+              <RecruiterPage role={role} />
             ) : (
               <Navigate to="/Login" />
             )
           }
         />
-<Route path='TPOPage' element={<TPOPage/>}>
-          <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
-          <Route path="ManageStudent" element={<ManageStudent />} />
-          <Route path="ManageRecruiter" element={<ManageRecruiter />} />
-          <Route path="Blog" element={<Blog />} />
-          <Route path="Announcements" element={<Announcements />} />
-        </Route>
 
-        {/* Catch-all route */}
-        <Route path="*" element={<PageNotFound />} />
+        {/* <Route element={<Dashboard cartCount={cart.reduce((total, item) => total + item.quantity, 0)} productsData={productsData} setCart={setCart} />}>
+          <Route path="/" element={<Landing productsData={productsData} />} />
+          <Route path="ContactUs" element={<ContactUs />} />
+          <Route path="Collections/" >
+            <Route index element={<Collections addToCart={addToCart} productsData={productsData} />} />
+            <Route path="All" element={<Collections addToCart={addToCart} productsData={productsData} />} />
+            <Route path="Category/:categoryName" element={<Category addToCart={addToCart} productsData={productsData} />} />
+            <Route path="Destination" element={<Destination addToCart={addToCart} productsData={productsData} />} />
+          </Route> */}
+
+          <Route element={<TPOPage role={role} />} >
+            <Route path="/TPOPage" element={<h1>Welcome to the TPO Dashboard</h1>} />
+            <Route path="ManageStudent" element={<ManageStudent role={role} />} />
+            <Route path="ManageRecruiter" element={<ManageRecruiter role={role} />} />
+            <Route path="Blog" element={<Blog />} />
+            <Route path="Announcements" element={<Announcements role={role} />} />
+          </Route>
+
+          {/* Catch-all route */}
+          <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router >
   );
