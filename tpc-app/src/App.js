@@ -17,6 +17,7 @@ import PageNotFound from './pages/PageNotFound.jsx';
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
+import Events from './pages/event.jsx';
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(null); // Store logged-in user ID
@@ -66,6 +67,7 @@ const App = () => {
         <Route path="/Contactus" element={<ContactUs />} />
         <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path="/Events" element={<Events />} />
 
         {/* Role-based routes */}
         <Route
