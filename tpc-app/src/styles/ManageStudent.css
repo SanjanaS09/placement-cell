@@ -7,15 +7,10 @@ body {
     padding: 0;
   }
   
-  h1 {
+  .Manage-Student-Container h1 {
     text-align: center;
     color: #00509e; /* Deep blue */
     margin: 20px 0;
-  }
-  
-  h3 {
-    color: #0074cc; /* Medium blue */
-    margin-bottom: 10px;
   }
   
   textarea {

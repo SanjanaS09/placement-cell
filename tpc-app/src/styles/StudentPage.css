@@ -16,7 +16,7 @@ body {
   border-top: 5px solid #007BFF; /* Bright blue border */
 }
 
-h1 {
+.student-page h1 {
   text-align: center;
   color: #004085; /* Deep blue */
   margin-bottom: 20px;

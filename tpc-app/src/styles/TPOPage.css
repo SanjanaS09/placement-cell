@@ -6,7 +6,7 @@
     font-family: Arial, sans-serif;
   }
   
-  h1, h2, h3 {
+  .tpo-container h1,.tpo-container h3 {
     color: #64ffda;
   }
   
@@ -29,7 +29,7 @@
     padding: 0;
   }
   
-  li {
+  .recruiter-section li {
     background-color: #233554;
     margin: 5px 0;
     padding: 10px;
