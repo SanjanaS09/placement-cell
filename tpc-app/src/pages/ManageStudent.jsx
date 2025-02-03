@@ -50,7 +50,7 @@ const ManageStudent = () => {
     .filter((student) => (branchFilter ? student.branch === branchFilter : true));
 
   return (
-    <div>
+    <div className="Manage-Student-Container">
       <h1>Manage Students</h1>
 
       <div>
