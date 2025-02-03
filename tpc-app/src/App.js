@@ -65,7 +65,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Contactus" element={<ContactUs />} />
-        <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+        <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} setRole={setRole} role={role} />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />
 
@@ -74,7 +74,7 @@ const App = () => {
           path="/StudentPage"
           element={
             loggedInUser ? (
-              <StudentPage />
+              <StudentPage role={role} />
             ) : (
               <Navigate to="/Login" />
             )
@@ -84,7 +84,7 @@ const App = () => {
           path="/RecruiterPage"
           element={
             loggedInUser ? (
-              <RecruiterPage />
+              <RecruiterPage role={role} />
             ) : (
               <Navigate to="/Login" />
             )
@@ -98,8 +98,8 @@ const App = () => {
           <Route path="Announcements" element={<Announcements />} />
         </Route>
 
-        {/* Catch-all route */}
-        <Route path="*" element={<PageNotFound />} />
+          {/* Catch-all route */}
+          <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router >
   );
