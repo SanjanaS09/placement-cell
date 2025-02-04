@@ -36,7 +36,7 @@ const scrollingImages = [
   TrainingImg,
   SeminarImg,
   InterviewImg,
-  TrainingImg
+  TrainingImg,
 ];
 
 const Events = () => {
@@ -53,7 +53,14 @@ const Events = () => {
           style={{ display: "flex", whiteSpace: "nowrap" }}
         >
           {[...scrollingImages, ...scrollingImages].map((image, index) => (
-            <img key={index} src={image} alt="event" className="scrolling-image" />
+            <motion.img 
+              key={index} 
+              src={image} 
+              alt="event" 
+              className="scrolling-image" 
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            />
           ))}
         </motion.div>
       </div>
@@ -62,7 +69,14 @@ const Events = () => {
       <div className="events-list">
         {eventsData.map((event, index) => (
           <div key={index} className="event-card">
-            <img src={event.image} alt={event.title} className="event-image" />
+            {/* Applying hover effect on event images */}
+            <motion.img
+              src={event.image}
+              alt={event.title}
+              className="event-image"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            />
             <h3>{event.title}</h3>
             <p>{event.date}</p>
             <p>{event.description}</p>
@@ -70,12 +84,17 @@ const Events = () => {
         ))}
       </div>
 
-      {/* Event Info */}
-      <div className="events-info">
+      {/* Event Info with Transition Effect */}
+      <motion.div
+        className="events-info"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5 }}
+      >
         <h3>Why Attend Our Events?</h3>
         <p>Enhance your skills with hands-on workshops, expert talks, and training sessions.</p>
         <p>Get industry insights and improve your placement readiness.</p>
-      </div>
+      </motion.div>
     </div>
   );
 };
