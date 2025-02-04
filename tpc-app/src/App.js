@@ -24,27 +24,65 @@ const App = () => {
   const [role, setRole] = useState(null); // Store role of logged-in user
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged(async (user) => {
+  //     if (user) {
+  //       const userId = user.uid;
+  //       setLoggedInUser(userId);
+
+  //       // Fetch the role from Firebase Database
+  //       const userRef = await firebase.database().ref(`users/${loggedInUser}`).once('value');
+  //       const usersData = userRef.val();
+  //       let userRole = null;
+
+  //       // Check which role the user falls under
+  //       if (usersData.Student[userId] && usersData.Student[userId].role==='Student') {
+  //         userRole = 'Student';
+  //       } else if (usersData.Recruiter[userId] && usersData.Recruiter[userId].role==='Recruiter') {
+  //         userRole = 'Recruiter';
+  //       } else if (usersData.Coordinator[userId] && usersData.Coordinator[userId].role==='Coordinator') {
+  //         userRole = 'Coordinator';
+  //       }
+
+  //       setRole(userRole); // Set the role for conditional access
+  //       setLoading(false);
+  //     } else {
+  //       setLoggedInUser(null);
+  //       setRole(null);
+  //       setLoading(false);
+  //     }
+  //   });
+  // }, [loggedInUser]);
+
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const userId = user.uid;
         setLoggedInUser(userId);
-
-        // Fetch the role from Firebase Database
-        const userRef = await firebase.database().ref(`users/${loggedInUser}`).once('value');
+        
+        // Fetch the user's data from Firebase Database
+        const userRef = await firebase.database().ref(`users/${userId}`).once('value');
         const usersData = userRef.val();
-        let userRole = null;
-
-        // Check which role the user falls under
-        if (usersData.Student[userId] && usersData.Student[userId].role==='Student') {
-          userRole = 'Student';
-        } else if (usersData.Recruiter[userId] && usersData.Recruiter[userId].role==='Recruiter') {
-          userRole = 'Recruiter';
-        } else if (usersData.Coordinator[userId] && usersData.Coordinator[userId].role==='Coordinator') {
-          userRole = 'Coordinator';
+  
+        // Ensure usersData is not null or undefined
+        if (usersData) {
+          let userRole = null;
+  
+          // Check the user's role based on their type (Student, Recruiter, Coordinator)
+          if (usersData.Student && usersData.Student.role === 'Student') {
+            userRole = 'Student';
+          } else if (usersData.Recruiter && usersData.Recruiter.role === 'Recruiter') {
+            userRole = 'Recruiter';
+          } else if (usersData.Coordinator && usersData.Coordinator.role === 'Coordinator') {
+            userRole = 'Coordinator';
+          }
+  
+          // Set the role if it's found
+          setRole(userRole);
+        } else {
+          setRole(null); // No data found for this user
         }
-
-        setRole(userRole); // Set the role for conditional access
+  
         setLoading(false);
       } else {
         setLoggedInUser(null);
@@ -52,8 +90,13 @@ const App = () => {
         setLoading(false);
       }
     });
-  }, [loggedInUser]);
+  
+    // Clean up the subscription on component unmount
+    return () => unsubscribe();
+  }, []); // Empty dependency array means this effect runs only once when the component mounts
+  
 
+  
   if (loading) {
     return <div>Loading...</div>; // Show loading spinner or message
   }
