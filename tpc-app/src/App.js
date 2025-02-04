@@ -31,18 +31,16 @@ const App = () => {
         setLoggedInUser(userId);
 
         // Fetch the role from Firebase Database
-        const userRef = firebase.database().ref(`users/`);
-        const snapshot = await userRef.once('value');
-
-        const usersData = snapshot.val();
+        const userRef = await firebase.database().ref(`users/${loggedInUser}`).once('value');
+        const usersData = userRef.val();
         let userRole = null;
 
         // Check which role the user falls under
-        if (usersData.Student && usersData.Student[userId]) {
+        if (usersData.Student[userId] && usersData.Student[userId].role==='Student') {
           userRole = 'Student';
-        } else if (usersData.Recruiter && usersData.Recruiter[userId]) {
+        } else if (usersData.Recruiter[userId] && usersData.Recruiter[userId].role==='Recruiter') {
           userRole = 'Recruiter';
-        } else if (usersData.Coordinator && usersData.Coordinator[userId]) {
+        } else if (usersData.Coordinator[userId] && usersData.Coordinator[userId].role==='Coordinator') {
           userRole = 'Coordinator';
         }
 
@@ -54,7 +52,7 @@ const App = () => {
         setLoading(false);
       }
     });
-  }, []);
+  }, [loggedInUser]);
 
   if (loading) {
     return <div>Loading...</div>; // Show loading spinner or message
@@ -91,12 +89,12 @@ const App = () => {
           }
         />
 
-        <Route path="/TPOPage/" element={<TPOPage />}>
+        <Route path="/TPOPage/" element={<TPOPage role={role}/>}>
           <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
-          <Route path="ManageStudents" element={<ManageStudent />} />
-          <Route path="ManageRecruiter" element={<ManageRecruiter />} />
-          <Route path="Blog" element={<Blog />} />
-          <Route path="Announcements" element={<Announcements />} />
+          <Route path="ManageStudents" element={<ManageStudent role={role}/>} />
+          <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
+          <Route path="Blog" element={<Blog role={role}/>} />
+          <Route path="Announcements" element={<Announcements role={role}/>} />
         </Route>
 
         {/* Catch-all route */}

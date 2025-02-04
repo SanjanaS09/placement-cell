@@ -13,7 +13,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [activeRole, setActiveRole] = useState('Student'); // Default role: Student
+  const [activeRole, setActiveRole] = useState(null); 
   const navigate = useNavigate();
 
   // Validate password complexity and match
@@ -36,6 +36,8 @@ const Signup = () => {
     setErrors(newErrors);
     return isValid;
   };
+
+  console.log(activeRole)
 
   // Handle role-based signup and save data in Realtime Database
   const register = (e) => {
