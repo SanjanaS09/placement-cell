@@ -88,16 +88,17 @@ const App = () => {
             )
           }
         />
-          <Route path='/TPOPage/' element={<TPOPage/>}>
+
+        <Route path="/TPOPage/" element={<TPOPage />}>
           <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
-          <Route path="ManageStudent" element={<ManageStudent />} />
+          <Route path="ManageStudents" element={<ManageStudent />} />
           <Route path="ManageRecruiter" element={<ManageRecruiter />} />
           <Route path="Blog" element={<Blog />} />
           <Route path="Announcements" element={<Announcements />} />
         </Route>
 
-          {/* Catch-all route */}
-          <Route path="*" element={<PageNotFound />} />
+        {/* Catch-all route */}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router >
   );

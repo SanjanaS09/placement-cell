@@ -1,105 +1,105 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import logo from "../assets/images/sndt-logo.png"; // Replace with your logo path
-import "../styles/TPOPage.css"; // Add appropriate styles for the TPO dashboard
+// import React, { useState } from "react";
+// import { Outlet, useNavigate } from "react-router-dom";
+// import logo from "../assets/images/sndt-logo.png"; // Replace with your logo path
+// import "../styles/TPOPage.css"; // Add appropriate styles for the TPO dashboard
 
-const TPOPage = ({ userData }) => {
-  const [sideBar, setSideBar] = useState(true);
-  const navigate = useNavigate();
+// const TPOPage = ({ userData }) => {
+//   const [sideBar, setSideBar] = useState(true);
+//   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
-    navigate(path);
-    setSideBar(false);
-  };
+//   const handleNavigation = (path) => {
+//     navigate(path);
+//     setSideBar(false);
+//   };
 
-  return (
-    <>
-      {userData && userData.Status === "Enabled" && (
-        <div className="dashboardContainer">
-          {/* Navbar */}
-          <nav className="dashboardNavbar">
-            <img src={logo} alt="logo" className="navbarLogo" />
-            <div className="dashboardContent">
-              <div className="username">{userData.Name}</div>
-              <div
-                className="sidebarControl"
-                onClick={() => setSideBar(!sideBar)}
-              >
-                <svg
-                  width="40"
-                  height="40"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="none"
-                    stroke="#23370A"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </div>
-            </div>
-          </nav>
+//   return (
+//     <>
+//       {userData && userData.Status === "Enabled" && (
+//         <div className="dashboardContainer">
+//           {/* Navbar */}
+//           <nav className="dashboardNavbar">
+//             <img src={logo} alt="logo" className="navbarLogo" />
+//             <div className="dashboardContent">
+//               <div className="username">{userData.Name}</div>
+//               <div
+//                 className="sidebarControl"
+//                 onClick={() => setSideBar(!sideBar)}
+//               >
+//                 <svg
+//                   width="40"
+//                   height="40"
+//                   xmlns="http://www.w3.org/2000/svg"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     fill="none"
+//                     stroke="#23370A"
+//                     strokeWidth="2"
+//                     d="M4 6h16M4 12h16M4 18h16"
+//                   />
+//                 </svg>
+//               </div>
+//             </div>
+//           </nav>
 
-          {/* Outlet for sub-pages */}
-          <div className="outletContainer">
-            <Outlet />
-          </div>
+//           {/* Outlet for sub-pages */}
+//           <div className="outletContainer">
+//             <Outlet />
+//           </div>
 
-          {/* Sidebar */}
-          <div className="sidebarContent">
-            <div
-              className={sideBar ? "sidebar sidebarOpen" : "sidebar sidebarClosed"}
-            >
-              <button
-                className="sidebarButton"
-                onClick={() => handleNavigation("/TPOPage/Home")}
-              >
-                Home
-              </button>
-              <button
-                className="sidebarButton"
-                onClick={() => handleNavigation("/TPOPage/ManageStudents")}
-              >
-                Manage Students
-              </button>
-              <button
-                className="sidebarButton"
-                onClick={() => handleNavigation("/TPOPage/ManageRecruiter")}
-              >
-                Manage Recruiters
-              </button>
-              <button
-                className="sidebarButton"
-                onClick={() => handleNavigation("/TPOPage/Blog")}
-              >
-                Resources
-              </button>
-              <button
-                className="sidebarButton"
-                onClick={() => handleNavigation("/TPOPage/Announcements")}
-              >
-                Announcements
-              </button>
-              <button
-                className="sidebarButton"
-                onClick={() => {
-                  // Perform logout functionality
-                  navigate("/");
-                }}
-              >
-                Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
+//           {/* Sidebar */}
+//           <div className="sidebarContent">
+//             <div
+//               className={sideBar ? "sidebar sidebarOpen" : "sidebar sidebarClosed"}
+//             >
+//               <button
+//                 className="sidebarButton"
+//                 onClick={() => handleNavigation("/TPOPage/Home")}
+//               >
+//                 Home
+//               </button>
+//               <button
+//                 className="sidebarButton"
+//                 onClick={() => handleNavigation("/TPOPage/ManageStudents")}
+//               >
+//                 Manage Students
+//               </button>
+//               <button
+//                 className="sidebarButton"
+//                 onClick={() => handleNavigation("/TPOPage/ManageRecruiter")}
+//               >
+//                 Manage Recruiters
+//               </button>
+//               <button
+//                 className="sidebarButton"
+//                 onClick={() => handleNavigation("/TPOPage/Blog")}
+//               >
+//                 Resources
+//               </button>
+//               <button
+//                 className="sidebarButton"
+//                 onClick={() => handleNavigation("/TPOPage/Announcements")}
+//               >
+//                 Announcements
+//               </button>
+//               <button
+//                 className="sidebarButton"
+//                 onClick={() => {
+//                   // Perform logout functionality
+//                   navigate("/");
+//                 }}
+//               >
+//                 Sign Out
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// };
 
-export default TPOPage;
+// export default TPOPage;
 
 
 // import React, { useState, useEffect } from "react";  
@@ -251,3 +251,88 @@ export default TPOPage;
 // };
 
 // export default TPOPage;
+
+
+import React, { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import logo from "../assets/images/sndt-logo.png"; 
+import "../styles/TPOPage.css"; 
+
+const TPOPage = ({ userData }) => {
+  const [sideBar, setSideBar] = useState(true);
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
+
+  const handleLogout = () => {
+    // Perform logout actions like clearing user data
+    navigate("/");
+  };
+
+  return (
+    <>
+      {userData && userData.Status === "Enabled" && (
+        <div className="dashboardContainer">
+          {/* Navbar */}
+          <nav className="dashboardNavbar">
+            <img src={logo} alt="logo" className="navbarLogo" />
+            <div className="dashboardContent">
+              <div className="username">{userData.Name}</div>
+              <div
+                className="sidebarControl"
+                onClick={() => setSideBar(!sideBar)}
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#23370A"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </div>
+            </div>
+          </nav>
+
+          {/* Outlet for sub-pages */}
+          <div className="outletContainer">
+            <Outlet />
+          </div>
+
+          {/* Sidebar */}
+          <div className="sidebarContent">
+            <div className={sideBar ? "sidebar sidebarOpen" : "sidebar sidebarClosed"}>
+              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/Home")}>
+                Home
+              </button>
+              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/ManageStudents")}>
+                Manage Students
+              </button>
+              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/ManageRecruiter")}>
+                Manage Recruiters
+              </button>
+              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/Blog")}>
+                Resources
+              </button>
+              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/Announcements")}>
+                Announcements
+              </button>
+              <button className="sidebarButton" onClick={handleLogout}>
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default TPOPage;
