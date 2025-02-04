@@ -309,19 +309,19 @@ const TPOPage = ({ userData }) => {
           {/* Sidebar */}
           <div className="sidebarContent">
             <div className={sideBar ? "sidebar sidebarOpen" : "sidebar sidebarClosed"}>
-              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/Home")}>
+              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage")}>
                 Home
               </button>
-              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/ManageStudents")}>
+              <button className="sidebarButton" onClick={() => handleNavigation("TPOPage/ManageStudents")}>
                 Manage Students
               </button>
-              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/ManageRecruiter")}>
+              <button className="sidebarButton" onClick={() => handleNavigation("TPOPage/ManageRecruiter")}>
                 Manage Recruiters
               </button>
-              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/Blog")}>
+              <button className="sidebarButton" onClick={() => handleNavigation("TPOPage/Blog")}>
                 Resources
               </button>
-              <button className="sidebarButton" onClick={() => handleNavigation("/TPOPage/Announcements")}>
+              <button className="sidebarButton" onClick={() => handleNavigation("TPOPage/Announcements")}>
                 Announcements
               </button>
               <button className="sidebarButton" onClick={handleLogout}>

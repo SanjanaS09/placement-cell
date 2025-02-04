@@ -1,0 +1,53 @@
+import React, { useState, useEffect } from "react";
+import firebase from "firebase/compat/app";
+import "firease/compat/database";
+import "../styles/TPOPage.css";
+
+const ManageRecruiter = () => {
+    const [recruiters, setRecruiters] = useState([]);
+
+    useEffect(() => {
+        const snapshot = firebase.database().ref("Recruiters").once("value");
+        const data = snapshot.val();
+        setRecruiters(data ? Object.values(data) : []);
+    }, []);
+
+
+    return (
+        <div className="tpo-container">
+            <div className="recruiter-section">
+                <h2>Recruiter Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Internship Title</th>
+                            <th>Internship Description</th>
+                            <th>Remote/On-Site</th>
+                            <th>Employment Type</th>
+                            <th>Job Title</th>
+                            <th>Job Description</th>
+                            <th>Job Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {recruiters.map((recruiter, index) => (
+                            <tr key={index}>
+                                <td>{recruiter.company_name}</td>
+                                <td>{recruiter.internship?.internship_title || "N/A"}</td>
+                                <td>{recruiter.internship?.internship_description || "N/A"}</td>
+                                <td>{recruiter.internship?.remote_on_site || "N/A"}</td>
+                                <td>{recruiter.internship?.type_of_employment || "N/A"}</td>
+                                <td>{recruiter.placement?.job_title || "N/A"}</td>
+                                <td>{recruiter.placement?.job_desc || "N/A"}</td>
+                                <td>{recruiter.placement?.jobLocation || "N/A"}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>);
+};
+
+
+export default ManageRecruiter;

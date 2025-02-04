@@ -13,7 +13,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [activeRole, setActiveRole] = useState(null); 
+  const [activeRole, setActiveRole] = useState('Student'); 
   const navigate = useNavigate();
 
   // Validate password complexity and match
@@ -187,7 +187,7 @@ const Signup = () => {
 
           {/* Login Link */}
           <p className="login-link">
-            Already have an account? <Link to="/login">Login</Link>.
+            Already have an account? <Link to="/Login">Login</Link>.
           </p>
         </div>
       </div>

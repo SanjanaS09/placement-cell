@@ -8,7 +8,7 @@ import Home from './pages/Home.jsx';
 import ContactUs from './pages/Contactus.jsx';
 import StudentPage from './pages/StudentPage.jsx';
 import RecruiterPage from './pages/RecruiterPage.jsx';
-import TPOPage from './pages/TPOPage.jsx';
+import TPOHOME from './pages/TPOHOME.jsx';
 import Blog from './pages/Blog.jsx'
 import Announcements from './pages/Announcements.jsx'
 import ManageStudent from './pages/ManageStudent.jsx';
@@ -31,7 +31,7 @@ const App = () => {
         setLoggedInUser(userId);
 
         // Fetch the role from Firebase Database
-        const userRef = await firebase.database().ref(`users/${loggedInUser}`).once('value');
+        const userRef = await firebase.database().ref(`users`).once('value');
         const usersData = userRef.val();
         let userRole = null;
 
@@ -89,8 +89,8 @@ const App = () => {
           }
         />
 
-        <Route path="/TPOPage/" element={<TPOPage role={role}/>}>
-          <Route path="Home" element={<h1>Welcome to the TPO Dashboard</h1>} />
+        <Route path="/TPOPage" element={<TPOHOME role={role}/>}>
+          {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
           <Route path="ManageStudents" element={<ManageStudent role={role}/>} />
           <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
           <Route path="Blog" element={<Blog role={role}/>} />
