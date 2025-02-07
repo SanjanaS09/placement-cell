@@ -20,7 +20,7 @@ const Blog = () => {
       const newBlog = {
         title,
         content,
-        timestamp: new Date().toISOString,
+        timestamp: new Date().toISOString(),
       };
   
       push(blogRef, newBlog)
