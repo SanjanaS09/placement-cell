@@ -21,7 +21,7 @@ const TPOHOME = () => {
                 <nav className="flex flex-col space-y-4">
                     <button
                         className="sidebarButton"
-                        onClick={() => handleNavigation("/TPOPage/Home")}
+                        onClick={() => handleNavigation("/TPOPage")}
                     >
                         Home
                     </button>

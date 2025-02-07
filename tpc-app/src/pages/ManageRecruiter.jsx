@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
-import "firease/compat/database";
+import "firebase/compat/database";
 import "../styles/TPOPage.css";
 
 const ManageRecruiter = () => {
@@ -10,6 +10,7 @@ const ManageRecruiter = () => {
         const snapshot = firebase.database().ref("Recruiters").once("value");
         const data = snapshot.val();
         setRecruiters(data ? Object.values(data) : []);
+
     }, []);
 
 

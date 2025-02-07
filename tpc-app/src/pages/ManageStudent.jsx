@@ -33,7 +33,6 @@ const ManageStudent = () => {
             });
           });
         });
-
         setStudents(studentsList);
         setYears([...yearSet]);
         setBranches([...branchSet]);
