@@ -1,250 +1,193 @@
-import React, { useState } from 'react';
-import firebase from "firebase/compat/app";
-import logo from '../assets/images/sndt-logo.png';
-import '../styles/StudentPage.css'
+// // 
+// // Import necessary dependencies
+// import React, { useEffect, useState } from "react";
+// import { db } from "../firebaseConfig.js"; // Ensure correct Firebase import
+// import { collection, getDocs } from "firebase/firestore";
+// import { motion } from "framer-motion"; // Import animations
+// import '../styles/StudentPage.css'
 
-function StudentPage() {
-    const [studentData, setStudentData] = useState({
-      name: "",
-      branch: "",
-      prn: "",
-      year: "",
-      skills: "",
-      languages: "",
-      certifications: "",
-      technicalSkills: "",
-      internshipDone: "No",
-      duration: "",
-      isPaid: "No",
-      stipend: "",
-      description: "",
-      certificates: [],
-      resume: null,
-    });
-  
-    const handleChange = (event) => {
-        const { name, value, files } = event.target;
-    
-        if (name === "certificates") {
-          // Handling multiple files for certificates
-          const newFiles = Array.from(files);
-          setStudentData((prevData) => ({
-            ...prevData,
-            certificates: [...prevData.certificates, ...newFiles],
-          }));
-        } else {
-          setStudentData((prevData) => ({
-            ...prevData,
-            [name]: files ? files[0] : value,
-          }));
-        }
-      };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log("Student Data:", studentData);
-      alert("Form submitted successfully!");
+
+
+// const StudentPage = ({ studentName }) => {
+//   // Dummy Announcements (Moving Text)
+//   const [announcements, setAnnouncements] = useState([
+//     "📢 Campus Placements begin from Oct 25, 2024!",
+//     "🔔 Resume submission deadline: Oct 20, 2024.",
+//     "💡 AI/ML Workshop by Google on Nov 5, 2024. Register now!",
+//   ]);
+
+//   // Dummy Events List
+//   const [events, setEvents] = useState([
+//     {
+//       name: "AI & Machine Learning Workshop",
+//       description: "A workshop on AI trends and ML applications.",
+//       date: "Nov 5, 2024",
+//       time: "10:00 AM - 4:00 PM",
+//       venue: "Auditorium Hall, Block A",
+//       speaker: "Dr. John Smith (Google AI)",
+//     },
+//     {
+//       name: "Resume Building & Interview Prep",
+//       description: "Learn to build ATS-friendly resumes and crack interviews.",
+//       date: "Oct 18, 2024",
+//       time: "2:00 PM - 5:00 PM",
+//       venue: "Room 301, T&P Cell",
+//       speaker: "Ms. Ananya Rao (LinkedIn India)",
+//     },
+//   ]);
+
+//   return (
+//     <div className="student-page">
+//       {/* Moving Announcement Bar */}
+//       <div className="announcement-bar">
+//         <marquee>{announcements.join(" | ")}</marquee>
+//       </div>
+
+//       {/* Welcome Message */}
+//       <h1 className="welcome">Welcome, {studentName}!</h1>
+
+//       {/* Tabs Section */}
+//       <div className="tabs-container">
+//         {["Student Profile", "Resources"].map((tab, index) => (
+//           <motion.button
+//             key={index}
+//             className="tab"
+//             whileHover={{ scale: 1.08 }}
+//             whileTap={{ scale: 0.92 }}
+//             transition={{ type: "spring", stiffness: 200 }}
+//           >
+           
+//             {tab}
+//           </motion.button>
+//         ))}
+//       </div>
+
+//       {/* Upcoming Events Section */}
+//       <div className="events-section">
+//         <h2>Upcoming Events</h2>
+//         <div className="events-container">
+//           {events.length > 0 ? (
+//             events.map((event, index) => (
+//               <motion.div
+//                 key={index}
+//                 className="event-card"
+//                 initial={{ opacity: 0, y: 20 }}
+//                 animate={{ opacity: 1, y: 0 }}
+//                 transition={{ delay: index * 0.1, duration: 0.5 }}
+//               >
+//                 <h3>{event.name}</h3>
+//                 <p><strong>Description:</strong> {event.description}</p>
+//                 <p><strong>Date:</strong> {event.date}</p>
+//                 <p><strong>Time:</strong> {event.time}</p>
+//                 <p><strong>Venue:</strong> {event.venue}</p>
+//                 <p><strong>Speaker:</strong> {event.speaker}</p>
+//               </motion.div>
+//             ))
+//           ) : (
+//             <p className="no-events">No upcoming events</p>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default StudentPage;
+
+import React, { useEffect, useState } from "react";
+import { db } from "../firebaseConfig.js"; // Ensure correct Firebase import
+import { collection, getDocs } from "firebase/firestore";
+import { motion } from "framer-motion"; // Import animations
+import '../styles/StudentPage.css';
+
+const StudentPage = ({ studentName }) => {
+  const [announcements, setAnnouncements] = useState([]);
+  const [events, setEvents] = useState([
+    {
+      name: "AI & Machine Learning Workshop",
+      description: "A workshop on AI trends and ML applications.",
+      date: "Nov 5, 2024",
+      time: "10:00 AM - 4:00 PM",
+      venue: "Auditorium Hall, Block A",
+      speaker: "Dr. John Smith (Google AI)",
+    },
+    {
+      name: "Resume Building & Interview Prep",
+      description: "Learn to build ATS-friendly resumes and crack interviews.",
+      date: "Oct 18, 2024",
+      time: "2:00 PM - 5:00 PM",
+      venue: "Room 301, T&P Cell",
+      speaker: "Ms. Ananya Rao (LinkedIn India)",
+    },
+  ]);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "Blog"));
+        const fetchedAnnouncements = querySnapshot.docs.map((doc) => doc.data().title);
+        setAnnouncements(fetchedAnnouncements);
+      } catch (error) {
+        console.error("Error fetching announcements: ", error);
+      }
     };
-  
-    return (
-      <div className="student-page">
-        <h1>Student Information</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={studentData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Branch:</label>
-            <select
-              name="branch"
-              value={studentData.branch}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Branch</option>
-              <option value="CST">CST</option>
-              <option value="ENC">ENC</option>
-              <option value="DS">DS</option>
-              <option value="AI">AI</option>
-              <option value="CE">CE</option>
-              <option value="IT">IT</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>PRN Number:</label>
-            <input
-              type="text"
-              name="prn"
-              value={studentData.prn}
-              onChange={handleChange}
-              placeholder="Enter your PRN number"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Year:</label>
-            <select
-              name="year"
-              value={studentData.year}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Year</option>
-              <option value="1st">1st</option>
-              <option value="2nd">2nd</option>
-              <option value="3rd">3rd</option>
-              <option value="4th">4th</option>
-            </select>
-          </div>
-  
-          <div className="form-group">
-            <label>Skills:</label>
-            <input
-              type="text"
-              name="skills"
-              value={studentData.skills}
-              onChange={handleChange}
-              placeholder="Enter your skills"
-            />
-          </div>
-          <div className="form-group">
-            <label>Languages:</label>
-            <input
-              type="text"
-              name="languages"
-              value={studentData.languages}
-              onChange={handleChange}
-              placeholder="Enter known languages"
-            />
-          </div>
-          <div className="form-group">
-            <label>Certifications:</label>
-            <input
-              type="text"
-              name="certifications"
-              value={studentData.certifications}
-              onChange={handleChange}
-              placeholder="Enter certifications"
-            />
-          </div>
-          <div className="form-group">
-            <label>Technical Skills:</label>
-            <input
-              type="text"
-              name="technicalSkills"
-              value={studentData.technicalSkills}
-              onChange={handleChange}
-              placeholder="Enter technical skills"
-            />
-          </div>
-  
-          <div className="form-group">
-            <label>Internship Done:</label>
-            <select
-              name="internshipDone"
-              value={studentData.internshipDone}
-              onChange={handleChange}
-              required
-            >
-              <option value="No">No</option>
-              <option value="Yes">Yes</option>
-            </select>
-          </div>
-  
-          {studentData.internshipDone === "Yes" && (
-            <>
-              <div className="form-group">
-                <label>Duration of Internship (in months):</label>
-                <input
-                  type="number"
-                  name="duration"
-                  value={studentData.duration}
-                  onChange={handleChange}
-                  placeholder="Enter duration"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Was it Paid?</label>
-                <select
-                  name="isPaid"
-                  value={studentData.isPaid}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-                </select>
-              </div>
-              {studentData.isPaid === "Yes" && (
-                <div className="form-group">
-                  <label>Stipend Offered:</label>
-                  <input
-                    type="number"
-                    name="stipend"
-                    value={studentData.stipend}
-                    onChange={handleChange}
-                    placeholder="Enter stipend amount"
-                  />
-                </div>
-              )}
-              <div className="form-group">
-                <label>Internship Description:</label>
-                <textarea
-                  name="description"
-                  value={studentData.description}
-                  onChange={handleChange}
-                  placeholder="Describe the internship"
-                  rows={4}
-                  required
-                />
-              </div>
-            </>
-          )}
-  
-          <div className="form-group">
-            <label>Upload Resume:</label>
-            <input
-              type="file"
-              name="resume"
-              onChange={handleChange}
-              accept=".pdf,.doc,.docx"
-            />
-          </div>
 
-          <div className="form-group">
-          <label>Upload Certificates (Optional):</label>
-          <input
-            type="file"
-            name="certificates"
-            onChange={handleChange}
-            accept=".pdf,.jpg,.png,.doc,.docx"
-            multiple
-          />
-          {studentData.certificates.length > 0 && (
-            <div>
-              <h4>Uploaded Certificates:</h4>
-              <ul>
-                {studentData.certificates.map((file, index) => (
-                  <li key={index}>{file.name}</li>
-                ))}
-              </ul>
-            </div>
+    fetchAnnouncements();
+  }, []);
+
+  return (
+    <div className="student-page">
+      {/* Moving Announcement Bar */}
+      <div className="announcement-bar">
+        <marquee>{announcements.length > 0 ? announcements.join(" | ") : "No announcements available"}</marquee>
+      </div>
+
+      {/* Welcome Message */}
+      <h1 className="welcome">Welcome, {studentName}!</h1>
+
+      {/* Tabs Section */}
+      <div className="tabs-container">
+        {["Student Profile", "Resources"].map((tab, index) => (
+          <motion.button
+            key={index}
+            className="tab"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            {tab}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Upcoming Events Section */}
+      <div className="events-section">
+        <h2>Upcoming Events</h2>
+        <div className="events-container">
+          {events.length > 0 ? (
+            events.map((event, index) => (
+              <motion.div
+                key={index}
+                className="event-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <h3>{event.name}</h3>
+                <p><strong>Description:</strong> {event.description}</p>
+                <p><strong>Date:</strong> {event.date}</p>
+                <p><strong>Time:</strong> {event.time}</p>
+                <p><strong>Venue:</strong> {event.venue}</p>
+                <p><strong>Speaker:</strong> {event.speaker}</p>
+              </motion.div>
+            ))
+          ) : (
+            <p className="no-events">No upcoming events</p>
           )}
         </div>
-
-          <button type="submit">Submit</button>
-        </form>
       </div>
-    );
-  }
-  
-  export default StudentPage;
+    </div>
+  );
+};
+
+export default StudentPage;
