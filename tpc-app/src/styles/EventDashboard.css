@@ -1,0 +1,54 @@
+.admin-tpo-container {
+    padding: 20px;
+  }
+  
+  .event-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .event-card {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 250px;
+    transition: 0.3s;
+  }
+  
+  .event-card:hover {
+    background: #ddd;
+  }
+  
+  .event-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .event-popup h2 {
+    margin-top: 0;
+  }
+  
+  .event-popup button {
+    margin-right: 10px;
+  }
+  
+  .edit-section,
+  .report-section {
+    margin-top: 15px;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+  

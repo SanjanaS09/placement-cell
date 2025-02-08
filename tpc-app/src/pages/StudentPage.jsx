@@ -56,7 +56,7 @@
 //             whileTap={{ scale: 0.92 }}
 //             transition={{ type: "spring", stiffness: 200 }}
 //           >
-           
+
 //             {tab}
 //           </motion.button>
 //         ))}
@@ -95,44 +95,62 @@
 // export default StudentPage;
 
 import React, { useEffect, useState } from "react";
-import { db } from "../firebaseConfig.js"; // Ensure correct Firebase import
-import { collection, getDocs } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 import { motion } from "framer-motion"; // Import animations
 import '../styles/StudentPage.css';
 
 const StudentPage = ({ studentName }) => {
   const [announcements, setAnnouncements] = useState([]);
-  const [events, setEvents] = useState([
-    {
-      name: "AI & Machine Learning Workshop",
-      description: "A workshop on AI trends and ML applications.",
-      date: "Nov 5, 2024",
-      time: "10:00 AM - 4:00 PM",
-      venue: "Auditorium Hall, Block A",
-      speaker: "Dr. John Smith (Google AI)",
-    },
-    {
-      name: "Resume Building & Interview Prep",
-      description: "Learn to build ATS-friendly resumes and crack interviews.",
-      date: "Oct 18, 2024",
-      time: "2:00 PM - 5:00 PM",
-      venue: "Room 301, T&P Cell",
-      speaker: "Ms. Ananya Rao (LinkedIn India)",
-    },
-  ]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "Blog"));
-        const fetchedAnnouncements = querySnapshot.docs.map((doc) => doc.data().title);
-        setAnnouncements(fetchedAnnouncements);
+        const announcementsRef = firebase.database().ref("announcements");
+
+        // Listen for real-time updates
+        announcementsRef.on("value", (snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+
+            // Extract announcementText values while ignoring empty ones
+            const fetchedAnnouncements = Object.values(data)
+              .map(item => item.announcementText)
+              .filter(text => text.trim() !== ""); // Remove empty announcements
+
+            setAnnouncements(fetchedAnnouncements);
+          } else {
+            setAnnouncements([]);
+          }
+        });
+
+        // Cleanup function to unsubscribe
+        return () => announcementsRef.off();
       } catch (error) {
         console.error("Error fetching announcements: ", error);
       }
     };
 
     fetchAnnouncements();
+  }, []);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const eventRef = firebase.database().ref("Events");
+      eventRef.on("value", (snapshot) => {
+        if (snapshot.exists()) {
+          const eventData = snapshot.val();
+          const eventList = Object.keys(eventData).map((key) => ({
+            id: key,
+            ...eventData[key],
+          }));
+          setEvents(eventList);
+        }
+      });
+      return () => eventRef.off();
+    };
+
+    fetchEvents();
   }, []);
 
   return (
@@ -150,7 +168,7 @@ const StudentPage = ({ studentName }) => {
         {["Student Profile", "Resources"].map((tab, index) => (
           <motion.button
             key={index}
-            className="tab"
+            className="motion-tab"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             transition={{ type: "spring", stiffness: 200 }}

@@ -49,6 +49,12 @@ const TPOHOME = () => {
                     >
                         Announcements
                     </button>
+                    <button
+                        className="sidebarButton"
+                        onClick={() => handleNavigation("/TPOPage/EventDashboard")}
+                    >
+                        Event Dashboard
+                    </button>
                     <button className="sidebarButton bg-red-600 hover:bg-red-700" onClick={handleLogout}>
                         Sign Out
                     </button>
@@ -69,3 +75,4 @@ const TPOHOME = () => {
 };
 
 export default TPOHOME;
+

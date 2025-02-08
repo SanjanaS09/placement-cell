@@ -22,18 +22,28 @@ function LoginPage({ setLoggedInUser }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrors("");
+
     try {
       const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
       const loggedInUserId = userCredential.user.uid;
-      setLoggedInUser(loggedInUserId);
 
-      // Navigate to the appropriate page after login
-      if (activeRole === "Student") navigate("/StudentPage");
-      else if (activeRole === "Recruiter") navigate("/RecruiterPage");
-      else if (activeRole === "Coordinator") navigate("/TPOPage/");
-      else navigate("/Login");
+      // Check in Firebase under the selected role
+      const userRef = await firebase.database().ref(`users/${activeRole}/${loggedInUserId}`).once("value");
+
+      if (userRef.exists()) {
+        setLoggedInUser(loggedInUserId);
+        // Navigate to the respective page
+        if (activeRole === "Student") navigate("/StudentPage");
+        else if (activeRole === "Recruiter") navigate("/RecruiterPage");
+        else if (activeRole === "Coordinator") navigate("/TPOPage/");
+      } else {
+        // Logout user since they are not authorized for this role
+        await firebase.auth().signOut();
+        setErrors(`Unauthorized login! Please select the correct role or contact support.`);
+      }
     } catch (error) {
-      setErrors(error.message);
+      setErrors("Login failed! Please check your credentials.");
       console.error("Login Error:", error);
     }
   };
@@ -81,39 +91,39 @@ function LoginPage({ setLoggedInUser }) {
               Coordinator
             </button>
           </div>
-        <form id="loginForm" onSubmit={handleLogin}>
-          <input
-            className="col-10"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            className="col-10"
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <div className="toggleShowPassword" onClick={toggleShowPassword}>
-            {showPassword ? "Hide Password" : "Show Password"}
-          </div>
-          {errors && <span className="error-message">{errors}</span>}
+          <form id="loginForm" onSubmit={handleLogin}>
+            <input
+              className="col-10"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              className="col-10"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <div className="toggleShowPassword" onClick={toggleShowPassword}>
+              {showPassword ? "Hide Password" : "Show Password"}
+            </div>
 
-          <a href="/forgot-password" className="forgot-password-link">
-            Forgot your password?
-          </a>
-          <button type="submit">Login</button>
+            <a href="/forgot-password" className="forgot-password-link">
+              Forgot your password?
+            </a>
+            {errors && <span className="error-message">{errors}</span>}
+            <button type="submit">Login</button>
 
-          <p className="signup-link">
-            Don't have an account? <Link to={`/Signup`}>Sign up now.</Link>
-          </p>
-        </form>
+            <p className="signup-link">
+              Don't have an account? <Link to={`/Signup`}>Sign up now.</Link>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
     </div >
   );
 }
