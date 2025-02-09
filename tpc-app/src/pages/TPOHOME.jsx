@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from 'firebase/compat/app';
 import { Outlet, useNavigate } from "react-router-dom";
 
 const TPOHOME = () => {
@@ -8,10 +9,15 @@ const TPOHOME = () => {
         navigate(path);
     };
 
-    const handleLogout = () => {
-        // Add logout logic here
-        console.log("Logging out...");
-    };
+    const handleLogout = async () => {
+        try {
+          await firebase.auth().signOut();
+          navigate('/login'); // Redirect to the login page after successful sign out
+        } catch (error) {
+          console.error('Error signing out: ', error);
+          // Handle any sign out errors here, maybe show an alert
+        }
+      };
 
     return (
         <div className="flex h-screen bg-gray-100">
@@ -27,7 +33,13 @@ const TPOHOME = () => {
                     </button>
                     <button
                         className="sidebarButton"
-                        onClick={() => handleNavigation("/TPOPage/ManageStudents")}
+                        onClick={() => handleNavigation("/TPOPage/StudentDetailsDashboard")}
+                    >
+                        Student Details Dashboard
+                    </button>
+                    <button
+                        className="sidebarButton"
+                        onClick={() => handleNavigation("/TPOPage/ManageStudent")}
                     >
                         Manage Students
                     </button>

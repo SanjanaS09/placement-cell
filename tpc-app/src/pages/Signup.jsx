@@ -6,7 +6,7 @@ import database from '../firebaseConfig';
 import '../styles/student-signup.css';
 
 const Signup = () => {
-  const [fullname, setFullname] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -60,7 +60,7 @@ const Signup = () => {
         database
           .ref(`users/${activeRole}/${userId}`)
           .set({
-            fullname,
+            name,
             email,
             role: activeRole,
             createdOn: timestamp.toLocaleString(),
@@ -127,10 +127,10 @@ const Signup = () => {
               id="fullname"
               placeholder="Full Name"
               required
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-            {errors.fullname && <span className="error-message">{errors.fullname}</span>}
+            {errors.name && <span className="error-message">{errors.name}</span>}
 
             {/* Email Input */}
             <input
