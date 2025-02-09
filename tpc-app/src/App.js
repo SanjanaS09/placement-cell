@@ -11,6 +11,7 @@ import RecruiterPage from './pages/RecruiterPage.jsx';
 import TPOHOME from './pages/TPOHOME.jsx';
 import Blog from './pages/Blog.jsx'
 import Announcements from './pages/Announcements.jsx'
+import EventDashboard from './pages/EventDashboard.jsx';
 import ManageStudent from './pages/ManageStudent.jsx';
 import ManageRecruiter from './pages/ManageRecruiter.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
@@ -60,42 +61,37 @@ const App = () => {
         const userId = user.uid;
         setLoggedInUser(userId);
 
-        // Fetch the role from Firebase Database
-        const userRef = await firebase.database().ref(`users/${loggedInUser}`).once('value');
-        const usersData = userRef.val();
-  
-        // Ensure usersData is not null or undefined
-        if (usersData) {
+        try {
           let userRole = null;
-  
-          // Check the user's role based on their type (Student, Recruiter, Coordinator)
-          if (usersData.Student && usersData.Student.role === 'Student') {
-            userRole = 'Student';
-          } else if (usersData.Recruiter && usersData.Recruiter.role === 'Recruiter') {
-            userRole = 'Recruiter';
-          } else if (usersData.Coordinator && usersData.Coordinator.role === 'Coordinator') {
-            userRole = 'Coordinator';
+
+          // Check each role database separately
+          const studentRef = await firebase.database().ref(`users/Student/${userId}`).once("value");
+          const recruiterRef = await firebase.database().ref(`users/Recruiter/${userId}`).once("value");
+          const coordinatorRef = await firebase.database().ref(`users/Coordinator/${userId}`).once("value");
+
+          if (studentRef.exists()) {
+            userRole = "Student";
+          } else if (recruiterRef.exists()) {
+            userRole = "Recruiter";
+          } else if (coordinatorRef.exists()) {
+            userRole = "Coordinator";
           }
-  
-          // Set the role if it's found
+
           setRole(userRole);
-        } else {
-          setRole(null); // No data found for this user
+        } catch (error) {
+          console.error("Error fetching user role:", error);
+          setRole(null);
         }
-  
-        setLoading(false);
       } else {
         setLoggedInUser(null);
         setRole(null);
-        setLoading(false);
       }
-    });
-  
-    // Clean up the subscription on component unmount
-    return () => unsubscribe();
-  }, []); // Empty dependency array means this effect runs only once when the component mounts
-  
 
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
   
   if (loading) {
     return <div>Loading...</div>; // Show loading spinner or message
@@ -138,6 +134,7 @@ const App = () => {
           <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
           <Route path="Blog" element={<Blog role={role}/>} />
           <Route path="Announcements" element={<Announcements role={role}/>} />
+          <Route path="EventDashboard" element={<EventDashboard role={role}/>} />
         </Route>
 
         {/* Catch-all route */}

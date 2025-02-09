@@ -117,7 +117,6 @@ button[type="submit"]:hover {
     cursor: pointer;
     background: none;
     border: none;
-    text-align: right; /* Align to the right side of the form */
     padding-right: 10px; /* Add a little padding to prevent overlap */
 }
 
