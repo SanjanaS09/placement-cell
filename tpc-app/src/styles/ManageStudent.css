@@ -1,94 +1,124 @@
-/* ManageStudent.css */
+  /* ManageStudent.css */
+.manage-student-container {
+  padding: 20px;
+  background-color: #f4f7fc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff; /* AliceBlue background */
-    margin: 0;
-    padding: 0;
+.header {
+  font-size: 24px;
+  color: #003049;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.input-field {
+  padding: 10px;
+  border: 1px solid #003049;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #fdf0d5;
+}
+
+.submit-button {
+  padding: 12px;
+  border: none;
+  background-color: #003049;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #669bbc;
+}
+
+.search-container {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.search-field {
+  padding: 10px;
+  border: 1px solid #003049;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.users-table th,
+.users-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #003049;
+}
+
+.users-table th {
+  background-color: #003049;
+  color: white;
+}
+
+.users-table td {
+  background-color: #f9f9f9;
+}
+
+.users-table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.users-table tr:hover {
+  background-color: #e2e2e2;
+}
+
+.export-button {
+  padding: 12px;
+  border: none;
+  background-color: #fdf0d5;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.export-button:hover {
+  background-color: #c1121f;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    max-width: 100%;
   }
-  
-  .Manage-Student-Container h1 {
-    text-align: center;
-    color: #00509e; /* Deep blue */
-    margin: 20px 0;
+
+  .search-container {
+    max-width: 100%;
   }
-  
-  textarea {
-    width: 100%;
-    height: 80px;
-    border: 1px solid #0074cc;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 14px;
-    resize: none;
+
+  .users-table th,
+  .users-table td {
+    padding: 8px;
   }
-  
-  button {
-    background-color: #00509e; /* Deep blue */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  button:hover {
-    background-color: #003f7f; /* Darker blue on hover */
-  }
-  
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-  }
-  
-  select {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #0074cc;
-    border-radius: 5px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #0074cc;
-    color: #fff;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tr:hover {
-    background-color: #e0f7ff; /* Light blue hover effect */
-  }
-  
-  img {
-    border-radius: 5px;
-  }
-  
-  textarea, select, input {
-    margin-bottom: 10px;
-  }
-  
-  .manage-box{
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 800px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
+}

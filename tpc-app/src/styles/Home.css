@@ -551,10 +551,10 @@ body {
   padding: 2.5em 0em;
 }
 
-h2 {
+/* h2 {
   color: rgb(4, 4, 124);
   align-items: center;
-}
+} */
 
 @keyframes scroll {
   0% {

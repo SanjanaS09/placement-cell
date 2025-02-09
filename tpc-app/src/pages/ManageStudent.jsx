@@ -3,7 +3,8 @@ import "firebase/compat/auth";
 import firebase from 'firebase/compat/app';
 import { saveAs } from 'file-saver'; // for Excel download
 import * as XLSX from 'xlsx';
-import { useNavigate } from 'react-router-dom'; // For redirection
+import { useNavigate } from 'react-router-dom';
+import '../styles/ManageStudent.css'
 
 const ManageStudent = () => {
   const [name, setName] = useState('');
@@ -67,7 +68,7 @@ const ManageStudent = () => {
       await firebase.database().ref(`users/Student/${userId}`).set({
         name,
         email,
-        password, // ⚠️ Insecure! Remove this in production. 
+        password,
         createdOn: new Date().toLocaleString(),
         createdBy: loggedInUser,
       });
@@ -98,32 +99,36 @@ const ManageStudent = () => {
   };
 
   return (
-    <div>
-      <h2>Manage Users</h2>
-      <div>
+    <div className="manage-student-container">
+      <h2 className="header">Manage Users</h2>
+      <div className="form-container">
         <input
+          className="input-field"
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
+          className="input-field"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          className="input-field"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleCreateUser}>Create User</button>
+        <button className="submit-button" onClick={handleCreateUser}>Create User</button>
       </div>
 
-      <div>
+      <div className="search-container">
         <input
+          className="search-field"
           type="text"
           placeholder="Search by Name"
           value={searchName}
@@ -131,12 +136,12 @@ const ManageStudent = () => {
         />
       </div>
 
-      <table>
+      <table className="users-table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Password </th>
+            <th>Password</th>
             <th>Created On</th>
             <th>Created By</th>
           </tr>
@@ -160,7 +165,7 @@ const ManageStudent = () => {
         </tbody>
       </table>
 
-      <button onClick={exportToExcel}>Download Excel</button>
+      <button className="export-button" onClick={exportToExcel}>Download Excel</button>
     </div>
   );
 };

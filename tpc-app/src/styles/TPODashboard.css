@@ -1,0 +1,120 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dashboard Container */
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.navbarLogo {
+    width: 120px;
+    cursor: pointer;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 150px;
+    background-color: #003049;
+    color: #fdf0d5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.sidebarButton {
+    background: none;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    font-size: 13px;
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebarButton:hover {
+    background-color: #669bbc25;
+    color: #ffffff;
+}
+
+/* Sidebar Toggle */
+.sidebarControl {
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Sidebar Content Toggle */
+.sidebarContent {
+    transition: transform 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.Outlet {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background-color: #F7F7F7;
+}
+
+.outletContainer {
+    /* position: fixed;
+    top: 0;
+    padding: 20px;
+    left: 190px;
+    background-color: #F7F7F7;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto; */
+    position: fixed;
+    top: 0;
+    padding: 20px;
+    left: 190px;
+    background-color: #F7F7F7;
+    width: 970px;
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 150px;
+        padding: 10px;
+    }
+
+    .dashboardNavbar {
+        padding: 10px;
+    }
+
+    .outletContainer {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .sidebarButton {
+        font-size: 0.9rem;
+    }
+}
