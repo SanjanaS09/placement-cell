@@ -1,139 +1,166 @@
-import React, { useState, useEffect, useCallback } from "react";
-import firebase from "firebase/compat/app";
-import "firebase/compat/database";
-import '../styles/ManageStudent.css';
+import React, { useState, useEffect } from 'react';
+import "firebase/compat/auth";
+import firebase from 'firebase/compat/app';
+import { saveAs } from 'file-saver'; // for Excel download
+import * as XLSX from 'xlsx';
+import { useNavigate } from 'react-router-dom'; // For redirection
 
 const ManageStudent = () => {
-  const [students, setStudents] = useState([]);
-  const [branches, setBranches] = useState([]);
-  const [years, setYears] = useState([]);
-  const [yearFilter, setYearFilter] = useState("");
-  const [branchFilter, setBranchFilter] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchName, setSearchName] = useState('');
 
-  const fetchStudentData = useCallback(async () => {
-    const studentRef = firebase.database().ref("Students");
-    studentRef.once("value", (snapshot) => {
+  const navigate = useNavigate(); // For navigation
+  const loggedInUser = firebase.auth().currentUser?.email;
+
+  // Fetch users from the database on component mount
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersRef = firebase.database().ref('users/Student');
+      const snapshot = await usersRef.get();
       if (snapshot.exists()) {
-        const studentData = snapshot.val();
-        const studentsList = [];
-        const yearSet = new Set();
-        const branchSet = new Set();
+        const usersData = snapshot.val();
+        
+        // Convert usersData object to an array
+        const usersList = Object.keys(usersData).map(key => ({
+          ...usersData[key],
+          userId: key, // Add userId for referencing
+        }));
 
-        Object.keys(studentData).forEach((year) => {
-          yearSet.add(year);
-          Object.keys(studentData[year]).forEach((branch) => {
-            branchSet.add(branch);
-            Object.keys(studentData[year][branch]).forEach((studentId) => {
-              const studentInfo = studentData[year][branch][studentId];
-              studentsList.push({
-                year,
-                branch,
-                ...studentInfo,
-              });
-            });
-          });
-        });
-        setStudents(studentsList);
-        setYears([...yearSet]);
-        setBranches([...branchSet]);
+        // Set both users and filteredUsers
+        setUsers(usersList);
+        setFilteredUsers(usersList);
       }
-    });
+    };
+
+    fetchUsers();
   }, []);
 
+  // Filter users as searchName changes (live search)
   useEffect(() => {
-    fetchStudentData();
-  }, [fetchStudentData]);
+    if (!searchName) {
+      setFilteredUsers(users);
+    } else {
+      const filtered = users.filter(user =>
+        user.name && user.name.toLowerCase().includes(searchName.toLowerCase())
+      );
+      setFilteredUsers(filtered);
+    }
+  }, [searchName, users]);  
 
-  const filteredStudents = students
-    .filter((student) => (yearFilter ? student.year === yearFilter : true))
-    .filter((student) => (branchFilter ? student.branch === branchFilter : true));
+  // Handle creating a user without logging them in
+  const handleCreateUser = async () => {
+    if (!name || !email || !password) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    try {
+      // Create user in Firebase Authentication (without logging them in)
+      const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const userId = userCredential.user.uid;
+
+      // Store user details in Firebase Database (DO NOT STORE PASSWORD)
+      await firebase.database().ref(`users/Student/${userId}`).set({
+        name,
+        email,
+        password, // ⚠️ Insecure! Remove this in production. 
+        createdOn: new Date().toLocaleString(),
+        createdBy: loggedInUser,
+      });
+
+      alert('User created successfully!');
+
+      // Reset form fields
+      setName('');
+      setEmail('');
+      setPassword('');
+
+      await firebase.auth().signOut();
+      navigate('/login');
+      
+    } catch (error) {
+      console.error('Error creating user:', error);
+      alert(error.message);
+    }
+  };
+
+  // Handle exporting to Excel
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(filteredUsers);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'StudentEmailPassword');
+    const excelFile = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveAs(new Blob([excelFile]), 'users.xlsx');
+  };
 
   return (
-    <div className="Manage-Student-Container">
-      <h1>Manage Students</h1>
+    <div>
+      <h2>Manage Users</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleCreateUser}>Create User</button>
+      </div>
 
       <div>
-        <h3>Filter Students</h3>
-        <label>
-          Year:
-          <select onChange={(e) => setYearFilter(e.target.value)}>
-            <option value="">All Years</option>
-            {years.map((year, index) => (
-              <option key={index} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Branch:
-          <select onChange={(e) => setBranchFilter(e.target.value)}>
-            <option value="">All Branches</option>
-            {branches.map((branch, index) => (
-              <option key={index} value={branch}>
-                {branch}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <h3>Student Data</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Branch</th>
-              <th>Year</th>
-              <th>CGPA</th>
-              <th>Email</th>
-              <th>LinkedIn</th>
-              <th>GitHub</th>
-              <th>Address</th>
-              <th>DOB</th>
-              <th>Photograph</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredStudents.map((student, index) => (
-              <tr key={index}>
-                <td>{student.name}</td>
-                <td>{student.branch}</td>
-                <td>{student.year}</td>
-                <td>{student.cgpa || "N/A"}</td>
-                <td>{student.email || "N/A"}</td>
-                <td>
-                  {student.linkedinLink ? (
-                    <a href={student.linkedinLink} target="_blank" rel="noopener noreferrer">
-                      LinkedIn
-                    </a>
-                  ) : (
-                    "N/A"
-                  )}
-                </td>
-                <td>
-                  {student.githubLink ? (
-                    <a href={student.githubLink} target="_blank" rel="noopener noreferrer">
-                      GitHub
-                    </a>
-                  ) : (
-                    "N/A"
-                  )}
-                </td>
-                <td>{student.address || "N/A"}</td>
-                <td>{student.dob || "N/A"}</td>
-                <td>
-                  {student.photograph ? (
-                    <img src={student.photograph} alt="Student" width="50" />
-                  ) : (
-                    "N/A"
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <input
+          type="text"
+          placeholder="Search by Name"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+        />
       </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password </th>
+            <th>Created On</th>
+            <th>Created By</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user, index) => (
+              <tr key={index}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.password || 'N/A'}</td> 
+                <td>{user.createdOn}</td>
+                <td>{user.createdBy}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5">No users found</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      <button onClick={exportToExcel}>Download Excel</button>
     </div>
   );
 };

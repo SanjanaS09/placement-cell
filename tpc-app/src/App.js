@@ -12,8 +12,9 @@ import TPOHOME from './pages/TPOHOME.jsx';
 import Blog from './pages/Blog.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
-import ManageStudent from './pages/ManageStudent.jsx';
-import ManageRecruiter from './pages/ManageRecruiter.jsx'
+import StudentDetailDashboard  from './pages/StudentDetailDashboard.jsx';
+import ManageRecruiter from './pages/ManageRecruiter.jsx';
+import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
 
 import Login from './pages/LoginPage.jsx';
@@ -130,7 +131,8 @@ const App = () => {
 
         <Route path="/TPOPage" element={<TPOHOME role={role}/>}>
           {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
-          <Route path="ManageStudents" element={<ManageStudent role={role}/>} />
+          <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
+          <Route path="StudentDetailDashboard" element={<StudentDetailDashboard role={role}/>} />
           <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
           <Route path="Blog" element={<Blog role={role}/>} />
           <Route path="Announcements" element={<Announcements role={role}/>} />
