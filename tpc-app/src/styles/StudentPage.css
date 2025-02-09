@@ -5,7 +5,7 @@
   font-family: "Poppins", sans-serif;
   text-align: center;
   background-color: #ffffff; /* Slightly lighter deep blue */
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 20px;
   min-height: 100vh;
 }
