@@ -12,7 +12,7 @@ import TPODashboard from './pages/TPODashboard.jsx';
 import Blog from './pages/Blog.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
-import StudentDetailDashboard  from './pages/StudentDetailDashboard.jsx';
+import StudentDetails  from './pages/StudentDetailDashboard.jsx';
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
@@ -132,7 +132,7 @@ const App = () => {
         <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
           {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
           <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
-          <Route path="StudentDetailDashboard" element={<StudentDetailDashboard role={role}/>} />
+          <Route path="StudentDetails" element={<StudentDetails role={role}/>} />
           <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
           <Route path="Blog" element={<Blog role={role}/>} />
           <Route path="Announcements" element={<Announcements role={role}/>} />

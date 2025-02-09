@@ -42,7 +42,7 @@ const TPODashboard = () => {
                         </button>
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/StudentDetailsDashboard")}
+                            onClick={() => handleNavigation("/TPOPage/StudentDetails")}
                         >
                             Student Details Dashboard
                         </button>
