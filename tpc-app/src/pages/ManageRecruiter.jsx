@@ -1,113 +1,6 @@
-// import React, { useState, useEffect } from "react";
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/database";
-// import "../styles/TPOPage.css";
-
-
-
-// const ManageRecruiter = () => {
-//     const [recruiters, setRecruiters] = useState([]);
-
-//     useEffect(() => {
-//         const snapshot = firebase.database().ref("Recruiters").once("value");
-//         const data = snapshot.val();
-//         setRecruiters(data ? Object.values(data) : []);
-//     }, []);
-
-
-//     return (
-//         <div className="tpo-container">
-//             <div className="recruiter-section">
-//                 <h2>Recruiter Details</h2>
-//                 <table>
-//                     <thead>
-//                         <tr>
-//                             <th>Company Name</th>
-//                             <th>Internship Title</th>
-//                             <th>Internship Description</th>
-//                             <th>Remote/On-Site</th>
-//                             <th>Employment Type</th>
-//                             <th>Job Title</th>
-//                             <th>Job Description</th>
-//                             <th>Job Location</th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {recruiters.map((recruiter, index) => (
-//                             <tr key={index}>
-//                                 <td>{recruiter.company_name}</td>
-//                                 <td>{recruiter.internship?.internship_title || "N/A"}</td>
-//                                 <td>{recruiter.internship?.internship_description || "N/A"}</td>
-//                                 <td>{recruiter.internship?.remote_on_site || "N/A"}</td>
-//                                 <td>{recruiter.internship?.type_of_employment || "N/A"}</td>
-//                                 <td>{recruiter.placement?.job_title || "N/A"}</td>
-//                                 <td>{recruiter.placement?.job_desc || "N/A"}</td>
-//                                 <td>{recruiter.placement?.jobLocation || "N/A"}</td>
-//                             </tr>
-//                         ))}
-//                     </tbody>
-//                 </table>
-//             </div>
-//         </div>);
-// };
-
-
-// export default ManageRecruiter;
-
-// import React, { useState, useEffect } from "react";
-// import firebase from "firebase/compat/app"; 
-// import "firebase/compat/database";
-// import "../styles/TPOPage.css";
-
-// const ManageRecruiter = () => {
-//     const [recruiters, setRecruiters] = useState([]);
-
-//     useEffect(() => {
-//         const snapshot = firebase.database().ref("Recruiters").once("value");
-//         const data = snapshot.val();
-//         setRecruiters(data ? Object.values(data) : []);
-//     }, []);
-
-
-//     return (
-//         <div className="tpo-container">
-//             <div className="recruiter-section">
-//                 <h2>Recruiter Details</h2>
-//                 <table>
-//                     <thead>
-//                         <tr>
-//                             <th>Company Name</th>
-//                             <th>Internship Title</th>
-//                             <th>Internship Description</th>
-//                             <th>Remote/On-Site</th>
-//                             <th>Employment Type</th>
-//                             <th>Job Title</th>
-//                             <th>Job Description</th>
-//                             <th>Job Location</th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {recruiters.map((recruiter, index) => (
-//                             <tr key={index}>
-//                                 <td>{recruiter.company_name}</td>
-//                                 <td>{recruiter.internship?.internship_title || "N/A"}</td>
-//                                 <td>{recruiter.internship?.internship_description || "N/A"}</td>
-//                                 <td>{recruiter.internship?.remote_on_site || "N/A"}</td>
-//                                 <td>{recruiter.internship?.type_of_employment || "N/A"}</td>
-//                                 <td>{recruiter.placement?.job_title || "N/A"}</td>
-//                                 <td>{recruiter.placement?.job_desc || "N/A"}</td>
-//                                 <td>{recruiter.placement?.jobLocation || "N/A"}</td>
-//                             </tr>
-//                         ))}
-//                     </tbody>
-//                 </table>
-//             </div>
-//         </div>
-//     );
-// };
-
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import "firebase/compat/database";
 import "../styles/ManageRecruiter.css";
 
@@ -115,12 +8,25 @@ const ManageRecruiter = () => {
   const [recruiters, setRecruiters] = useState([]);
   const [selectedRecruiter, setSelectedRecruiter] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {
+    const auth = firebase.auth();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setLoggedInUser(user ? user.uid : null);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const fetchRecruiters = async () => {
       const snapshot = await firebase.database().ref("Recruiters").once("value");
       const data = snapshot.val();
-      setRecruiters(data ? Object.values(data) : []);
+      const recruiterArray = data
+        ? Object.entries(data).map(([key, value]) => ({ key, ...value }))
+        : [];
+      setRecruiters(recruiterArray);
     };
     fetchRecruiters();
   }, []);
@@ -135,27 +41,37 @@ const ManageRecruiter = () => {
     setSelectedRecruiter(null);
   };
 
-  const handleBlacklistCompany = (companyName, loggedinUser) => {
-    firebase.database().ref(`Recruiters/${loggedinUser}`).update({
+  const handleBlacklistCompany = (recruiterKey, companyName) => {
+    if (!loggedInUser) {
+      alert("No logged-in user.");
+      return;
+    }
+
+    firebase.database().ref(`Recruiters/${recruiterKey}`).update({
       isBlacklisted: true
     }).then(() => {
       console.log(`${companyName} has been blacklisted.`);
       setRecruiters((prevRecruiters) => 
         prevRecruiters.map(recruiter => 
-          recruiter.company_name === companyName ? { ...recruiter, isBlacklisted: true } : recruiter
+          recruiter.key === recruiterKey ? { ...recruiter, isBlacklisted: true } : recruiter
         )
       );
     });
   };
 
-  const handlePostToStudentPage = (companyName, loggedinUser) => {
-    firebase.database().ref(`Recruiters/${loggedinUser}`).update({
+  const handlePostToStudentPage = (recruiterKey, companyName) => {
+    if (!loggedInUser) {
+      alert("No logged-in user.");
+      return;
+    }
+
+    firebase.database().ref(`Recruiters/${recruiterKey}`).update({
       postRecruitmentStatus: true
     }).then(() => {
       console.log(`${companyName} details posted to student page.`);
       setRecruiters((prevRecruiters) => 
         prevRecruiters.map(recruiter => 
-          recruiter.company_name === companyName ? { ...recruiter, postRecruitmentStatus: true } : recruiter
+          recruiter.key === recruiterKey ? { ...recruiter, postRecruitmentStatus: true } : recruiter
         )
       );
     });
@@ -179,8 +95,8 @@ const ManageRecruiter = () => {
             </tr>
           </thead>
           <tbody>
-            {recruiters.map((recruiter, index) => (
-              <tr key={index} onClick={() => handleRowClick(recruiter)}>
+            {recruiters.map((recruiter) => (
+              <tr key={recruiter.key} onClick={() => handleRowClick(recruiter)}>
                 <td>{recruiter.company_name}</td>
                 <td>{recruiter.internship?.internship_title || "N/A"}</td>
                 <td>{recruiter.internship?.internship_description || "N/A"}</td>
@@ -189,8 +105,16 @@ const ManageRecruiter = () => {
                 <td>{recruiter.placement?.job_title || "N/A"}</td>
                 <td>{recruiter.placement?.jobLocation || "N/A"}</td>
                 <td>
-                  <button className="action-button blacklist-btn" onClick={(e) => { e.stopPropagation(); handleBlacklistCompany(recruiter.company_name, index); }}>Blacklist</button>
-                  <button className="action-button post-btn" onClick={(e) => { e.stopPropagation(); handlePostToStudentPage(recruiter.company_name, index); }}>Post</button>
+                  <button 
+                    className="action-button blacklist-btn" 
+                    onClick={(e) => { e.stopPropagation(); handleBlacklistCompany(recruiter.key, recruiter.company_name); }}>
+                    Blacklist
+                  </button>
+                  <button 
+                    className="action-button post-btn" 
+                    onClick={(e) => { e.stopPropagation(); handlePostToStudentPage(recruiter.key, recruiter.company_name); }}>
+                    Post
+                  </button>
                 </td>
               </tr>
             ))}
@@ -211,9 +135,9 @@ const ManageRecruiter = () => {
             <p><strong>Job Title:</strong> {selectedRecruiter.placement?.job_title || "N/A"}</p>
             <p><strong>Job Location:</strong> {selectedRecruiter.placement?.jobLocation || "N/A"}</p>
             <p><strong>Job Description:</strong> {selectedRecruiter.placement?.job_desc || "N/A"}</p>
-            <p><strong>Eligibility Criteria:</strong> {selectedRecruiter.internship?.eligibility_criteria.required_qualifications || "N/A"}</p>
-            <p><strong>Additional Benefits:</strong> {selectedRecruiter.internship?.ctcAndBreakup.additional_benefits || "N/A"}</p>
-            <p><strong>Selection Process:</strong> {selectedRecruiter.placement?.selection_process.recruitment_stages?.join(", ") || "N/A"}</p>
+            <p><strong>Eligibility Criteria:</strong> {selectedRecruiter.internship?.eligibility_criteria?.required_qualifications || "N/A"}</p>
+            <p><strong>Additional Benefits:</strong> {selectedRecruiter.internship?.ctcAndBreakup?.additional_benefits || "N/A"}</p>
+            <p><strong>Selection Process:</strong> {selectedRecruiter.placement?.selection_process?.recruitment_stages?.join(", ") || "N/A"}</p>
           </div>
         </div>
       )}
@@ -222,3 +146,4 @@ const ManageRecruiter = () => {
 };
 
 export default ManageRecruiter;
+

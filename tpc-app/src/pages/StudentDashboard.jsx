@@ -35,46 +35,46 @@ const StudentDashboard = () => {
                     <div className="flex flex-col space-y-4">
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage")}
+                            onClick={() => handleNavigation("/Student/Dashboard")}
                         >
                             Home
                         </button>
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/StudentDetails")}
+                            onClick={() => handleNavigation("/Student/Profile")}
                         >
-                            Student Details Dashboard
+                            Profile
                         </button>
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/ManageStudent")}
+                            onClick={() => handleNavigation("/Student/Resume")}
                         >
-                            Manage Students
+                           Resume
                         </button>
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/ManageRecruiter")}
-                        >
-                            Manage Recruiters
-                        </button>
-                        <button
-                            className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/Blog")}
+                            onClick={() => handleNavigation("/Student/Resources")}
                         >
                             Resources
                         </button>
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/Announcements")}
+                            onClick={() => handleNavigation("/Student/JobPosting")}
+                        >
+                            Job Posting
+                        </button>
+                        {/* <button
+                            className="sidebarButton"
+                            onClick={() => handleNavigation("/Student/Profile")}
                         >
                             Announcements
                         </button>
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage/EventDashboard")}
+                            onClick={() => handleNavigation("/Student/Profile")}
                         >
                             Event Dashboard
-                        </button>
+                        </button> */}
                         <button className="sidebarButton" onClick={handleLogout}>
                             Sign Out
                         </button>

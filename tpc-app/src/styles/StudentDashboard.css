@@ -63,8 +63,6 @@
     color: #B0B3C1;
 }
 
-
-
 /* Sidebar */
 .sidebar {
     height: 100vh;
@@ -95,7 +93,6 @@
 
 /* Main Content */
 .main-content {
-    margin-left: 260px;
     padding: 20px;
 }
 
