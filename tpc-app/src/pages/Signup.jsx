@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import database from '../firebaseConfig';
-import '../styles/student-signup.css';
+import "../styles/Login.css";
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -13,7 +13,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [activeRole, setActiveRole] = useState('Student'); 
+  const [activeRole, setActiveRole] = useState('Student');
   const navigate = useNavigate();
 
   // Validate password complexity and match
@@ -88,14 +88,20 @@ const Signup = () => {
 
   return (
     <div className="body">
-      <div className="container-signup">
+      <div className="container-login">
         <div className="left-section">
-          <h2>Join Us!</h2>
-          <p>Sign up to access personalized features based on your role.</p>
+          <div className="left-section-content">
+            <h2>Welcome !</h2>
+            <h3>{`${activeRole} Signup`}</h3>
+            <p>
+              {activeRole === "Student" && "Access your student dashboard and apply for jobs."}
+              {activeRole === "Recruiter" && "Explore candidates and manage job applications."}
+              {activeRole === "Coordinator" && "Manage placements and coordinate activities."}
+            </p>
+          </div>
         </div>
         <div className="right-section">
           <h2>Signup</h2>
-          <form id="signupForm" onSubmit={register}>
             {/* Role Selection Tabs */}
             <div className="role-tabs">
               <button
@@ -120,75 +126,75 @@ const Signup = () => {
                 Coordinator
               </button>
             </div>
+            <form id="loginForm" onSubmit={register}>
+              {/* Fullname Input */}
+              <input
+                type="text"
+                id="fullname"
+                placeholder="Full Name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              {errors.name && <span className="error-message">{errors.name}</span>}
 
-            {/* Fullname Input */}
-            <input
-              type="text"
-              id="fullname"
-              placeholder="Full Name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            {errors.name && <span className="error-message">{errors.name}</span>}
+              {/* Email Input */}
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.email && <span className="error-message">{errors.email}</span>}
 
-            {/* Email Input */}
-            <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {errors.email && <span className="error-message">{errors.email}</span>}
+              {/* Password Input */}
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errors.password && <span className="error-message">{errors.password}</span>}
 
-            {/* Password Input */}
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errors.password && <span className="error-message">{errors.password}</span>}
+              {/* Confirm Password Input */}
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {errors.confirmPassword && (
+                <span className="error-message">{errors.confirmPassword}</span>
+              )}
 
-            {/* Confirm Password Input */}
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="confirmPassword"
-              placeholder="Confirm Password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            {errors.confirmPassword && (
-              <span className="error-message">{errors.confirmPassword}</span>
-            )}
+              {/* Toggle Password Visibility */}
+              <button
+                type="button"
+                className="toggleShowPassword"
+                onClick={toggleShowPassword}
+              >
+                {showPassword ? 'Hide Password' : 'Show Password'}
+              </button>
 
-            {/* Toggle Password Visibility */}
-            <button
-              type="button"
-              className="toggleShowPassword"
-              onClick={toggleShowPassword}
-            >
-              {showPassword ? 'Hide Password' : 'Show Password'}
-            </button>
+              {/* General Errors */}
+              {errors.general && <span className="error-message">{errors.general}</span>}
 
-            {/* General Errors */}
-            {errors.general && <span className="error-message">{errors.general}</span>}
+              {/* Submit Button */}
+              <button type="submit" disabled={loading}>
+                {loading ? 'Signing up...' : 'Sign up'}
+              </button>
+            </form>
 
-            {/* Submit Button */}
-            <button type="submit" disabled={loading}>
-              {loading ? 'Signing up...' : 'Sign up'}
-            </button>
-          </form>
-
-          {/* Login Link */}
-          <p className="login-link">
-            Already have an account? <Link to="/Login">Login</Link>.
-          </p>
+            {/* Login Link */}
+            <p className="login-link">
+              Already have an account? <Link to="/Login">Login</Link>.
+            </p>
         </div>
       </div>
     </div>

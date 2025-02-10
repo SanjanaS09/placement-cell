@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "../styles/student-login.css";
+import "../styles/Login.css";
 
 function LoginPage({ setLoggedInUser }) {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ function LoginPage({ setLoggedInUser }) {
       if (userRef.exists()) {
         setLoggedInUser(loggedInUserId);
         // Navigate to the respective page
-        if (activeRole === "Student") navigate("/StudentPage");
+        if (activeRole === "Student") navigate("/Student/Dashboard");
         else if (activeRole === "Recruiter") navigate("/RecruiterPage");
         else if (activeRole === "Coordinator") navigate("/TPOPage/");
       } else {

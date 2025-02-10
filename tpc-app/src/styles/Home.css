@@ -361,12 +361,6 @@ nav ul li a:hover {
 }
 
 /* <!------------HIGHEST PLACED -----------> */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .top-students {
   display: flex;

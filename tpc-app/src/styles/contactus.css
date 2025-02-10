@@ -1,4 +1,4 @@
-
+/* 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -6,7 +6,7 @@ body {
   background-size: flex;
   z-index: 1;
   overflow-x: hidden; 
-}
+} */
 
 header {
   position: fixed;

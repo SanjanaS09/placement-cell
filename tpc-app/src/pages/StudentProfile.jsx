@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import firebase from "firebase/compat/app";
-import logo from '../assets/images/sndt-logo.png';
+// import firebase from "firebase/compat/app";
+// import logo from '../assets/images/sndt-logo.png';
 import '../styles/StudentProfile.css'
 
 function StudentPage() {

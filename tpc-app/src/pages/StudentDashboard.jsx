@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import '../styles/TPODashboard.css';
 // import logo from '../assets/logo.png'; // Import the logo if necessary
 
-const TPODashboard = () => {
+const StudentDashboard = () => {
     const navigate = useNavigate();
 
     const handleNavigation = (path) => {
@@ -22,17 +22,16 @@ const TPODashboard = () => {
 
     return (
         <div className="dashboardContainer">
+            <div className='sidebarContent'>
+                <div className="sidebar">
 
-            {/* <img
+                    {/* <img
                     src={logo}
                     alt="logo"
                     className="navbarLogo"
                     onClick={() => handleNavigation("/")}
                 /> */}
-            <div className='sidebarContent'>
-                {/* Sidebar */}
-                <div className="sidebar">
-                    <h2>TPO Dashboard</h2>
+                    <h3>Student Dashboard</h3>
                     <div className="flex flex-col space-y-4">
                         <button
                             className="sidebarButton"
@@ -90,4 +89,4 @@ const TPODashboard = () => {
     );
 };
 
-export default TPODashboard;
+export default StudentDashboard;

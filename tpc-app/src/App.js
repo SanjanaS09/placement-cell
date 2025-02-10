@@ -10,19 +10,27 @@ import StudentPage from './pages/StudentPage.jsx';
 import RecruiterPage from './pages/RecruiterPage.jsx';
 import TPODashboard from './pages/TPODashboard.jsx';
 import Blog from './pages/Blog.jsx'
+import StudentProfile from './pages/StudentProfile.jsx';
+import Resume from './pages/Resume.jsx'
+import Resources from './pages/Resources.jsx'
+import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
 import StudentDetails  from './pages/StudentDetailDashboard.jsx';
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
+import StudentDashboard from './pages/StudentDashboard.jsx';
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
 import Events from './pages/event.jsx';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(null); // Store logged-in user ID
+  const [userData, setUserData] = useState(null);
   const [role, setRole] = useState(null); // Store role of logged-in user
   const [loading, setLoading] = useState(true);
 
@@ -60,32 +68,36 @@ const App = () => {
     const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const userId = user.uid;
-        setLoggedInUser(userId);
-
         try {
           let userRole = null;
+          let userInfo = null;
 
           // Check each role database separately
-          const studentRef = await firebase.database().ref(`users/Student/${userId}`).once("value");
-          const recruiterRef = await firebase.database().ref(`users/Recruiter/${userId}`).once("value");
-          const coordinatorRef = await firebase.database().ref(`users/Coordinator/${userId}`).once("value");
-
-          if (studentRef.exists()) {
-            userRole = "Student";
-          } else if (recruiterRef.exists()) {
-            userRole = "Recruiter";
-          } else if (coordinatorRef.exists()) {
-            userRole = "Coordinator";
+          const roles = ["Student", "Recruiter", "Coordinator"];
+          for (const role of roles) {
+            const userRef = await firebase.database().ref(`users/${role}/${userId}`).once("value");
+            if (userRef.exists()) {
+              userRole = role;
+              userInfo = userRef.val(); // Fetch user details
+              break; // Stop once the role is found
+            }
           }
 
-          setRole(userRole);
+          if (userRole && userInfo) {
+            setRole(userRole);
+            setUserData({ ...userInfo, role: userRole }); // Add role to user data
+          } else {
+            setRole(null);
+            setUserData(null);
+          }
         } catch (error) {
-          console.error("Error fetching user role:", error);
+          console.error("Error fetching user data:", error);
           setRole(null);
+          setUserData(null);
         }
       } else {
-        setLoggedInUser(null);
         setRole(null);
+        setUserData(null);
       }
 
       setLoading(false);
@@ -93,9 +105,9 @@ const App = () => {
 
     return () => unsubscribe();
   }, []);
-  
+
   if (loading) {
-    return <div>Loading...</div>; // Show loading spinner or message
+    return <div>Loading...</div>;
   }
 
   return (
@@ -106,18 +118,26 @@ const App = () => {
         <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} setRole={setRole} role={role} />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />
+        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData}/>} />
 
         {/* Role-based routes */}
         <Route
-          path="/StudentPage"
+          path="/Student"
           element={
             loggedInUser ? (
-              <StudentPage role={role} />
+              <StudentDashboard role={role} />
             ) : (
               <Navigate to="/Login" />
             )
-          }
-        />
+          }>
+          {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
+          <Route path="Dashboard" element={<StudentPage role={role} userData={userData}/>} />
+          <Route path="Profile" element={<StudentProfile role={role}/>} />
+          <Route path="Resume" element={<Resume role={role}/>} />
+          <Route path="Resources" element={<Resources role={role}/>} />
+          <Route path="JobPosting" element={<JobPosting role={role}/>} />
+          {/* <Route path="EventDashboard" element={<EventDashboard role={role}/>} /> */}
+        </Route>
         <Route
           path="/RecruiterPage"
           element={
