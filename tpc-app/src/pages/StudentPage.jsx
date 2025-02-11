@@ -81,80 +81,83 @@ const Dashboard = ({ userData }) => {
 
 
   return (
-    <div className="d-flex">
+    <div className="studentpage">
       {/* Main Content */}
       <div className="main-content">
-        <h2>Welcome {userData.name}</h2>
-
-        {/* Stats Cards */}
-        <div className="card-box d-flex">
-          <div className="card-item">
-            <h5>Students</h5>
-            <p>50,078</p>
+        <div className="LeftDashboard">
+          <div className="Welcome-message">
+            <h2>Welcome! {userData.name}</h2>
           </div>
-          <div className="card-item">
-            <h5>Awards</h5>
-            <p>60+</p>
-          </div>
-        </div>
-
-        {/* Graph */}
-        <div className="chart-container my-4">
-          <h5>Statistics</h5>
-          <p>Progress Score</p>
-          {/* Add chart here using Chart.js or other libraries */}
-        </div>
-
-        <div className="events-section">
-          <h2 className="section-title">Upcoming Events</h2>
-          {events.length > 0 ? (
-            <div className="events-container">
-              {events.map((event) => (
-                <div key={event.id} className="event-card">
-                  <div className="event-image">
-                    <img src={event.image || "default-event.jpg"} alt={event.name} />
-                  </div>
-                  <div className="event-details">
-                    <h3 className="event-title">{event.name}</h3>
-                    <p className="event-info">{event.date} | {event.time}</p>
-                    <p className="event-info">{event.venue}</p>
-                  </div>
-                  <div className="event-speaker">
-                    <img src={event.speakerImage || "default-avatar.jpg"} alt="Speaker" />
-                    <p>{event.speaker}</p>
-                  </div>
-                </div>
-              ))}
+          {/* Stats Cards */}
+          <div className="card-box d-flex">
+            <div className="card-item">
+              <h5>Students</h5>
+              <p>50,078</p>
             </div>
-          ) : (
-            <p className="no-events">No upcoming events.</p>
-          )}
-        </div>
+            <div className="card-item">
+              <h5>Awards</h5>
+              <p>60+</p>
+            </div>
+          </div>
+
+          {/* Graph */}
+          <div className="chart-container">
+            <h5>Statistics</h5>
+            <p>Progress Score</p>
+            {/* Add chart here using Chart.js or other libraries */}
+          </div>
+
+          <div className="events-section">
+            <h2 className="section-title">Upcoming Events</h2>
+            {events.length > 0 ? (
+              <div className="events-container">
+                {events.map((event) => (
+                  <div key={event.id} className="event-card">
+                    <div className="event-image">
+                      <img src={event.image || "default-event.jpg"} alt={event.name} />
+                    </div>
+                    <div className="event-details">
+                      <h3 className="event-title">{event.name}</h3>
+                      <p className="event-info">{event.date} | {event.time}</p>
+                      <p className="event-info">{event.venue}</p>
+                    </div>
+                    <div className="event-speaker">
+                      <img src={event.speakerImage || "default-avatar.jpg"} alt="Speaker" />
+                      <p>{event.speaker}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="no-events">No upcoming events.</p>
+            )}
+          </div>
 
 
-        {/* Student Table */}
-        <div className="table-container">
-          <h5>Star Students</h5>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Marks</th>
-                <th>Percentage</th>
-                <th>Year</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>PRE2209</td>
-                <td><img src="https://via.placeholder.com/40" alt="Profile" /> John Smith</td>
-                <td>1165</td>
-                <td>97%</td>
-                <td>2023</td>
-              </tr>
-            </tbody>
-          </table>
+          {/* Student Table */}
+          <div className="table-container">
+            <h5>Star Students</h5>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Marks</th>
+                  <th>Percentage</th>
+                  <th>Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PRE2209</td>
+                  <td><img src="https://via.placeholder.com/40" alt="Profile" /> John Smith</td>
+                  <td>1165</td>
+                  <td>97%</td>
+                  <td>2023</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div className="RightBarDashboard">

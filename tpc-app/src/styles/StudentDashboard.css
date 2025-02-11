@@ -35,7 +35,8 @@
 
 /* Individual Announcements */
 .announcement {
-    background: #669bbc15;
+    background: linear-gradient(135deg, #669bbc15, #005f7315);
+    ;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -63,36 +64,13 @@
     color: #B0B3C1;
 }
 
-/* Sidebar */
-.sidebar {
-    height: 100vh;
-    background: linear-gradient(180deg, #001F3F, #003049);
-    color: white;
-    padding-top: 20px;
-    position: fixed;
-    width: 250px;
-}
-
-.sidebar h3 {
-    font-weight: bold;
-    font-size: 24px;
-    padding-left: 20px;
-}
-
-.sidebar .nav-link {
-    color: white;
-    font-size: 16px;
-    padding: 12px 20px;
-}
-
-.sidebar .nav-link.active,
-.sidebar .nav-link:hover {
-    background: #fdf0d5;
-    border-radius: 10px;
-}
-
 /* Main Content */
 .main-content {
+    padding: 20px;
+    display: flex;
+}
+
+.Welcome-message {
     padding: 20px;
 }
 
@@ -116,6 +94,7 @@
 .chart-container {
     background: white;
     padding: 20px;
+    margin: 15px 0;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -179,9 +158,7 @@
     }
 }
 
-
 .RightBarDashboard {
-    width: 350px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -211,6 +188,7 @@
 /* Upcoming Events Section */
 .events-section {
     background: white;
+    width: 800px;
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

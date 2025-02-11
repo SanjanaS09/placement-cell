@@ -10,7 +10,7 @@
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background: linear-gradient(180deg, #001F3F, #003049);
+    background: linear-gradient(135deg, #003049,#003049, #005f73);
     color: #fdf0d5;
     padding: 20px;
     display: flex;
@@ -76,7 +76,7 @@
     top: 0;
     left: 250px;
     background-color: #F7F7F7;
-    /* width: 970px; */
+    width: 100%;
     height: 100vh;
     overflow: auto;
 }
