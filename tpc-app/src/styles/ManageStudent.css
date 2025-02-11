@@ -4,6 +4,7 @@
   background-color: #f4f7fc;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 81vw;
 }
 
 .header {
@@ -102,6 +103,10 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 20px;
+  margin-left: 25vw;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
 }
 
 .export-button:hover {

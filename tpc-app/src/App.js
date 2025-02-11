@@ -16,6 +16,7 @@ import Resources from './pages/Resources.jsx'
 import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
+import TPOHome from'./pages/TPOPage';
 import StudentDetails  from './pages/StudentDetailDashboard.jsx';
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
@@ -150,7 +151,7 @@ const App = () => {
         />
 
         <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
-          {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
+          <Route path="/TPOHome" element={<TPOHome />} />
           <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
           <Route path="StudentDetails" element={<StudentDetails role={role}/>} />
           <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />

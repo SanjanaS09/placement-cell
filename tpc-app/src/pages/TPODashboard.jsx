@@ -36,7 +36,7 @@ const TPODashboard = () => {
                     <div className="flex flex-col space-y-4">
                         <button
                             className="sidebarButton"
-                            onClick={() => handleNavigation("/TPOPage")}
+                            onClick={() => handleNavigation("/TPOPage/TPOHome")}
                         >
                             Home
                         </button>
