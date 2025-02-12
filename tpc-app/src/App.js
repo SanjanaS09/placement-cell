@@ -22,6 +22,8 @@ import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
 import StudentDashboard from './pages/StudentDashboard.jsx';
+import TPOPage from "./pages/TPOPage";
+
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
@@ -151,6 +153,9 @@ const App = () => {
         />
 
         <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
+        <Route path="/TPOPage" element={<TPOPage />} />
+        <Route path="/TPOHome" element={<TPOHome />} />  
+
           <Route path="/TPOHome" element={<TPOHome />} />
           <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
           <Route path="StudentDetails" element={<StudentDetails role={role}/>} />
