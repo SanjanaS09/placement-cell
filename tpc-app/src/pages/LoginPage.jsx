@@ -36,7 +36,7 @@ function LoginPage({ setLoggedInUser }) {
         // Navigate to the respective page
         if (activeRole === "Student") navigate("/Student/Dashboard");
         else if (activeRole === "Recruiter") navigate("/RecruiterPage");
-        else if (activeRole === "Coordinator") navigate("/TPOPage/");
+        else if (activeRole === "Coordinator") navigate("/TPOPage/Home");
       } else {
         // Logout user since they are not authorized for this role
         await firebase.auth().signOut();

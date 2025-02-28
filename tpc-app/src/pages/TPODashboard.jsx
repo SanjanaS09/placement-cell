@@ -36,7 +36,11 @@ const TPODashboard = () => {
                     <div className="flex flex-col space-y-4">
                         <button
                             className="sidebarButton"
+<<<<<<< Updated upstream
                             onClick={() => handleNavigation("/TPOPage/TPOHome")}
+=======
+                            onClick={() => handleNavigation("/TPOPage/Home")}
+>>>>>>> Stashed changes
                         >
                             Home
                         </button>

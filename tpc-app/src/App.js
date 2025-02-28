@@ -16,14 +16,22 @@ import Resources from './pages/Resources.jsx'
 import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
+<<<<<<< Updated upstream
 import TPOHome from'./pages/TPOPage';
 import StudentDetails  from './pages/StudentDetailDashboard.jsx';
+=======
+import StudentDetails from './pages/StudentDetailDashboard.jsx';
+>>>>>>> Stashed changes
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
 import StudentDashboard from './pages/StudentDashboard.jsx';
+<<<<<<< Updated upstream
 import TPOPage from "./pages/TPOPage";
 
+=======
+import TPOHome from './pages/TPOHome.jsx';
+>>>>>>> Stashed changes
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
@@ -121,7 +129,7 @@ const App = () => {
         <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} setRole={setRole} role={role} />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />
-        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData}/>} />
+        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
 
         {/* Role-based routes */}
         <Route
@@ -133,13 +141,12 @@ const App = () => {
               <Navigate to="/Login" />
             )
           }>
-          {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
-          <Route path="Dashboard" element={<StudentPage role={role} userData={userData}/>} />
-          <Route path="Profile" element={<StudentProfile role={role}/>} />
-          <Route path="Resume" element={<Resume role={role}/>} />
-          <Route path="Resources" element={<Resources role={role}/>} />
-          <Route path="JobPosting" element={<JobPosting role={role}/>} />
-          {/* <Route path="EventDashboard" element={<EventDashboard role={role}/>} /> */}
+          <Route path="Dashboard" element={<StudentPage role={role} userData={userData} />} />
+          <Route path="Profile" element={<StudentProfile role={role} />} />
+          <Route path="Resume" element={<Resume role={role} />} />
+          <Route path="Resources" element={<Resources role={role} />} />
+          <Route path="JobPosting" element={<JobPosting role={role} />} />
+          <Route path="EventDashboard" element={<EventDashboard role={role} />} />
         </Route>
         <Route
           path="/RecruiterPage"
@@ -152,6 +159,7 @@ const App = () => {
           }
         />
 
+<<<<<<< Updated upstream
         <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
         <Route path="/TPOPage" element={<TPOPage />} />
         <Route path="/TPOHome" element={<TPOHome />} />  
@@ -163,6 +171,22 @@ const App = () => {
           <Route path="Blog" element={<Blog role={role}/>} />
           <Route path="Announcements" element={<Announcements role={role}/>} />
           <Route path="EventDashboard" element={<EventDashboard role={role}/>} />
+=======
+        <Route path="/TPOPage" element={
+          loggedInUser ? (
+            <TPODashboard role={role} />
+          ) : (
+            <Navigate to="/Login" />
+          )
+        }>
+          <Route path="Home" element={<TPOHome />} />
+          <Route path="ManageStudent" element={<ManageStudents role={role} />} />
+          <Route path="StudentDetails" element={<StudentDetails role={role} />} />
+          <Route path="ManageRecruiter" element={<ManageRecruiter role={role} />} />
+          <Route path="Blog" element={<Blog role={role} />} />
+          <Route path="Announcements" element={<Announcements role={role} />} />
+          <Route path="EventDashboard" element={<EventDashboard role={role} />} />
+>>>>>>> Stashed changes
         </Route>
 
         {/* Catch-all route */}
