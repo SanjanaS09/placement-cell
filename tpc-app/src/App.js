@@ -16,22 +16,12 @@ import Resources from './pages/Resources.jsx'
 import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
-<<<<<<< Updated upstream
-import TPOHome from'./pages/TPOPage';
-import StudentDetails  from './pages/StudentDetailDashboard.jsx';
-=======
 import StudentDetails from './pages/StudentDetailDashboard.jsx';
->>>>>>> Stashed changes
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
 import StudentDashboard from './pages/StudentDashboard.jsx';
-<<<<<<< Updated upstream
-import TPOPage from "./pages/TPOPage";
-
-=======
 import TPOHome from './pages/TPOHome.jsx';
->>>>>>> Stashed changes
 
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
@@ -159,19 +149,6 @@ const App = () => {
           }
         />
 
-<<<<<<< Updated upstream
-        <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
-        <Route path="/TPOPage" element={<TPOPage />} />
-        <Route path="/TPOHome" element={<TPOHome />} />  
-
-          <Route path="/TPOHome" element={<TPOHome />} />
-          <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
-          <Route path="StudentDetails" element={<StudentDetails role={role}/>} />
-          <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
-          <Route path="Blog" element={<Blog role={role}/>} />
-          <Route path="Announcements" element={<Announcements role={role}/>} />
-          <Route path="EventDashboard" element={<EventDashboard role={role}/>} />
-=======
         <Route path="/TPOPage" element={
           loggedInUser ? (
             <TPODashboard role={role} />
@@ -186,7 +163,6 @@ const App = () => {
           <Route path="Blog" element={<Blog role={role} />} />
           <Route path="Announcements" element={<Announcements role={role} />} />
           <Route path="EventDashboard" element={<EventDashboard role={role} />} />
->>>>>>> Stashed changes
         </Route>
 
         {/* Catch-all route */}
