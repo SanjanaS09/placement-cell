@@ -21,10 +21,7 @@ import EventDashboard from './pages/EventDashboard.jsx';
 import TPOHome from'./pages/TPOPage';
 import StudentDetails  from './pages/StudentDetailDashboard.jsx';
 
-
-=======
 import StudentDetails from './pages/StudentDetailDashboard.jsx';
->>>>>>> 9c2510e629376e1855d4578495c5b964f258b7fd
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
