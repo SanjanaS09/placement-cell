@@ -192,14 +192,12 @@ function Home() {
       <div className="home">
         {/* NAVBAR */}
         <nav className="nav">
-          <div className="logo">
+          {/* <div className="logo">
             <img src={logo} alt="Logo" />
+          </div> */}
+          <div className="nav-links">
+            <button onClick={() => navigate('/Contactus')} className="nav-button">Contact</button>
           </div>
-          <ul className="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/Contactus">Contact</a></li>
-          </ul>
         </nav>
 
         {/* HOME */}
@@ -210,13 +208,7 @@ function Home() {
               <span className="offset-header offset-header-even"><span>Industry Institute Interaction Cell</span></span>
             </h1>
             <p> Empowering Women in Engineering: Where Innovation Meets Excellence.</p>
-          </div>
-          <div className="login-buttons">
-            <button onClick={() => handleRoleSelect('Student')}>Student</button>
-            <button onClick={() => handleRoleSelect('Recruiter')}>Recruiter</button>
-            <button onClick={() => handleRoleSelect('Coordinator')}>Coordinator</button>
-          </div>
-          <div className="social-media">
+            <div className="social-media">
             <a href="https://in.linkedin.com/company/tpc-umit-sndt?trk=public_post_follow-view-profile" target="_blank" rel="noopener noreferrer" className="social-icon">
               <img src={LinkedIn} alt="LinkedIn" />
             </a>
@@ -227,7 +219,32 @@ function Home() {
               <img src={Facebook} alt="Facebook" />
             </a>
           </div>
+          </div>
+          <div className="login-buttons">
+            <button onClick={() => handleRoleSelect('Student')}>
+            <svg fill="#FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 481.119 481.119" xmlSpace="preserve"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="Layer_2_31_"> <g> <path d="M80.13,89.836c6.763,3.805,64.945,31.734,64.945,31.734s-0.016,30.356-0.016,38.571 c0,105.197-43.24,115.07-31.602,123.201c2.563,1.789,33.903,2.949,73.783,3.484c14.103,9.342,32.798,15.057,53.318,15.133 c20.521-0.076,39.216-5.791,53.318-15.133c39.88-0.535,71.221-1.695,73.782-3.484c11.641-8.131-31.6-18.004-31.6-123.201 c0-8.215-0.016-38.57-0.016-38.57s26.062-12.512,45.329-21.928v44.448c-3.342,1.97-5.689,5.452-5.689,9.603 c0,3.674,1.864,6.788,4.583,8.846c0,0-4.832,27.166-6.395,35.154c-1.563,7.988,27.559,6.387,26.247,0 c-1.311-6.387-6.394-35.154-6.394-35.154c2.719-2.058,4.585-5.172,4.585-8.846c0-4.15-2.339-7.633-5.679-9.603V94.104 c4.084-2.029,7.104-3.563,8.355-4.268c6.763-3.807,7.763-9.605-1.862-14.318C360.155,56.442,260.8,7.817,250.976,3.131 C246.877,1.178,243.474,0.268,240.56,0c-2.914,0.268-6.318,1.178-10.416,3.131c-9.824,4.686-109.18,53.311-148.151,72.387 C72.368,80.231,73.368,86.03,80.13,89.836z"></path> <path d="M353.227,343.084c-15.685-5.656-42.989-21.961-47.666-24.477c-1.213-0.705-2.616-1.117-4.121-1.117 c-3.282,0-6.105,1.928-7.423,4.715c-12.888,21.572-36.735,84.145-53.457,85.754c-16.722-1.609-40.57-64.182-53.457-85.754 c-1.316-2.787-4.14-4.715-7.423-4.715c-1.504,0-2.908,0.412-4.121,1.117c-4.677,2.516-31.981,18.82-47.666,24.477 c-52.65,18.984-76.33,38.346-76.33,51.547c0,13.188,0,86.488,0,86.488H240.56h188.997c0,0,0-73.301,0-86.488 C429.557,381.43,405.877,362.069,353.227,343.084z"></path> </g> </g> </g> </g></svg>
+            Student</button>
+            <button onClick={() => handleRoleSelect('Recruiter')}>
+             <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve" stroke="#ffffff" width="30px" height="30px"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M37.3,31.9h21.8c1.1,0,2-0.9,2-2v-4c0-3.3-2.7-5.9-5.9-5.9H41.3c-3.3,0-5.9,2.7-5.9,5.9v4 C35.3,31,36.2,31.9,37.3,31.9z"></path> <path d="M70,24.9h-2c-0.6,0-1,0.4-1,1v4c0,4.4-3.6,7.9-7.9,7.9H37.3c-4.4,0-7.9-3.6-7.9-7.9v-4c0-0.6-0.4-1-1-1h-2 c-3.3,0-5.9,2.7-5.9,5.9v40.6c0,3.3,2.7,5.9,5.9,5.9h20c2.8,0,3.1-2.3,3.1-3.1V52.8c0-2.3,1.3-2.8,2-2.8h21.6c2.4,0,2.8-2.1,2.8-2.8 V31C76,27.6,73.3,24.9,70,24.9z"></path> <path d="M78.4,60.4H56.6c-0.6,0-1.1-0.5-1.1-1.1v-2.2c0-0.6,0.5-1.1,1.1-1.1h21.8c0.6,0,1.1,0.5,1.1,1.1v2.2 C79.5,59.9,79,60.4,78.4,60.4z M78.4,70.2H56.6c-0.6,0-1.1-0.5-1.1-1.1v-2.2c0-0.6,0.5-1.1,1.1-1.1h21.8c0.6,0,1.1,0.5,1.1,1.1v2.2 C79.5,69.7,79,70.2,78.4,70.2z M78.4,80H56.6c-0.6,0-1.1-0.5-1.1-1.1v-2.2c0-0.6,0.5-1.1,1.1-1.1h21.8c0.6,0,1.1,0.5,1.1,1.1v2.2 C79.5,79.5,79,80,78.4,80z"></path> </g></svg>
+            Recruiter</button>
+            <button onClick={() => handleRoleSelect('Coordinator')}>Coordinator</button>
+          </div>
         </div>
+
+        {/* COMPANY LOGO */}
+        <div className="slider">
+          <div className="slider-text">
+            <h1><b>Our Industry Recruiters</b></h1>
+          </div>
+          <div className="slide-track">
+            {logos.concat(logos).concat(logos).map((logo, index) => ( // Duplicate logos for smooth scrolling
+              <div className="slide" key={index}>
+                <img className="move" src={logo} alt={`Company Logo ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+        
         {/* ABOUT US */}
         <div className="about-container">
           <h1>About Us</h1>
@@ -378,20 +395,6 @@ function Home() {
           </div>
         </div>
         <script src="message.js"></script>
-
-        {/* COMPANY LOGO */}
-        <div className="slider">
-          <div className="slider-text">
-            <h1><b>Our Industry Recruiters</b></h1>
-          </div>
-          <div className="slide-track">
-            {logos.map((logo, index) => (
-              <div className="slide" key={index}>
-                <img className="move" src={logo} alt={`Company Logo ${index + 1}`} />
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* FOOTER */}
         <footer>

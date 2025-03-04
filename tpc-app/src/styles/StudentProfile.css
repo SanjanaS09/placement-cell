@@ -27,7 +27,7 @@
   
   input,
   select,
-  button {
+  .submit button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -44,7 +44,7 @@
     box-shadow: 0 0 5px #007BFF;
   }
   
-  button {
+  .submit button {
     background-color: #007BFF; 
     color: white;
     border: none;
@@ -54,7 +54,7 @@
     transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .submit button:hover {
     background-color: #0056b3;
   }
   

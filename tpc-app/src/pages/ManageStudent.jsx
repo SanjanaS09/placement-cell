@@ -24,7 +24,7 @@ const ManageStudent = () => {
       const snapshot = await usersRef.get();
       if (snapshot.exists()) {
         const usersData = snapshot.val();
-        
+
         // Convert usersData object to an array
         const usersList = Object.keys(usersData).map(key => ({
           ...usersData[key],
@@ -50,7 +50,7 @@ const ManageStudent = () => {
       );
       setFilteredUsers(filtered);
     }
-  }, [searchName, users]);  
+  }, [searchName, users]);
 
   // Handle creating a user without logging them in
   const handleCreateUser = async () => {
@@ -82,7 +82,7 @@ const ManageStudent = () => {
 
       await firebase.auth().signOut();
       navigate('/login');
-      
+
     } catch (error) {
       console.error('Error creating user:', error);
       alert(error.message);
@@ -152,7 +152,7 @@ const ManageStudent = () => {
               <tr key={index}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.password || 'N/A'}</td> 
+                <td>{user.password || 'N/A'}</td>
                 <td>{user.createdOn}</td>
                 <td>{user.createdBy}</td>
               </tr>
@@ -165,8 +165,10 @@ const ManageStudent = () => {
         </tbody>
       </table>
 
+      <div className='downloadbutton'>
       <button className="export-button" onClick={exportToExcel}>Download Excel</button>
     </div>
+    </div >
   );
 };
 

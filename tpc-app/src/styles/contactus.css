@@ -1,56 +1,18 @@
-/* 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: url('https://images.app.goo.gl/cAEXSansKEthBuWCA') no-repeat center center fixed;
-  background-size: flex;
-  z-index: 1;
-  overflow-x: hidden; 
-} */
-
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
 nav {
-  background-color: rgb(4,4,124); /* Adjust the color and transparency here */
   padding: 1rem 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-nav .logo img {
-  height: 50px; /* Set a specific height for the logo */
-  width: auto;  /* Maintain the aspect ratio */
+  flex-direction: row;
 }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.0rem; /* Add space between the navigation items */
-}
+/* nav .logo img {
+  height: 50px; 
+  width: auto;  
+} */
 
-nav ul li {
-  display: inline;
-}
 
-nav ul li a {
-  color: white; 
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background 0.3s ease, color 0.3s ease;
-  border-radius: 5px; /* Rounded corners for links */
-}
 
-nav ul li a:hover {
-  color: rgb(241, 3, 3); /* Change text color on hover */
-}
 
 
 .container-contactus {
