@@ -152,7 +152,7 @@ const App = () => {
         />
 
         <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
-          {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
+          <Route path="/TPOHome" element={<TPOHome />} />
           <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
           <Route path="StudentDetails" element={<StudentDetails role={role}/>} />
           <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
