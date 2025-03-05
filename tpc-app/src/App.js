@@ -16,7 +16,6 @@ import Resources from './pages/Resources.jsx'
 import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
-<<<<<<< HEAD
 
 import TPOHome from'./pages/TPOPage';
 import StudentDetails  from './pages/StudentDetailDashboard.jsx';
