@@ -16,7 +16,6 @@ import Resources from './pages/Resources.jsx'
 import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
-
 import StudentDetails from './pages/StudentDetailDashboard.jsx';
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
@@ -120,7 +119,7 @@ const App = () => {
         <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} setRole={setRole} role={role} />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />
-        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData}/>} />
+        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
 
         {/* Role-based routes */}
         <Route
@@ -132,13 +131,12 @@ const App = () => {
               <Navigate to="/Login" />
             )
           }>
-          {/* <Route path="/TPOPage" element={<TPOHOME />} /> */}
-          <Route path="Dashboard" element={<StudentPage role={role} userData={userData}/>} />
-          <Route path="Profile" element={<StudentProfile role={role}/>} />
-          <Route path="Resume" element={<Resume role={role}/>} />
-          <Route path="Resources" element={<Resources role={role}/>} />
-          <Route path="JobPosting" element={<JobPosting role={role}/>} />
-          {/* <Route path="EventDashboard" element={<EventDashboard role={role}/>} /> */}
+          <Route path="Dashboard" element={<StudentPage role={role} userData={userData} />} />
+          <Route path="Profile" element={<StudentProfile role={role} />} />
+          <Route path="Resume" element={<Resume role={role} />} />
+          <Route path="Resources" element={<Resources role={role} />} />
+          <Route path="JobPosting" element={<JobPosting role={role} />} />
+          <Route path="EventDashboard" element={<EventDashboard role={role} />} />
         </Route>
         <Route
           path="/RecruiterPage"
@@ -151,14 +149,20 @@ const App = () => {
           }
         />
 
-        <Route path="/TPOPage" element={<TPODashboard role={role}/>}>
-          <Route path="/TPOHome" element={<TPOHome />} />
-          <Route path="ManageStudent" element={<ManageStudents role={role}/>} />
-          <Route path="StudentDetails" element={<StudentDetails role={role}/>} />
-          <Route path="ManageRecruiter" element={<ManageRecruiter role={role}/>} />
-          <Route path="Blog" element={<Blog role={role}/>} />
-          <Route path="Announcements" element={<Announcements role={role}/>} />
-          <Route path="EventDashboard" element={<EventDashboard role={role}/>} />
+        <Route path="/TPOPage" element={
+          loggedInUser ? (
+            <TPODashboard role={role} />
+          ) : (
+            <Navigate to="/Login" />
+          )
+        }>
+          <Route path="Home" element={<TPOHome />} />
+          <Route path="ManageStudent" element={<ManageStudents role={role} />} />
+          <Route path="StudentDetails" element={<StudentDetails role={role} />} />
+          <Route path="ManageRecruiter" element={<ManageRecruiter role={role} />} />
+          <Route path="Blog" element={<Blog role={role} />} />
+          <Route path="Announcements" element={<Announcements role={role} />} />
+          <Route path="EventDashboard" element={<EventDashboard role={role} />} />
         </Route>
 
         {/* Catch-all route */}
