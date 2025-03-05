@@ -17,9 +17,6 @@ import JobPosting from './pages/JobPosting.jsx'
 import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
 
-import TPOHome from'./pages/TPOPage';
-import StudentDetails  from './pages/StudentDetailDashboard.jsx';
-
 import StudentDetails from './pages/StudentDetailDashboard.jsx';
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
@@ -124,7 +121,6 @@ const App = () => {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
-
         {/* Role-based routes */}
         <Route
           path="/Student"
@@ -135,6 +131,12 @@ const App = () => {
               <Navigate to="/Login" />
             )
           }>
+          <Route path="Dashboard" element={<StudentPage role={role} userData={userData} />} />
+          <Route path="Profile" element={<StudentProfile role={role} />} />
+          <Route path="Resume" element={<Resume role={role} />} />
+          <Route path="Resources" element={<Resources role={role} />} />
+          <Route path="JobPosting" element={<JobPosting role={role} />} />
+          <Route path="EventDashboard" element={<EventDashboard role={role} />} />
           <Route path="Dashboard" element={<StudentPage role={role} userData={userData} />} />
           <Route path="Profile" element={<StudentProfile role={role} />} />
           <Route path="Resume" element={<Resume role={role} />} />
@@ -152,7 +154,6 @@ const App = () => {
             )
           }
         />
-
         <Route path="/TPOPage" element={
           loggedInUser ? (
             <TPODashboard role={role} />
