@@ -20,7 +20,7 @@ import EventDashboard from './pages/EventDashboard.jsx';
 
 
 import TPOHome from'./pages/TPOPage';
-import StudentDetails  from './pages/StudentDetailDashboard.jsx';
+//import StudentDetails  from './pages/StudentDetailDashboard.jsx';
 
 // import StudentDetails from './pages/StudentDetailDashboard.jsx';
 
