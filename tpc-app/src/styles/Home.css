@@ -7,39 +7,45 @@
 
 /* Navbar */
 nav {
-  background-color: rgba(4, 4, 124);
   padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
 }
 
-nav .logo img {
-  height: 50px;
-  width: auto;
-}
-
-nav ul li a {
+.nav-links button {
+  background-color: #003049;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3sease-in-out;
 }
 
-nav ul li a:hover {
-  color: rgb(241, 3, 3);
+.nav-links:active {
+  transform: scale(0.95);
+  /* Pressed effect */
 }
 
 /* Home Section */
 .home-section {
   position: relative;
-  height: 100vh;
+  height: 75vh;
   background-image: url(../assets/images/college.png);
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
   text-align: left;
   padding: 0 2rem;
   z-index: 1;
+  flex-direction: column;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow gradient */
 }
 
 .home-section::before {
@@ -49,13 +55,14 @@ nav ul li a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)); /* Add gradient */
   z-index: -1;
 }
 
 /* Updated Welcome Message */
 .welcome-message {
   z-index: 1;
+  padding: 70px 30px;
   text-align: left;
   color: white;
 }
@@ -70,13 +77,14 @@ nav ul li a:hover {
   display: block;
 }
 
-.offset-header-odd > span {
+.offset-header-odd>span {
   text-align: left;
   animation-delay: 0s;
   animation-fill-mode: forwards;
   color: #fcfcfe;
 }
-.offset-header-even > span {
+
+.offset-header-even>span {
   text-align: right;
   animation-delay: 150ms;
   animation-fill-mode: both;
@@ -84,17 +92,18 @@ nav ul li a:hover {
 }
 
 @keyframes slideUp {
+
   0%,
   50% {
     transform: translateY(100%);
     opacity: 0;
   }
-   
+
   60%,
   100% {
     transform: translateY(0);
     opacity: 1;
-  
+
   }
 }
 
@@ -104,60 +113,19 @@ nav ul li a:hover {
   max-width: 600px;
   font-weight: 300;
   margin-top: 0;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  white-space: nowrap; /* Keeps the content on a single line */
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  white-space: nowrap;
+  /* Keeps the content on a single line */
   /* letter-spacing: .15em;  */
-  animation: 
+  animation:
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-}
-
-/* Login Buttons Section */
-.login-buttons {
-  display: flex;
-  flex-direction: column;
-  margin: 50px;
-  /* background: rgba(0, 0, 0, 0.5); */
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 1;
-}
-
-.login-buttons button {
-  font-size: 18px;
-  margin: 10px 0;
-  width: 300px;
-  height: 75px;
-  color: white;
-  background: rgba(4, 4, 124);
-  /* Button color */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.login-buttons button:hover {
-  background: rgb(21, 24, 197);
 }
 
 /* Social Media Icons */
 .social-media {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -168,10 +136,100 @@ nav ul li a:hover {
   height: 30px;
 }
 
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+}
+
+/* Login Buttons Section */
+.login-buttons {
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+  border-radius: 10px;
+  gap: 10px;
+  z-index: 1;
+  justify-content: flex-end;
+}
+
+.login-buttons button {
+  background-color: #003049;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3sease-in-out;
+}
+
+.login-buttons button:hover {
+  background: rgb(21, 24, 197);
+}
+
+/* <!------------COMPANY LOGO--------------> */
+.move {
+  width: 100px;
+  height: 100px;
+}
+
+.slide-track {
+  display: flex;
+  gap: 20px;
+  /* overflow: hidden; */
+  animation: scroll-track 45s linear infinite; /* Adjust the duration to fit all images */
+}
+
+@keyframes scroll-track {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% * 2)); /* Adjust to ensure all images are displayed */
+  }
+}
+
+.slide {
+  flex: 0 0 auto; /* Ensure each slide takes up its own space */
+}
+
+.slider-text h1 {
+  color: black;
+  text-align: center;
+}
+
+.slider {
+  margin-top: -15px;
+  background-color: #fcfcfe;
+  padding: 2.5em 0em;
+}
+
+/* h2 {
+  color: rgb(4, 4, 124);
+  align-items: center;
+} */
+
 /* <!-------------ABOUT US-----------------> */
 
 .about-container {
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(4, 4, 124, 0.9);
@@ -220,17 +278,24 @@ nav ul li a:hover {
 
 .layout {
   display: grid;
-  grid-template-columns: 3fr 3fr; /* Two equal-width columns */
-  gap: 50px; /* Space between grid items */
+  grid-template-columns: 3fr 3fr;
+  /* Two equal-width columns */
+  gap: 50px;
+  /* Space between grid items */
   padding: 50px;
-  align-items: start; /* Align items to the top */
+  align-items: start;
+  /* Align items to the top */
 }
 
 .linkedin-post {
-  grid-column: span 2; /* Make it span across two columns */
-  justify-self: end; /* Align it to the right */
-  padding: 10px; /* Optional: Add padding */
-  width: auto; /* Optional: Adjust width */
+  grid-column: span 2;
+  /* Make it span across two columns */
+  justify-self: end;
+  /* Align it to the right */
+  padding: 10px;
+  /* Optional: Add padding */
+  width: auto;
+  /* Optional: Adjust width */
 }
 
 
@@ -353,7 +418,7 @@ nav ul li a:hover {
   margin-bottom: 10px;
 }
 
-.feed{
+.feed {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -520,46 +585,6 @@ nav ul li a:hover {
   background-color: #0056b3;
 }
 
-/* <!------------COMPANY LOGO--------------> */
-.move {
-  width: 100px;
-  height: 100px;
-  animation: scroll 45s linear infinite;
-}
-
-.slide-track {
-  width: 100;
-  display: flex;
-  gap: 3em;
-  overflow: hidden;
-}
-
-.slider-text h1 {
-  color: black;
-  text-align: center;
-}
-
-.slider {
-  margin-top: 0px;
-  background-color: #fcfcfe;
-  padding: 2.5em 0em;
-}
-
-/* h2 {
-  color: rgb(4, 4, 124);
-  align-items: center;
-} */
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translatex(-1000%)
-  }
-}
-
 /* <!-------------FOOTER-------------------> */
 footer {
   background-color: rgba(4, 4, 124);
@@ -567,7 +592,7 @@ footer {
   padding: 20px 0;
 }
 
-.footer-title{
+.footer-title {
   display: flex;
   flex-direction: column;
   align-items: center;

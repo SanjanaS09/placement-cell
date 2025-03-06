@@ -18,10 +18,14 @@ import Announcements from './pages/Announcements.jsx'
 import EventDashboard from './pages/EventDashboard.jsx';
 
 
+
 import TPOHome from'./pages/TPOPage';
 import StudentDetails  from './pages/StudentDetailDashboard.jsx';
 
 // import StudentDetails from './pages/StudentDetailDashboard.jsx';
+
+import StudentDetails from './pages/StudentDetailDashboard.jsx';
+
 import ManageRecruiter from './pages/ManageRecruiter.jsx';
 import ManageStudents from './pages/ManageStudent.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';

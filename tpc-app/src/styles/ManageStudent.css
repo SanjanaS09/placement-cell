@@ -157,7 +157,7 @@
   margin-top: 10px;
 }
 
-button {
+.downloadbutton button {
   padding: 10px;
   background-color: #003049;
   color: white;
@@ -166,6 +166,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.downloadbutton button:hover {
   background-color: #fdf0d5;
 }
