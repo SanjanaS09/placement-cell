@@ -11,6 +11,7 @@ import LinkedIn from "../assets/images/linkedin.png";
 import Facebook from "../assets/images/facebook.png";
 import Instagram from "../assets/images/instagram.png";
 import Twitter from "../assets/images/twitter.png";
+import AboutUs from "../assets/images/AboutUs.PNG"
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
@@ -247,11 +248,16 @@ function Home() {
         
         {/* ABOUT US */}
         <div className="about-container">
+            <div className='about-content'>
           <h1>About Us</h1>
           <p>
-            Our company thrives on creativity and innovation, pushing the boundaries to bring the best products and services to our clients.
-            We believe in the power of collaboration and are committed to building a better future, one step at a time.
+          The Industry-Institute Interaction Cell (IIIC), UMIT is dedicated to enhancing student employability by bridging the gap between academia and industry. We strive to equip students with the necessary skills, knowledge, and exposure to excel in the corporate world.
+          Our initiatives include placement drives, internships, workshops, mock interviews, and industry interactions to prepare students for real-world challenges. We collaborate with top companies to provide career opportunities, resume-building support, and technical & soft skills training.
           </p>
+          </div>
+          <div className='aboutImg'>
+            <img src={AboutUs} alt="AboutUS" />
+          </div>
         </div>
 
         {/* STATISTICS */}
