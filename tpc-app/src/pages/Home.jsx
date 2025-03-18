@@ -116,14 +116,9 @@ function Home() {
   const doughnutData = {
     labels: ['Oracle', 'Deutsche Bank', 'JP Morgan Chase & Co.', 'Barclays', 'VISA', 'Colgate','GE Aerospace','Providence ','KPMG', 'Deloitte USI', 'Veritas', 'Bank of Americe', 'Deloitte IN', 'Seimens', 'NVIDIA', 'Rite Technologies', 'NetWeaver', 'Amdocs', 'Accenture', 'Publicis Sapient', 'HSBC', 'Capgemini', ' ExcelR', 'Argon & Co.','IIDE', 'Eduvaz','Clever Tap'],
     datasets: [{
-      // label: '# of Placements',
+      label: '# of Placements',
       data: [1, 7, 2, 13, 4, 20, 3, 5, 9, 16, 1, 34, 14, 2, 5, 1, 4, 12, 5, 9, 2, 19, 2, 1, 10, 2, 1],
       backgroundColor: [
-        // 'rgba(4, 4, 124, 0.7)',
-        // 'rgba(36, 36, 164, 0.6)',
-        // 'rgba(53, 53, 163, 0.5)',
-        // 'rgba(105, 105, 182, 0.4)',
-        // 'rgba(139, 139, 198, 0.3)'
         'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 
         'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 
         'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 
@@ -135,11 +130,6 @@ function Home() {
         'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)'
       ],
       borderColor: [
-        // 'rgb(4, 4, 152, 1)',
-        // 'rgb(4, 4, 152, 1)',
-        // 'rgb(4, 4, 152, 1)',
-        // 'rgb(4, 4, 152, 1)',
-        // 'rgb(4, 4, 152, 1)'
         'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
         'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
         'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 
@@ -228,7 +218,8 @@ function Home() {
             <button onClick={() => handleRoleSelect('Recruiter')}>
              <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve" stroke="#ffffff" width="30px" height="30px"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M37.3,31.9h21.8c1.1,0,2-0.9,2-2v-4c0-3.3-2.7-5.9-5.9-5.9H41.3c-3.3,0-5.9,2.7-5.9,5.9v4 C35.3,31,36.2,31.9,37.3,31.9z"></path> <path d="M70,24.9h-2c-0.6,0-1,0.4-1,1v4c0,4.4-3.6,7.9-7.9,7.9H37.3c-4.4,0-7.9-3.6-7.9-7.9v-4c0-0.6-0.4-1-1-1h-2 c-3.3,0-5.9,2.7-5.9,5.9v40.6c0,3.3,2.7,5.9,5.9,5.9h20c2.8,0,3.1-2.3,3.1-3.1V52.8c0-2.3,1.3-2.8,2-2.8h21.6c2.4,0,2.8-2.1,2.8-2.8 V31C76,27.6,73.3,24.9,70,24.9z"></path> <path d="M78.4,60.4H56.6c-0.6,0-1.1-0.5-1.1-1.1v-2.2c0-0.6,0.5-1.1,1.1-1.1h21.8c0.6,0,1.1,0.5,1.1,1.1v2.2 C79.5,59.9,79,60.4,78.4,60.4z M78.4,70.2H56.6c-0.6,0-1.1-0.5-1.1-1.1v-2.2c0-0.6,0.5-1.1,1.1-1.1h21.8c0.6,0,1.1,0.5,1.1,1.1v2.2 C79.5,69.7,79,70.2,78.4,70.2z M78.4,80H56.6c-0.6,0-1.1-0.5-1.1-1.1v-2.2c0-0.6,0.5-1.1,1.1-1.1h21.8c0.6,0,1.1,0.5,1.1,1.1v2.2 C79.5,79.5,79,80,78.4,80z"></path> </g></svg>
             Recruiter</button>
-            <button onClick={() => handleRoleSelect('Coordinator')}>Coordinator</button>
+            <button onClick={() => handleRoleSelect('Coordinator')}><svg fill="#ffffff" width="35px" height="35px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><circle cx="44.6" cy="36.2" r="16.1"></circle><path d="M48.8,79.6c2.8,0,1.2-1.9,1.2-1.9h0a19.22,19.22,0,0,1-4.2-12,18.65,18.65,0,0,1,1.7-7.9l.2-.4a1.17,1.17,0,0,0-.9-1.9h0a17.7,17.7,0,0,0-2.3-.1A24.35,24.35,0,0,0,20.4,76.3c0,1.2.4,3.5,4.2,3.5H48.3C48.7,79.6,48.7,79.6,48.8,79.6Z"></path><path d="M65.3,51.2A14.25,14.25,0,1,0,79.5,65.5,14.25,14.25,0,0,0,65.3,51.2Zm0,4.5a3.22,3.22,0,0,1,3.2,3.2,3.06,3.06,0,0,1-.7,2l2.3,4.3c.1.2,0,.4-.2.4a2.7,2.7,0,0,0-1.1.5c-.2.1-.4,0-.4-.1l-2.2-4.1a3.08,3.08,0,0,1-.9.1,3.22,3.22,0,0,1-3.2-3.2A3.08,3.08,0,0,1,65.3,55.7Zm-2,8.2L61.1,68a3.26,3.26,0,0,1,1,2.3,3.2,3.2,0,1,1-3.2-3.2h.4l2.3-4.3c.1-.2.2-.2.5-.1a2.87,2.87,0,0,0,1.1.6C63.3,63.7,63.4,63.9,63.3,63.9Zm8.3,9.8a3.29,3.29,0,0,1-3-1.9H64.2c-.2,0-.4-.2-.2-.4a2.48,2.48,0,0,0,.1-.9v-.2c0-.2.1-.4.2-.4h4.2a3.12,3.12,0,0,1,3.1-2.6,3.22,3.22,0,0,1,3.2,3.2A3.44,3.44,0,0,1,71.6,73.7Z"></path></g></svg>
+            Coordinator</button>
           </div>
         </div>
 

@@ -110,14 +110,11 @@ nav {
 .welcome-message p {
   font-size: 18px;
   color: white;
-  max-width: 600px;
+  /* max-width: 600px; */
   font-weight: 300;
   margin-top: 0;
   overflow: hidden;
-  /* Ensures the content is not revealed until the animation */
   white-space: nowrap;
-  /* Keeps the content on a single line */
-  /* letter-spacing: .15em;  */
   animation:
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
@@ -187,7 +184,7 @@ nav {
 }
 
 .login-buttons button:hover {
-  background: rgb(21, 24, 197);
+  background: #014f78;
 }
 
 /* <!------------COMPANY LOGO--------------> */
@@ -199,7 +196,6 @@ nav {
 .slide-track {
   display: flex;
   gap: 20px;
-  /* overflow: hidden; */
   animation: scroll-track 45s linear infinite; /* Adjust the duration to fit all images */
 }
 
@@ -223,7 +219,6 @@ nav {
 
 .slider {
   margin-top: -15px;
-  background-color: #fcfcfe;
   padding: 2.5em 0em;
 }
 
@@ -250,7 +245,7 @@ nav {
 
 .about-container h1 {
   font-size: 34px;
-  color: rgb(241, 3, 3);
+  color: #ff8c00;
   margin-bottom: 10px;
 }
 
@@ -344,7 +339,7 @@ nav {
   left: 0;
   position: relative;
   padding: 3em 2em;
-  background: rgba(4, 4, 124);
+  background: #003049;
   color: #fcfcfe;
   text-align: center;
   z-index: 2;
@@ -426,7 +421,7 @@ nav {
 
 .chart-container {
   display: flex;
-  border: 1px solid #ff0000;
+  border: 1px solid #ff8c00;
   border-radius: 5rem;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
   background: #fff;
@@ -443,7 +438,7 @@ nav {
 }
 
 .chart-container h2 {
-  border-bottom: 2px solid rgba(4, 4, 124);
+  border-bottom: 2px solid #003049;
   margin-bottom: 10px;
   /* Adjust spacing below the heading */
 }
@@ -624,23 +619,9 @@ nav {
   margin-top: 0;
 }
 
-#readMoreBtn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-#readMoreBtn:hover {
-  background-color: #0056b3;
-}
-
 /* <!-------------FOOTER-------------------> */
 footer {
-  background-color: rgba(4, 4, 124);
+  background-color: #003049;
   color: #fff;
   padding: 20px 0;
 }

@@ -45,12 +45,12 @@ const StudentDashboard = () => {
                         >
                             Profile
                         </button>
-                        <button
+                        {/* <button
                             className="sidebarButton"
                             onClick={() => handleNavigation("/Student/Resume")}
                         >
                            Resume
-                        </button>
+                        </button> */}
                         <button
                             className="sidebarButton"
                             onClick={() => handleNavigation("/Student/Resources")}
