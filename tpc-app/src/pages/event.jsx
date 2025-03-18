@@ -48,8 +48,8 @@ const Events = () => {
       <div className="scrolling-section">
         <motion.div
           className="scrolling-gallery"
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
           style={{ display: "flex", whiteSpace: "nowrap" }}
         >
           {[...scrollingImages, ...scrollingImages].map((image, index) => (
