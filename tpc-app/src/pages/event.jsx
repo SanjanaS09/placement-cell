@@ -41,7 +41,7 @@ const scrollingImages = [
 
 const Events = () => {
   return (
-    <div className="events-container">
+    <div className="events-page">
       <h2 className="events-heading">Events & Trainings</h2>
 
       {/* Scrolling Section */}
@@ -60,6 +60,7 @@ const Events = () => {
               className="scrolling-image" 
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
+              width={300}
             />
           ))}
         </motion.div>
