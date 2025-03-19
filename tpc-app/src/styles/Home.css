@@ -12,6 +12,21 @@ nav {
   position: absolute;
   width: 100%;
   z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  margin-left: 50px;
+  margin-right: auto;
+  color:#fcfcfe;
+}
+
+.logo h3{
+  margin: 10px 0 0 10px;
+
 }
 
 .nav-links button {
@@ -29,7 +44,6 @@ nav {
 
 .nav-links:active {
   transform: scale(0.95);
-  /* Pressed effect */
 }
 
 /* Home Section */
@@ -40,12 +54,11 @@ nav {
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: space-around;
   text-align: left;
   padding: 0 2rem;
   z-index: 1;
   flex-direction: column;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow gradient */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .home-section::before {
@@ -55,13 +68,14 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)); /* Add gradient */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
   z-index: -1;
 }
 
 /* Updated Welcome Message */
 .welcome-message {
   z-index: 1;
+  margin-top: 100px;
   padding: 70px 30px;
   text-align: left;
   color: white;
@@ -77,18 +91,16 @@ nav {
   display: block;
 }
 
-.offset-header-odd>span {
-  text-align: left;
-  animation-delay: 0s;
-  animation-fill-mode: forwards;
-  color: #fcfcfe;
-}
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .welcome-message h1 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
 
-.offset-header-even>span {
-  text-align: right;
-  animation-delay: 150ms;
-  animation-fill-mode: both;
-  color: #fcfcfe;
+  .welcome-message p {
+    font-size: 14px;
+  }
 }
 
 @keyframes slideUp {
@@ -168,18 +180,37 @@ nav {
   justify-content: center;
 }
 
+@media screen and (max-width: 600px) {
+  .login-buttons {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .login-buttons svg {
+    display: none;
+  }
+
+  .login-buttons button {
+    padding: 6px 12px;
+    font-size: 14px;
+    width: 150px;
+  }
+}
+
 .login-buttons button {
   background-color: #003049;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 999px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3sease-in-out;
-  width: 200px; 
+  width: 180px;
   text-align: center;
 }
 
@@ -196,20 +227,24 @@ nav {
 .slide-track {
   display: flex;
   gap: 20px;
-  animation: scroll-track 45s linear infinite; /* Adjust the duration to fit all images */
+  animation: scroll-track 45s linear infinite;
+  /* Adjust the duration to fit all images */
 }
 
 @keyframes scroll-track {
   0% {
     transform: translateX(0);
   }
+
   100% {
-    transform: translateX(calc(-100% * 2)); /* Adjust to ensure all images are displayed */
+    transform: translateX(calc(-100% * 2));
+    /* Adjust to ensure all images are displayed */
   }
 }
 
 .slide {
-  flex: 0 0 auto; /* Ensure each slide takes up its own space */
+  flex: 0 0 auto;
+  /* Ensure each slide takes up its own space */
 }
 
 .slider-text h1 {
@@ -269,8 +304,10 @@ nav {
     flex-direction: column;
     text-align: center;
   }
+
   .aboutImg {
-    display: none;  /* Hide Image on Small Screens */
+    display: none;
+    /* Hide Image on Small Screens */
   }
 }
 
@@ -278,6 +315,7 @@ nav {
   .about-container {
     padding: 15px;
   }
+
   .about-content {
     width: 100%;
   }
@@ -385,11 +423,12 @@ nav {
     font-size: 2em;
     margin-bottom: 0.5em;
   }
-  
+
   .counter h3 {
     font-size: 1em;
     margin-bottom: 0.5em;
   }
+
   .counters>div {
     /* grid-template-columns: 1fr 1fr; */
   }
@@ -400,11 +439,12 @@ nav {
     font-size: 1em;
     margin-bottom: 0.5em;
   }
-  
+
   .counter h3 {
     font-size: 0.5em;
     margin-bottom: 0.5em;
   }
+
   .counters>div {
     /* grid-template-columns: fr; */
     row-gap: 5em;
@@ -416,7 +456,7 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin: 0;
-  width:100%;
+  width: 100%;
 }
 
 .chart-container {
@@ -593,14 +633,14 @@ nav {
 
 .coordinator-message {
   display: flex;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
   max-width: 800px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   align-items: center;
   margin-left: 350px;
+  background: white;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .coordinator-image {
@@ -628,8 +668,9 @@ footer {
 
 .footer-title {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .footer-content {
@@ -682,22 +723,17 @@ footer {
 .footer-social-icons {
   display: flex;
   gap: 15px;
-  /* Space between icons */
   align-items: center;
-  /* Center icons vertically if needed */
 }
 
 .footer-social-icon img {
   width: 24px;
-  /* Size of the icons */
   height: 24px;
-  /* Size of the icons */
   transition: opacity 0.3s;
 }
 
 .footer-social-icon:hover img {
   opacity: 0.8;
-  /* Optional: Slight change on hover */
 }
 
 .footer-bottom {

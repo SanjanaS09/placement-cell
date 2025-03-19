@@ -1,15 +1,15 @@
-
-
 /* Container Styling */
 .events-page {
   background: #003049;
-  width: 100vw; /* Full viewport width */
+  width: 100vw;
+  /* Full viewport width */
   padding: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Arial', sans-serif;
-  box-sizing: border-box; /* Ensures padding doesn't add extra width */
+  box-sizing: border-box;
+  /* Ensures padding doesn't add extra width */
 }
 
 /* Heading */
@@ -27,20 +27,28 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 90%; /* Adjust width to prevent extra space */
-  max-width: 1400px; /* Ensures it doesn't stretch too much */
+  width: 90%;
+  /* Adjust width to prevent extra space */
+  max-width: 1400px;
+  /* Ensures it doesn't stretch too much */
   gap: 30px;
 }
 
 /* Event Cards Grid */
 /* Event Cards Layout */
 .events-list {
-  display: flex; /* Changed from grid to flex */
-  flex-wrap: wrap; /* Ensures responsiveness */
-  gap: 20px; /* Space between cards */
-  justify-content: center; /* Center align */
-  align-items: stretch; /* Ensure uniform height */
-  width: 100%; /* Occupy full width */
+  display: flex;
+  /* Changed from grid to flex */
+  flex-wrap: wrap;
+  /* Ensures responsiveness */
+  gap: 20px;
+  /* Space between cards */
+  justify-content: center;
+  /* Center align */
+  align-items: stretch;
+  /* Ensure uniform height */
+  width: 100%;
+  /* Occupy full width */
 }
 
 
@@ -58,10 +66,12 @@
 }
 
 .scroll-content img {
-  width: 200px; /* Adjust size */
+  width: 200px;
+  /* Adjust size */
   height: 150px;
   object-fit: cover;
-  margin-right: 10px; /* Minimal gap */
+  margin-right: 10px;
+  /* Minimal gap */
   border-radius: 8px;
 }
 
@@ -70,6 +80,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-100%);
   }
@@ -83,7 +94,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 2.0s ease-in-out;
   text-align: left;
-  min-width: 300px; /* Fixed size */
+  min-width: 300px;
+  margin-bottom: 0.5rem;
+  /* Fixed size */
 }
 
 .event-card:hover {
@@ -120,12 +133,31 @@
   text-align: center;
 }
 
+.speaker-info img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px 0;
+}
+
+.speaker-info p {
+  margin: 0 10px;
+}
+
+
+.speaker-info{
+  display: flex;
+  align-items: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .events-content {
     flex-direction: column;
     align-items: center;
-    width: 95%; /* More space for small screens */
+    width: 95%;
+    /* More space for small screens */
   }
 
   .scroll-content img {

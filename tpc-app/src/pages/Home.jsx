@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import '../styles/Home.css';
 import { useNavigate, Link } from 'react-router-dom';
-import logo from '../assets/images/sndt-logo.png';
+import logo from '../assets/images/IIIC-logo.png';
 import JohnDoe from "../assets/images/1.jpg";
 import JaneSmith from "../assets/images/2.jpg";
 import MikeJohnson from "../assets/images/3.jpg";
@@ -29,10 +29,10 @@ function Home() {
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState('');
   const [counters, setCounters] = useState([
-    { label: "Projects Completed", count: 156, value: 0 },
-    { label: "Satisfied Clients", count: 227, value: 0 },
-    { label: "Success Rate", count: 321, value: 0 },
-    { label: "Years Experience", count: 254, value: 0 },
+    { label: "Student Placed", count: 167, value: 0 },
+    { label: "Internship Offers", count: 32, value: 0 },
+    { label: "Recruiters", count: 29, value: 0 },
+    { label: "Highest Offer(LPA)", count: 33, value: 0 },
   ]);
   const [activated, setActivated] = useState(false);
 
@@ -183,9 +183,10 @@ function Home() {
       <div className="home">
         {/* NAVBAR */}
         <nav className="nav">
-          {/* <div className="logo">
-            <img src={logo} alt="Logo" />
-          </div> */}
+          <div className="logo">
+            <img src={logo} alt="Logo" width={50} height={50} />
+            <h3>Usha Mittal Institute of Technology</h3>
+          </div>
           <div className="nav-links">
             <button onClick={() => navigate('/Contactus')} className="nav-button">Contact</button>
           </div>
@@ -291,7 +292,7 @@ function Home() {
           <div className='feed'>
             <div className="elfsight-app-bac7a5aa-fa12-4ca3-a6a3-1c24c5b793a0" data-elfsight-app-lazy></div>
             {/* Update Section */}
-            <div className="update-section">
+            {/* <div className="update-section">
               <h2>Latest Announcements</h2>
               <ul>
                 <li>Admission to M.Tech and PhD programs</li>
@@ -299,7 +300,7 @@ function Home() {
                 <li>JRF Recruitment</li>
                 <li>Internship Advertisement under ISEA Project</li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -386,7 +387,8 @@ function Home() {
           <div className="coordinator-message">
             <img src={VilasSir} alt="Coordinator" className="coordinator-image" />
             <div className="message-content">
-              <h2>Coordinator's Message</h2>
+              <h2>Mr. Vilas Kharat</h2>
+              <p>IIIC UMIT Co-ordinator</p>
               <p id="message">Welcome to the placement cell. We are dedicated to providing our students with the best career opportunities. Our team is here to assist you in achieving your professional goals. We believe in creating a supportive environment that fosters growth and development.</p>
             </div>
           </div>
@@ -396,9 +398,8 @@ function Home() {
         {/* FOOTER */}
         <footer>
           <div className="footer-title">
-            <img src={logo} alt="logo" width="150px" height="100px" />
-            <h1>IIIC UMIT</h1>
-
+            <img src={logo} alt="logo" width="150px" height="150px" />
+            <h1>IIIC Usha Mittal Institute of Technology</h1>
           </div>
           <div className="footer-content">
             <div className="footer-section footer-social-media">
@@ -437,6 +438,7 @@ function Home() {
             </div>
           </div>
           <div className="footer-bottom">
+            <p>Developed by Sanjana Shetty, Tejashree Deore, Ketaki Sakhadeo</p>
             <p>&copy; 2024 Training and Placement Cell. All Rights Reserved.</p>
           </div>
         </footer>
