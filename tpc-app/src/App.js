@@ -5,7 +5,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
 import Home from './pages/Home.jsx';
-import ContactUs from './pages/Contactus.jsx';
+import Team from './pages/Team.jsx';
 import StudentPage from './pages/StudentPage.jsx';
 import RecruiterPage from './pages/RecruiterPage.jsx';
 import TPODashboard from './pages/TPODashboard.jsx';
@@ -116,7 +116,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Contactus" element={<ContactUs />} />
+        <Route path="/Team" element={<Team />} />
         <Route path="/Login" element={<Login setLoggedInUser={setLoggedInUser} setRole={setRole} role={role} />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />

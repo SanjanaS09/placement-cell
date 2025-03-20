@@ -5,7 +5,6 @@
   overflow: hidden;
 }
 
-/* Navbar */
 nav {
   padding: 1rem 2rem;
   box-shadow: none;
@@ -25,27 +24,9 @@ nav {
 }
 
 .logo h3{
-  margin: 10px 0 0 10px;
+  margin: 15px 0 0 10px;
 }
 
-.nav-links button {
-  background-color: #003049;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 999px;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3sease-in-out;
-}
-
-.nav-links:active {
-  transform: scale(0.95);
-}
-
-/* Home Section */
 .home-section {
   position: relative;
   height: 75vh;
@@ -508,7 +489,7 @@ nav {
 
 .top-students {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 50px;
   animation: 1s ease-out;
@@ -517,49 +498,65 @@ nav {
 }
 
 .student-card {
-  background-color: #fff;
+  width: 400px;
+  height: 300px;
+  background-color: #003049;
+  color: white;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, transform 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
 .student-card:hover {
+  background-color: white;
+  color: black;
   transform: translateY(-10px);
 }
 
-.student-photo {
-  width: 100px;
-  height: 100px;
+/* Small Circle Effect */
+.expanding-circle {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background: white;
   border-radius: 50%;
-  margin-bottom: 15px;
-  object-fit: cover;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.6s ease-in-out, background 0.6s ease-in-out;
+  z-index: 2;  /* Ensures it stays above the overlay */
 }
 
-.student-info h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+/* Hover Effect: Circle expands and rotates */
+.student-card:hover .expanding-circle {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #003049, #003049, #005f73);
+  transform: rotate(360deg) translate(50px, 50px);
+  z-index: 5;
 }
 
-.student-info p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
+/* Overlay with Quote */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: white;
+  color: black;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  z-index: 1;  /* Ensures the quote is visible but below the circle */
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* Ensure only the text appears, but not blocking the circle */
+.student-card:hover .overlay {
+  opacity: 1;
+  z-index: 3; /* Higher than everything, but still below the expanding circle */
 }
 
 /* <!------------TESTIMONE-----------------> */
@@ -672,6 +669,18 @@ nav {
 
 .message-content h2 {
   margin-top: 0;
+}
+
+.teambutton button {
+  background-color: #003049;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .feed {
