@@ -97,8 +97,16 @@ a:hover {
   scrollbar-width: none;
 }
 
+.teamContainer {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Navbar */
-.navbar {
+.navbar-contactus {
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -109,14 +117,8 @@ a:hover {
   height: auto;
 }
 
-/* Team Container */
-.teamContainer {
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
+.card-container {
+  margin: 100px 20px 20px;
 }
 
 .cards {
