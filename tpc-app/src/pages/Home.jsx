@@ -390,7 +390,7 @@ function Home() {
           <div className="coordinator-message">
             <img src={VilasSir} alt="Coordinator" className="coordinator-image" />
             <div className="message-content">
-              <h2>Mr. Vilas Kharat</h2>
+              <h2>Dr. Vilas Kharat</h2>
               <p>IIIC UMIT Co-ordinator</p>
               <p id="message">Welcome to the placement cell. We are dedicated to providing our students with the best career opportunities. Our team is here to assist you in achieving your professional goals. We believe in creating a supportive environment that fosters growth and development.</p>
               <div className="teambutton">

@@ -1,26 +1,32 @@
 {
   "rules": {
-    ".read": "auth != null",  
-    ".write": "auth != null", 
+    "Blog": { 
+      ".read": "auth != null",
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'Coordinator'"
+    },
+    "Events": { 
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'Coordinator'"
+    },
+    "Recruiters": { 
+      ".read": "root.child('users').child(auth.uid).child('role').val() === 'Recruiter' || root.child('users').child(auth.uid).child('role').val() === 'Coordinator'",
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'Recruiter' || root.child('users').child(auth.uid).child('role').val() === 'Coordinator'"
+    },
+    "Students": { 
+      ".read": "root.child('users').child(auth.uid).child('role').val() === 'Recruiter' || root.child('users').child(auth.uid).child('role').val() === 'Coordinator'",
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'Recruiter' || root.child('users').child(auth.uid).child('role').val() === 'Coordinator'"
+    },
+    "Team": { 
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'Coordinator'"
+    },
+    "announcements": {
+      ".read": "auth != null",
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'Coordinator'"
+    },
     "users": {
-      "Student": {
-        "$uid": {
-          ".read": "auth != null",  
-          ".write": "auth != null" 
-        }
-      },
-        "Recruiter": {
-        "$uid": {
-          ".read": "auth != null",  
-          ".write": "auth != null" 
-        }
-        },
-        "TPO": {
-        "$uid": {
-          ".read": "auth != null",  
-          ".write": "auth != null" 
-        }
-      }
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }
