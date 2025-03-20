@@ -74,12 +74,12 @@ nav {
 /* Responsive adjustments */
 @media screen and (max-width: 600px) {
   .welcome-message h1 {
-    font-size: 20px;
+    font-size: 35px;
     margin-top: 10px;
   }
 
   .welcome-message p {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
@@ -101,14 +101,24 @@ nav {
 .welcome-message p {
   font-size: 18px;
   color: white;
-  /* max-width: 600px; */
+  max-width: 600px;
   font-weight: 300;
   margin-top: 0;
-  overflow: hidden;
-  white-space: nowrap;
+  word-wrap: break-word; /* Ensures text breaks properly */
+  overflow-wrap: break-word;
+  width: 100%; /* Ensures it uses full width */
   animation:
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
+}
+
+/* Mobile Fix */
+@media screen and (max-width: 480px) {
+  p {
+    font-size: 14px; /* Slightly smaller font for mobile */
+    max-width: 95%; /* Use more width to fit text */
+    line-height: 1.4; /* Improve readability */
+  }
 }
 
 /* Social Media Icons */
@@ -512,33 +522,12 @@ nav {
   .student-card {
     height: 250px; /* Reduce height */
   }
-
-  .expanding-circle {
-    width: 40px;
-    height: 40px;
-  }
-
-  .student-card:hover .expanding-circle {
-    width: 150px;
-    height: 150px;
-  }
 }
 
 @media screen and (max-width: 480px) {
   .student-card {
-    width: 90%;
-    max-width: 375px;
+    max-width: 365px;
     height: 200px;
-  }
-
-  .expanding-circle {
-    width: 30px; /* Reduce default size */
-    height: 30px;
-  }
-
-  .student-card:hover .expanding-circle {
-    width: 100px; /* Limit expansion size */
-    height: 100px;
   }
 }
 
