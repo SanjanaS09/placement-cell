@@ -265,8 +265,7 @@ function Home() {
             </div>
           </div>
         </div>
-        {/* <br /><br /><br /><br /><br /><br /> */}
-
+        
         <div className="layout">
           <div className="charts-grid">
             <div className="chart-container">
