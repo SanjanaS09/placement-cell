@@ -1,20 +1,156 @@
-import React from 'react';
-import '../styles/contactus.css'; 
-import logo from '../assets/images/sndt-logo.png';
-import VilasKharat from "../assets/images/vilasKharat.jpeg";
+import React, { useEffect, useState } from 'react';
+import database from '../firebaseConfig'; // Ensure Firebase is imported
+import '../styles/contactus.css';
+import logo from '../assets/images/IIIC-logo.png';
 
 const ContactUs = () => {
+  const [data, setData] = useState({});
+  const [selectedMember, setSelectedMember] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const snapshot = await database.ref('Team').once('value');
+        if (snapshot.exists()) {
+          setData(snapshot.val());
+        }
+      } catch (error) {
+        console.error("Error fetching team data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <nav className="navbar">
         <div className="logo">
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Logo" width={100} height={100} />
         </div>
-        <ul className="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/">About</a></li>
-          <li><a href="/Contactus">Contact</a></li>
-        </ul>
+      </nav>
+      <div className='teamContainer container-fluid m-0 p-3'>
+        <div className='row justify-content-center align-items-center m-3 p-1'>
+          <div className='col-12 cards'>
+            {Object.entries(data).map(([key, member]) => (
+              <div className='team-card' key={key} onClick={() => setSelectedMember(member)}>
+                <img src={member.img} alt={member.name} />
+                <div className='details'>
+                  <p>{member.name}</p>
+                  <div>{member.role}</div>
+                </div>
+                <button className="openButton">Open</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* MODAL - Pop-up Window */}
+      {selectedMember && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setSelectedMember(null)}>&times;</span>
+            <img src={selectedMember.img} alt={selectedMember.name} className="modal-img" />
+            <h2>{selectedMember.name}</h2>
+            <p><strong>Role:</strong> {selectedMember.role}</p>
+            <p><strong>Email:</strong> {selectedMember.email}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ContactUs;
+
+
+
+// import { useEffect, useState } from 'react';
+// import { useNavigate, useLocation } from 'react-router-dom';
+// import database from '../FirebaseConfig';
+
+// import '../styles/team.css';
+
+
+// const TeamPage = () => {
+//   const [code, setCode] = useState(null);
+//   const [data, setData] = useState({});
+
+//   const navigate = useNavigate();
+//   const location = useLocation();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const dataSnapshot = await database.ref('statics/team').once('value');
+//         setData(dataSnapshot.val());
+//       }
+//       catch (error) {
+//         console.log(error.message);
+//       }
+
+//       // Parse query parameters from the URL
+//       const params = new URLSearchParams(location.search);
+//       setCode(params.get('code'));
+//     };
+
+//     fetchData();
+//   }, [location]);
+
+
+//   return (
+//     <div className='teamContainer container-fluid m-0 p-3'>
+//       <div className='row justify-content-center align-items-center m-3 p-1'>
+//         {code === null ? (
+//           <div>
+//             <button className='col-12 backButton' onClick={() => navigate('/')}>&#10006;</button>
+//             <div className='col-12 cards'>
+//               {Object.entries(data).map(([key, member]) => (
+//                 <div
+//                   className='card'
+//                   key={key}
+//                   onClick={() => navigate(`/teampage?code=${encodeURI(key)}`)}
+//                 >
+//                   <img src={`${member.imgLink}`} alt={key} />
+//                   <div className='details' style={{ marginTop: '100px' }}>
+//                     <p>{member.name}</p>
+//                     <div>{member.desig}</div>
+//                   </div>
+//                   <button className="openButton" onClick={() => navigate(`/teampage?code=${encodeURI(key)}`)}> Open</button>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         ) : (
+//           <div className='col-12'>
+//             <button className='col-12 backButton mb-3' onClick={() => navigate('/teampage')}>&larr;</button>
+//             <div className='cards'>
+//               <div className='col-12 cardPrivate'>
+//                 <img src={data[code].imgLink} alt={code} />
+//                 <div className='detailsPrivate' style={{ marginTop: '100px' }}>
+//                   <p>{data[code].name}</p>
+//                   <div>{data[code].desig}<br /><br />{data[code].email}<br />{data[code].pnum}</div>
+//                 </div>
+//                 <a className="fa fa-whatsapp whatsappButton" href={encodeURI(`https://wa.me/${(data[code].pnum).replace(' ', '').replace(' ', '')}/?text=Hey ${data[code].name}, let's get drilling`)} target='_blank' rel="noreferrer"> </a>
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </div >
+//   );
+// };
+
+// export default TeamPage;
+
+
+
+{/* <div>
+      <nav className="navbar">
+        <div className="logo">
+          <img src={logo} alt="Logo" width={100} height={100}/>
+        </div>
       </nav>
       <div className="container-contactus">
         <section className="chairperson">
@@ -125,8 +261,4 @@ const ContactUs = () => {
           </table>
         </section>
       </div>
-    </div>
-  );
-};
-
-export default ContactUs;
+    </div> */}

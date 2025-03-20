@@ -322,7 +322,7 @@ function Home() {
         </section>
 
         {/* TESTIMONIALS */}
-        <div className="testimonial-container">
+        {/* <div className="testimonial-container">
           <div className="testimonial-card">
             <p className="testimonial-title">Hired across multiple profiles</p>
             <p className="testimonial-text">
@@ -366,7 +366,7 @@ function Home() {
               <p>Manish Nichani<br /><span>Airbnb</span></p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* ------------COORDINATORS MESSAGE---------  */}
         <div className="message">
@@ -427,6 +427,7 @@ function Home() {
                 {/* <li><Link to="/about">About Us</Link></li> */}
                 <li><Link to="/Contactus">Contact</Link></li>
                 <li><Link to="/Events">Events</Link></li>
+                <li><Link to="/Team">Team</Link></li>
               </ul>
             </div>
             <div className="footer-section contact">
