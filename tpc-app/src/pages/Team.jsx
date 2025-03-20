@@ -26,7 +26,7 @@ const ContactUs = () => {
 
   return (
     <div className='teamContainer container-fluid'>
-      <nav className="navbar-contactus">
+      <nav className="nav">
         <div className="logo">
           <img src={logo} alt="Logo" width={50} height={50} />
         </div>
@@ -42,8 +42,8 @@ const ContactUs = () => {
               <div className='details'>
                 <p>{member.name}</p>
                 <div>{member.role}</div>
+                <button className="openButton">Open</button>
               </div>
-              <button className="openButton">Open</button>
             </div>
           ))}
         </div>

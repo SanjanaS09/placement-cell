@@ -26,20 +26,6 @@
   align-items: center;
 }
 
-nav {
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: row;
-}
-
-.navbar-contactus {
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-}
-
 .nav-links button {
   background-color: #003049;
   color: white;
@@ -177,4 +163,51 @@ nav {
 
 .close:hover {
   color: red;
+}
+
+@media screen and (max-width: 468px) {
+  .card-container {
+    margin-top: 100px;
+  }
+
+  .team-card {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .team-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .openButton {
+    width: 100%;
+    padding: 6px 12px;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+  }
+
+  .modal-img {
+    width: 125px;
+    height: 125px;
+  }
+
+  .modal h2 {
+    font-size: 18px;
+  }
+
+  .modal p {
+    font-size: 12px;
+  }
 }

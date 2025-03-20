@@ -6,7 +6,7 @@
 }
 
 nav {
-  padding: 1rem 2rem;
+  padding: 1rem;
   box-shadow: none;
   position: absolute;
   width: 100%;
@@ -84,7 +84,6 @@ nav {
 }
 
 @keyframes slideUp {
-
   0%,
   50% {
     transform: translateY(100%);
@@ -162,7 +161,8 @@ nav {
 
 @media screen and (max-width: 600px) {
   .login-buttons {
-    flex-direction: row;
+    top: 75%;
+    /* flex-direction: row; */
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -416,7 +416,7 @@ nav {
 
 @media screen and (max-width: 500px) {
   .counter h1 {
-    font-size: 1em;
+    font-size: 1.5em;
     margin-bottom: 0.5em;
   }
 
@@ -491,7 +491,6 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px;
   animation: 1s ease-out;
   margin: 0 20px;
   gap: 15px;
@@ -507,6 +506,40 @@ nav {
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, transform 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .student-card {
+    height: 250px; /* Reduce height */
+  }
+
+  .expanding-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .student-card:hover .expanding-circle {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .student-card {
+    width: 90%;
+    max-width: 375px;
+    height: 200px;
+  }
+
+  .expanding-circle {
+    width: 30px; /* Reduce default size */
+    height: 30px;
+  }
+
+  .student-card:hover .expanding-circle {
+    width: 100px; /* Limit expansion size */
+    height: 100px;
+  }
 }
 
 .student-card:hover {
@@ -533,7 +566,7 @@ nav {
   width: 200px;
   height: 200px;
   background: linear-gradient(135deg, #003049, #003049, #005f73);
-  transform: rotate(360deg) translate(50px, 50px);
+  transform: rotate(360deg) translate(100px, 75px);
   z-index: 5;
 }
 
@@ -702,6 +735,8 @@ footer {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin: 0 30px;
+  gap: 10px;
 }
 
 .footer-content {
@@ -780,4 +815,10 @@ footer {
 
 .footer-section contact {
   color: white;
+}
+
+@media screen and (max-width: 480px) {
+  .footer-content {
+    flex-direction: column;
+  }
 }

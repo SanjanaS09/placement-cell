@@ -319,7 +319,7 @@ function Home() {
                 <div className="d-flex flex-column h-100 justify-content-between position-relative z-1">
                   <div>
                     <h2 className="fs-4 fw-bold mb-2">{student.name}</h2>
-                    <p className="text-secondary">{student.company}</p>
+                    <p className="text-secondary color-white">{student.company}</p>
                   </div>
                   <div className="mt-3">
                     <p><strong>Package:</strong> {student.packageAmount}</p>
