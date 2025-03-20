@@ -27,6 +27,13 @@ nav {
   margin: 15px 0 0 10px;
 }
 
+@media screen and (max-width: 480px) {
+  .logo h3 {
+    margin: 5px 0 0 10px;
+    font-size: 20px;
+  }
+}
+
 .home-section {
   position: relative;
   height: 75vh;
@@ -107,9 +114,9 @@ nav {
   word-wrap: break-word; /* Ensures text breaks properly */
   overflow-wrap: break-word;
   width: 100%; /* Ensures it uses full width */
-  animation:
+  /* animation:
     typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
+    blink-caret .75s step-end infinite; */
 }
 
 /* Mobile Fix */
@@ -118,6 +125,7 @@ nav {
     font-size: 14px; /* Slightly smaller font for mobile */
     max-width: 95%; /* Use more width to fit text */
     line-height: 1.4; /* Improve readability */
+    animation: none;
   }
 }
 
