@@ -13,7 +13,6 @@ import Instagram from "../assets/images/instagram.png";
 import Twitter from "../assets/images/twitter.png";
 import AboutUs from "../assets/images/AboutUs.PNG"
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
-import YearlyPlaced from "./YearlyPlaced";
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
 
@@ -286,22 +285,8 @@ function Home() {
 
             <div className="chart-container">
               <h2>Yearly Placement Data</h2>
-              <YearlyPlaced />
+              <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} />
             </div>
-          </div>
-          <div className='feed'>
-
-            <div className="elfsight-app-bac7a5aa-fa12-4ca3-a6a3-1c24c5b793a0" data-elfsight-app-lazy></div>
-            {/* Update Section */}
-            {/* <div className="update-section">
-              <h2>Latest Announcements</h2>
-              <ul>
-                <li>Admission to M.Tech and PhD programs</li>
-                <li>Faculty Recruitment 2024</li>
-                <li>JRF Recruitment</li>
-                <li>Internship Advertisement under ISEA Project</li>
-              </ul>
-            </div> */}
           </div>
         </div>
 
@@ -395,6 +380,20 @@ function Home() {
           </div>
         </div>
         <script src="message.js"></script>
+
+        <div className='feed'>
+            <div className="elfsight-app-bac7a5aa-fa12-4ca3-a6a3-1c24c5b793a0" data-elfsight-app-lazy></div>
+            {/* Update Section */}
+            {/* <div className="update-section">
+              <h2>Latest Announcements</h2>
+              <ul>
+                <li>Admission to M.Tech and PhD programs</li>
+                <li>Faculty Recruitment 2024</li>
+                <li>JRF Recruitment</li>
+                <li>Internship Advertisement under ISEA Project</li>
+              </ul>
+            </div> */}
+          </div>
 
         {/* FOOTER */}
         <footer>
