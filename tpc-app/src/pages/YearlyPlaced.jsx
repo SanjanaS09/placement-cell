@@ -14,9 +14,9 @@ const YearlyPlaced = () => {
       const rad = Math.PI / 180;
       let frames = 0;
   
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "#999";
-      ctx.fillStyle = "#ccc";
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#";
+      ctx.fillStyle = "#FFFFFF";
       ctx.font = "14px monospace";
   
       const grd = ctx.createLinearGradient(0, 0, 0, cy);
