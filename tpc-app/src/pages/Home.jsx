@@ -284,14 +284,13 @@ function Home() {
           <div className="charts-grid">
             <div className="line-chart-container">
               <h2>Yearly Placement Data</h2>
-              <Line data={lineData} width="500px" height="300px" options={{ scales: { y: { beginAtZero: true } } }} />
+              <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} />
             </div>
             <div classname="bar-grid" style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
               <div className="chart-container">
                 <h2>Top Companies Visiting</h2>
                 <Bar data={horiBarData} options={{ indexAxis: 'y' }} />
               </div>
-
               <div className="chart-container">
                 <h2>Branch-wise Placements</h2>
                 <Bar data={barData} options={{ scales: { y: { beginAtZero: true } } }} />
