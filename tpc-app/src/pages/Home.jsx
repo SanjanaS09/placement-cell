@@ -13,6 +13,9 @@ import { Bar, Doughnut, Line } from 'react-chartjs-2';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
 
+import BranchWise from "./BranchWise";
+
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement);
 
 const importAll = (requireContext) =>
@@ -293,7 +296,8 @@ function Home() {
               </div>
               <div className="chart-container">
                 <h2>Branch-wise Placements</h2>
-                <Bar data={barData} options={{ scales: { y: { beginAtZero: true } } }} />
+                {/* <Bar data={barData} options={{ scales: { y: { beginAtZero: true } } }} /> */}
+                <BranchWise/>
               </div>
             </div>
           </div>
