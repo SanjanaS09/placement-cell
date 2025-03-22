@@ -365,6 +365,7 @@
     .RightBarDashboard {
         width: 100%;
         margin-bottom: 20px;
+        padding: 0 !important
     }
 
     .card-box {
@@ -372,7 +373,7 @@
     }
 
     .card-item {
-        width: 180px !important;
+        width: 45% !important;
     }
 
     .chart-containerp {
