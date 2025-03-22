@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "../styles/StudentDashboard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -63,10 +62,11 @@ const Dashboard = ({ userData }) => {
       eventRef.on("value", (snapshot) => {
         if (snapshot.exists()) {
           const eventData = snapshot.val();
+          const currentDate = new Date();
           const eventList = Object.keys(eventData).map((key) => ({
             id: key,
             ...eventData[key],
-          }));
+          })).filter(event => new Date(event.date) > currentDate); // Filter upcoming events
           setEvents(eventList);
         } else {
           setEvents([]);
@@ -79,10 +79,7 @@ const Dashboard = ({ userData }) => {
     fetchEvents();
   }, []);
 
-
   return (
-    <div className="studentpage">
-      {/* Main Content */}
       <div className="main-content">
         <div className="LeftDashboard">
           <div className="Welcome-message">
@@ -101,7 +98,7 @@ const Dashboard = ({ userData }) => {
           </div>
 
           {/* Graph */}
-          <div className="chart-container">
+          <div className="chart-containerp">
             <h5>Statistics</h5>
             <p>Progress Score</p>
             {/* Add chart here using Chart.js or other libraries */}
@@ -114,7 +111,7 @@ const Dashboard = ({ userData }) => {
                 {events.map((event) => (
                   <div key={event.id} className="event-card">
                     <div className="event-image">
-                      <img src={event.image || "default-event.jpg"} alt={event.name} />
+                      <img src={(event.image && event.image[0]) || "default-event.jpg"} alt={event.name} /> {/* Use the first image if defined */}
                     </div>
                     <div className="event-details">
                       <h3 className="event-title">{event.name}</h3>
@@ -122,7 +119,6 @@ const Dashboard = ({ userData }) => {
                       <p className="event-info">{event.venue}</p>
                     </div>
                     <div className="event-speaker">
-                      <img src={event.speakerImage || "default-avatar.jpg"} alt="Speaker" />
                       <p>{event.speaker}</p>
                     </div>
                   </div>
@@ -133,9 +129,7 @@ const Dashboard = ({ userData }) => {
             )}
           </div>
 
-
-          {/* Student Table */}
-          <div className="table-container">
+          {/* <div className="table-container">
             <h5>Star Students</h5>
             <table className="table">
               <thead>
@@ -157,8 +151,8 @@ const Dashboard = ({ userData }) => {
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
+          </div>*/}
+        </div> 
 
         <div className="RightBarDashboard">
           {/* Profile Card */}
@@ -192,17 +186,16 @@ const Dashboard = ({ userData }) => {
           </div>
 
           {/* Task List */}
-          <div className="task-box">
+          {/* <div className="task-box">
             <h5>Tasks</h5>
             <ul>
               <li>15% Listening - Speak 20 Minutes</li>
               <li>15% Grammar - Learn 5 new rules</li>
               <li>15% Pronunciation - Read 30 minutes</li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
-    </div>
   );
 };
 

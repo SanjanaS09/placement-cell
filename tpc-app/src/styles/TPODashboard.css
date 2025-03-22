@@ -40,7 +40,6 @@
     left: 0px;
     bottom: 0px;
     z-index: 1;
-    transition: 0.5s ease-in-out;
     box-shadow: 0px 25px 25px #3b3b3b50;
     overflow-x: hidden;
     overflow-y: auto;
@@ -106,19 +105,16 @@
 
 .outletContainer {
     position: fixed;
-    top: 0;
     padding: 20px;
-    left: 190px;
-    background-color: #F7F7F7;
-    width: 100vw;
-    height: 100vh;
     overflow: auto;
     position: fixed;
     top: 0;
     left: 250px;
     background-color: #F7F7F7;
-    width: 1300px;
+    width: 100vw;
     height: 100vh;
+    max-width: 1290px;
+    max-height: 100vh;
     overflow: auto;
 }
 
@@ -169,7 +165,7 @@
 .announcement-card {
     width: 400px;
     height: 400px;
-    background: #003049;
+    background: linear-gradient(180deg, #001F3F, #003049);
     color: white;
     border-radius: 15px;
     padding: 10px;
@@ -269,13 +265,6 @@
     height: 40px;
 }
 
-.profile-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
 
 .profile-card img {
     width: 80px;
@@ -296,13 +285,11 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: #F8F9FA;
-    border-radius: 15px;
 }
 
 
 .profile-card {
-    background: linear-gradient(135deg, #003049, #005f73);
+    background: linear-gradient(180deg, #001F3F, #003049);
     color: white;
     padding: 20px;
     border-radius: 15px;
