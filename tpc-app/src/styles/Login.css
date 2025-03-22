@@ -1,7 +1,9 @@
 .container-login {
     display: flex;
-    width: 900px;
-    height: 600px;
+    /* width: 100vw; */
+    height: auto;
+    max-width: 900px;
+    max-height: auto;
     background-color: #fff;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
@@ -9,8 +11,25 @@
     margin: 65px auto;
 }
 
+@media (max-width: 768px) {
+    .container-login {
+
+        margin: 20px;
+        border-radius: 0;
+    }
+
+    .left-section {
+        display: none !important; /* Ensures it’s completely removed */
+    }
+
+    .right-section {
+        width: 100% !important; /* Expands to full width */
+        padding: 40px 30px !important; 
+    }
+}
+
 .left-section {
-    background:  linear-gradient(180deg, #001F3F, #003049);
+    background: linear-gradient(180deg, #001F3F, #003049);
     color: white;
     width: 50%;
     display: flex;
@@ -66,24 +85,31 @@ form {
 }
 
 .role-tabs .tab {
-    background: none; /* No background */
-    border: none; /* No border */
-    color: #7a7a7a; /* Default text color */
+    background: none;
+    /* No background */
+    border: none;
+    /* No border */
+    color: #7a7a7a;
+    /* Default text color */
     padding: 10px;
     font-weight: bold;
     font-size: 16px;
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none;
+    /* Remove underline from links */
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .role-tabs .tab.active {
-    color: #003049; /* Change text color for active tab */
-    border-bottom: 3px solid #003049; /* Underline for active tab */
+    color: #003049;
+    /* Change text color for active tab */
+    border-bottom: 3px solid #003049;
+    /* Underline for active tab */
 }
 
 .role-tabs .tab:hover {
-    color: #003049 /* Change color on hover */
+    color: #003049
+        /* Change color on hover */
 }
 
 input[type="text"],
@@ -151,7 +177,8 @@ button[type="submit"]:hover {
 .password-container input {
     width: 100%;
     padding: 15px;
-    padding-right: 50px; /* Adds space for the button inside the input */
+    padding-right: 50px;
+    /* Adds space for the button inside the input */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -173,8 +200,10 @@ button[type="submit"]:hover {
     color: #0066ff;
     padding: 0;
     transition: color 0.3s ease;
-    width: 200px; /* Fixed width to prevent shifting */
-    text-align: left; /* Centers text inside the fixed-width button */
+    width: 200px;
+    /* Fixed width to prevent shifting */
+    text-align: left;
+    /* Centers text inside the fixed-width button */
 }
 
 .toggleShowPassword:hover {
