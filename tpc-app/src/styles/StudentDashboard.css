@@ -1,8 +1,132 @@
+/* Main Content */
+.main-content {
+    padding: 20px;
+    display: flex;
+}
+
+.Welcome-message {
+    padding: 20px;
+}
+
+/* Top Cards */
+.card-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Statistics Graph */
+.chart-containerp {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Upcoming Events Section */
+.events-section {
+    background: white;
+    width: 800px;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.events-section .section-title {
+    font-weight: bold;
+    color: #003049;
+    margin-bottom: 10px;
+}
+
+.events-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.events-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.events-container::-webkit-scrollbar-thumb {
+    background-color: #003049;
+    border-radius: 5px;
+}
+
+.event-card {
+    min-width: 280px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-card img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.event-title {
+    font-weight: bold;
+    color: #003049;
+}
+
+.event-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.event-speaker {
+    display: flex;
+    align-items: center;
+}
+
+.event-speaker img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px 0;
+}
+
+/* Student Table */
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background: #003049;
+    color: white;
+}
+
+.table img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
 /* Announcements Card */
 .announcement-card {
     width: 400px;
     height: 400px;
-    background: #003049;
+    background: linear-gradient(180deg, #001F3F, #003049);
     color: white;
     border-radius: 15px;
     padding: 10px;
@@ -63,108 +187,18 @@
     color: #B0B3C1;
 }
 
-/* Main Content */
-.main-content {
-    padding: 20px;
-    display: flex;
-}
-
-.Welcome-message {
-    padding: 20px;
-}
-
-/* Top Cards */
-.card-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.card-item {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Statistics Graph */
-.chart-container {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Student Table */
-.table-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.table th {
-    background: #003049;
-    color: white;
-}
-
-.table img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
-
-/* Profile Card */
-.profile-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.profile-card img {
-    width: 80px;
-    border-radius: 50%;
-}
-
-/* Task List */
-.task-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding: 10px;
-    }
-}
-
 .RightBarDashboard {
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: #F8F9FA;
     border-radius: 15px;
 }
 
 /* Profile Card */
 .profile-card {
-    background: linear-gradient(135deg, #003049, #005f73);
+    width: 400px;
+    background: linear-gradient(180deg, #001F3F, #003049);
     color: white;
     padding: 20px;
     border-radius: 15px;
@@ -180,75 +214,207 @@
     border: 3px solid white;
 }
 
-/* Upcoming Events Section */
-.events-section {
+/* Task List */
+.task-box {
     background: white;
-    width: 800px;
-    border-radius: 15px;
-    padding: 15px;
+    padding: 20px;
+    border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.events-section .section-title {
-    font-weight: bold;
-    color: #003049;
-    margin-bottom: 10px;
+/* Responsive Design */
+@media (max-width: 1200px) and (min-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .Welcome-message {
+        padding: 10px !important;
+    }
+
+    .card-box {
+        gap: 10px !important;
+    }
+
+    .card-item {
+        width: 180px !important;
+    }
+
+    .chart-containerp {
+        width: 600px;
+    }
+
+    .events-section {
+        width: 600px;
+    }
+
+    .RightBarDashboard {
+        width: 600px !important;
+        padding: 20px 0 !important;
+    }
+
+    .profile-card {
+        display: none;
+    }
+
+    .announcement-card {
+        width: 600px !important;
+    }
+
+    .announcement {
+        width: 560px;
+    }
 }
 
-.events-container {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    padding-bottom: 10px;
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        flex-direction: column;
+        padding: 30px !important;
+    }
+
+    .Welcome-message {
+        padding: 0 0 20px 0 !important;
+    }
+
+    .LeftDashboard{
+        padding: 0 20px;
+    }
+
+    .LeftDashboard,
+    .RightBarDashboard {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .card-box {
+        gap: 15px !important;
+    }
+
+    .card-item {
+        width: 160px !important;
+    }
+
+    .chart-containerp {
+        width: 450px;
+    }
+
+    .events-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .events-section {
+        width: 450px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .RightBarDashboard {
+        padding: 0px !important;
+        width: 450px !important;
+    }
+
+    .profile-card {
+        display: none;
+    }
+
+    .announcement-card {
+        width: 450px !important;
+    }
+
+    .announcement {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 410px;
+    }
+
+    .task-box {
+        width: 100%;
+    }
 }
 
-.events-container::-webkit-scrollbar {
-    height: 5px;
-}
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
 
-.events-container::-webkit-scrollbar-thumb {
-    background-color: #003049;
-    border-radius: 5px;
-}
+    .main-content {
+        margin-left: 0;
+        flex-direction: column;
+        padding: 0px !important;
+    }
 
-.event-card {
-    min-width: 280px;
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+    .Welcome-message {
+        padding: 0 0 20px 0 !important;
+    }
 
-.event-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+    .LeftDashboard,
+    .RightBarDashboard {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 0 !important
+    }
 
-.event-title {
-    font-weight: bold;
-    color: #003049;
-}
+    .card-box {
+        gap: 15px !important;
+    }
 
-.event-info {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 0;
-}
+    .card-item {
+        width: 45% !important;
+    }
 
-.event-speaker {
-    display: flex;
-    align-items: center;
-}
+    .chart-containerp {
+        width: 380px;
+    }
 
-.event-speaker p {
-    margin: 0 10px;
-}
+    .events-container {
+        flex-direction: column;
+        gap: 10px;
+    }
 
-.event-speaker img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 10px 0;
+    .events-section {
+        width: 380px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .RightBarDashboard {
+        padding: 0px !important;
+        width: 380px !important;
+    }
+
+    .profile-card {
+        display: none;
+    }
+
+    .announcement-card {
+        width: 380px !important;
+    }
+
+    .announcement {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 340px;
+    }
+
+    .task-box {
+        width: 100%;
+    }
 }

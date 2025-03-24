@@ -290,7 +290,7 @@ function Home() {
               <h2>Yearly Placement Data</h2>
               <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} />
             </div>
-            <div classname="bar-grid" style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
+            <div className="bar-grid">
               <div className="chart-container">
                 <h2>Top Companies Visiting</h2>
                 {/* <Bar data={horiBarData} options={{ indexAxis: 'y' }} /> */}
@@ -299,7 +299,7 @@ function Home() {
               <div className="chart-container">
                 <h2>Branch-wise Placements</h2>
                 {/* <Bar data={barData} options={{ scales: { y: { beginAtZero: true } } }} /> */}
-                <BranchWise/>
+                <BranchWise />
               </div>
             </div>
           </div>
@@ -470,6 +470,15 @@ function Home() {
           </div>
         </footer>
       </div>
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .bar-grid {
+              flex-direction: column !important;
+            }
+          }
+        `}
+      </style>
     </div >
   );
 };

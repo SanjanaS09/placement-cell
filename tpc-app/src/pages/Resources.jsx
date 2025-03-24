@@ -30,7 +30,7 @@ const Resources = () => {
       {!selectedBlog ? (
         <>
           {/* Hero Section */}
-          <section className="bg-black text-white text-center py-16">
+          <section className="text-#003049 text-center py-16">
             <h1 className="text-4xl font-bold">Discover Inspiring Stories</h1>
             <p className="mt-4">Read blogs from industry experts, students, and professionals.</p>
           </section>

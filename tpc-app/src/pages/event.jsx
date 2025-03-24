@@ -6,6 +6,7 @@ import "../styles/event.css";
 const Events = () => {
   const [eventsData, setEventsData] = useState([]);
   const [scrollingImages, setScrollingImages] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     const db = getDatabase();
@@ -18,11 +19,7 @@ const Events = () => {
           id: key,
           ...data[key],
         }));
-        // Extract all event images for scrolling gallery
-        const images = eventsArray
-          .map((event) => event.image)
-          .filter((img) => img); // Ensure only valid images are included
-
+        const images = eventsArray.map((event) => event.image && event.image[0]).filter((img) => img); // Use the first image of each event if defined
         setEventsData(eventsArray);
         setScrollingImages(images);
       } else {
@@ -31,6 +28,10 @@ const Events = () => {
       }
     });
   }, []);
+
+  const currentDate = new Date();
+  const upcomingEvents = eventsData.filter(event => new Date(event.date) > currentDate);
+  const conductedEvents = eventsData.filter(event => new Date(event.date) <= currentDate);
 
   return (
     <div className="events-page">
@@ -60,12 +61,48 @@ const Events = () => {
         </div>
       )}
 
-      {/* Events List */}
+      {/* Upcoming Events List */}
       <div className="events-list">
-        {eventsData.map((event, index) => (
-          <div key={index} className="event-card">
+        <h3>Upcoming Events</h3>
+        {upcomingEvents.length > 0 ? (
+          upcomingEvents.map((event, index) => (
+            <div key={index} className="event-card">
+              <motion.img
+                src={event.image && event.image[0]}
+                alt={event.name}
+                className="event-image"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <h3>{event.name}</h3>
+              <p>{event.date} | {event.time} | {event.venue}</p>
+              <p>{event.description}</p>
+              <div className="speaker-info">
+                {event.speakerImage && (
+                  <motion.img
+                    src={event.speakerImage}
+                    alt={event.speaker}
+                    className="speaker-image"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+                <p><strong>{event.speaker}</strong> </p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="no-events">No upcoming events.</p>
+        )}
+      </div>
+
+      {/* Events Conducted List */}
+      <div className="events-list">
+        <h3>Events Conducted</h3>
+        {conductedEvents.map((event, index) => (
+          <div key={index} className="event-card" onClick={() => setSelectedEvent(event)}>
             <motion.img
-              src={event.image}
+              src={event.image && event.image[0]}
               alt={event.name}
               className="event-image"
               whileHover={{ scale: 1.1 }}
@@ -84,11 +121,36 @@ const Events = () => {
                   transition={{ duration: 0.3 }}
                 />
               )}
-              <p><strong>Speaker:</strong> {event.speaker}</p>
+              <p><strong>{event.speaker}</strong></p>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Event Details Modal */}
+      {selectedEvent && (
+        <div className="event-details-modal">
+          <div className="modal-content">
+            <span className="close-button" onClick={() => setSelectedEvent(null)}>&times;</span>
+            <h2>{selectedEvent.name}</h2>
+            <p>{selectedEvent.date} | {selectedEvent.time} | {selectedEvent.venue}</p>
+            <div className="speaker-info">
+              {selectedEvent.speakerImage && (
+                <img
+                  src={selectedEvent.speakerImage}
+                  alt={selectedEvent.speaker}
+                  className="speaker-image"
+                />
+              )}
+              <p><strong>{selectedEvent.speaker}</strong></p>
+            </div>
+            <div className="event-report">
+              <h3>Event Report</h3>
+              <p>{selectedEvent.report}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

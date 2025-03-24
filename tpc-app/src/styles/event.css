@@ -38,19 +38,42 @@
 /* Event Cards Layout */
 .events-list {
   display: flex;
-  /* Changed from grid to flex */
   flex-wrap: wrap;
-  /* Ensures responsiveness */
-  gap: 20px;
-  /* Space between cards */
+  gap: 10px;
   justify-content: center;
-  /* Center align */
   align-items: stretch;
-  /* Ensure uniform height */
   width: 100%;
-  /* Occupy full width */
 }
 
+.events-list h3 {
+  color: #f9f9f9;
+  font-size: 30px;
+}
+
+.events-list p {
+  color: #f9f9f9;
+  font-size: 14px;
+}
+
+/* Scrolling Section */
+.scrolling-section {
+  width: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.scrolling-gallery {
+  display: flex;
+  white-space: nowrap;
+}
+
+.scrolling-image {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 8px;
+}
 
 /* Infinite Scrolling Images */
 .scroll-wrapper {
@@ -112,7 +135,7 @@
 
 .event-card h3 {
   font-size: 1.4rem;
-  margin-top: 10px;
+  margin: 10px 0;
   color: #222;
 }
 
@@ -142,13 +165,47 @@
 }
 
 .speaker-info p {
-  margin: 0 10px;
+  margin: 0 ;
 }
-
 
 .speaker-info{
   display: flex;
   align-items: center;
+}
+
+/* Event Details Modal */
+.event-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.event-report {
+  margin-top: 20px;
 }
 
 /* Responsive Design */
@@ -156,11 +213,15 @@
   .events-content {
     flex-direction: column;
     align-items: center;
-    width: 95%;
     /* More space for small screens */
   }
 
   .scroll-content img {
+    width: 150px;
+    height: 100px;
+  }
+
+  .scrolling-image {
     width: 150px;
     height: 100px;
   }
