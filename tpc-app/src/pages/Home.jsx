@@ -14,8 +14,11 @@ import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
 
 import BranchWise from "./BranchWise";
+<<<<<<< HEAD
 import CompanyWise from './CompanyWise';
 import CtcHighlight from "./CtcHighlight";
+=======
+>>>>>>> 08e3180d0f68e50acc5201e2c8c289f51fb43ed4
 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement);
@@ -135,53 +138,53 @@ function Home() {
     }],
   };
 
-  // const doughnutData = {
-  //   labels: ['Oracle', 'Deutsche Bank', 'JP Morgan Chase & Co.', 'Barclays', 'VISA', 'Colgate', 'GE Aerospace', 'Providence ', 'KPMG', 'Deloitte USI', 'Veritas', 'Bank of Americe', 'Deloitte IN', 'Seimens', 'NVIDIA', 'Rite Technologies', 'NetWeaver', 'Amdocs', 'Accenture', 'Publicis Sapient', 'HSBC', 'Capgemini', ' ExcelR', 'Argon & Co.', 'IIDE', 'Eduvaz', 'Clever Tap'],
-  //   datasets: [{
-  //     label: '# of Placements',
-  //     data: [1, 7, 2, 13, 4, 20, 3, 5, 9, 16, 1, 34, 14, 2, 5, 1, 4, 12, 5, 9, 2, 19, 2, 1, 10, 2, 1],
-  //     backgroundColor: [
-  //       'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)',
-  //       'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)',
-  //       'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)',
-  //       'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)',
-  //       'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)',
-  //       'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)',
-  //       'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)',
-  //       'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)',
-  //       'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)'
-  //     ],
-  //     borderColor: [
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-  //       'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)'
-  //     ],
-  //     borderWidth: 1,
-  //   }],
-  // };
+  const doughnutData = {
+    labels: ['Oracle', 'Deutsche Bank', 'JP Morgan Chase & Co.', 'Barclays', 'VISA', 'Colgate', 'GE Aerospace', 'Providence ', 'KPMG', 'Deloitte USI', 'Veritas', 'Bank of Americe', 'Deloitte IN', 'Seimens', 'NVIDIA', 'Rite Technologies', 'NetWeaver', 'Amdocs', 'Accenture', 'Publicis Sapient', 'HSBC', 'Capgemini', ' ExcelR', 'Argon & Co.', 'IIDE', 'Eduvaz', 'Clever Tap'],
+    datasets: [{
+      label: '# of Placements',
+      data: [1, 7, 2, 13, 4, 20, 3, 5, 9, 16, 1, 34, 14, 2, 5, 1, 4, 12, 5, 9, 2, 19, 2, 1, 10, 2, 1],
+      backgroundColor: [
+        'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)',
+        'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)',
+        'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)',
+        'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)',
+        'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)',
+        'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)',
+        'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)',
+        'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)',
+        'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)'
+      ],
+      borderColor: [
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
+        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)'
+      ],
+      borderWidth: 1,
+    }],
+  };
 
-  // const horiBarData = {
-  //   labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
-  //   datasets: [{
-  //     label: 'Top Companies visiting college',
-  //     data: [12, 19, 3, 5, 2],
-  //     backgroundColor: [
-  //       'rgba(4, 4, 124, 0.7)',
-  //       'rgba(36, 36, 164, 0.6)',
-  //       'rgba(53, 53, 163, 0.5)',
-  //       'rgba(105, 105, 182, 0.4)',
-  //       'rgba(139, 139, 198, 0.3)'
-  //     ],
-  //     borderColor: 'rgb(4, 4, 152, 1)',
-  //     borderWidth: 1,
-  //   }],
-  // };
+  const horiBarData = {
+    labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
+    datasets: [{
+      label: 'Top Companies visiting college',
+      data: [12, 19, 3, 5, 2],
+      backgroundColor: [
+        'rgba(4, 4, 124, 0.7)',
+        'rgba(36, 36, 164, 0.6)',
+        'rgba(53, 53, 163, 0.5)',
+        'rgba(105, 105, 182, 0.4)',
+        'rgba(139, 139, 198, 0.3)'
+      ],
+      borderColor: 'rgb(4, 4, 152, 1)',
+      borderWidth: 1,
+    }],
+  };
 
   const lineData = {
     labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
@@ -295,8 +298,7 @@ function Home() {
             <div className="barlayout flex flex-direction row mt-3" style={{ gap: "20px" }}>
               <div className="chart-container">
                 <h2>Top Companies Visiting</h2>
-                {/* <Bar data={horiBarData} options={{ indexAxis: 'y' }} /> */}
-                {/* <CompanyWise/> */}
+                <Bar data={horiBarData} options={{ indexAxis: 'y' }} />
               </div>
               <div className="chart-container">
                 <h2>Branch-wise Placements</h2>
@@ -307,8 +309,12 @@ function Home() {
           </div>
           <div className="dougnut-chart-container">
             <h2>Company-wise Placements</h2>
+<<<<<<< HEAD
             {/* <Doughnut data={doughnutData} width="200px" height="200px" /> */}
             <CompanyWise/>
+=======
+            <Doughnut data={doughnutData} width="200px" height="200px" />
+>>>>>>> 08e3180d0f68e50acc5201e2c8c289f51fb43ed4
           </div>
         </div>
 
@@ -327,11 +333,11 @@ function Home() {
                 <div className="d-flex flex-column h-100 justify-content-between position-relative z-1">
                   <div>
                     <h2 className="fs-4 fw-bold mb-2">{student.name}</h2>
-                    <p className="text-secondary color-white">{student.company}</p>
+                    {/* <p className="text-secondary color-white">{student.company}</p> */}
                   </div>
                   <div className="mt-3">
                     <p><strong>Package:</strong> {student.packageAmount}</p>
-                    <p><strong>Company:</strong> {student.company}</p>
+                    {/* <p><strong>Company:</strong> {student.company}</p> */}
                   </div>
                 </div>
 

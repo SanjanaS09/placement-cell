@@ -75,7 +75,7 @@
 
 .team-card img {
   width: 225px;
-  height: 200px;
+  height: 240px;
   object-fit: cover;
   margin-bottom: 15px;
 }
@@ -108,7 +108,7 @@
   background-color: #669bbc;
 }
 
-.modal {
+/* .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -119,9 +119,9 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
+} */
 
-.modal-content {
+/* .modal-content {
   background: white;
   padding: 25px;
   border-radius: 15px;
@@ -130,7 +130,7 @@
   position: relative;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   align-items: center;
-}
+} */
 
 .modal-img {
   width: 120px;

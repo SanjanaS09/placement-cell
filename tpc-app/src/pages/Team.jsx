@@ -42,7 +42,7 @@ const ContactUs = () => {
               <div className='details'>
                 <p>{member.name}</p>
                 <div>{member.role}</div>
-                <button className="openButton">Open</button>
+                {/* <button className="openButton">Open</button> */}
               </div>
             </div>
           ))}
@@ -51,17 +51,17 @@ const ContactUs = () => {
 
       {/* MODAL - Pop-up Window */}
       {
-        selectedMember && (
-          <div className="modal">
-            <div className="modal-content">
-              <span className="close" onClick={() => setSelectedMember(null)}>&times;</span>
-              <img src={selectedMember.img} alt={selectedMember.name} className="modal-img" />
-              <h2>{selectedMember.name}</h2>
-              <p><strong>Role:</strong> {selectedMember.role}</p>
-              <p><strong>Email:</strong> {selectedMember.email}</p>
-            </div>
-          </div>
-        )
+        // selectedMember && (
+        //   <div className="modal">
+        //     <div className="modal-content">
+        //       <span className="close" onClick={() => setSelectedMember(null)}>&times;</span>
+        //       <img src={selectedMember.img} alt={selectedMember.name} className="modal-img" />
+        //       <h2>{selectedMember.name}</h2>
+        //       <p><strong>Role:</strong> {selectedMember.role}</p>
+        //       <p><strong>Email:</strong> {selectedMember.email}</p>
+        //     </div>
+        //   </div>
+        // )
       }
     </div >
   );
