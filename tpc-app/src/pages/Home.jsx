@@ -15,6 +15,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement,
 
 import BranchWise from "./BranchWise";
 import CompanyWise from './CompanyWise';
+import CtcHighlight from "./CtcHighlight";
 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement);
@@ -288,9 +289,10 @@ function Home() {
           <div className="charts-grid">
             <div className="line-chart-container">
               <h2>Yearly Placement Data</h2>
-              <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} />
+              {/* <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} /> */}
+              <CtcHighlight/>
             </div>
-            <div className="bar-grid">
+            <div className="barlayout flex flex-direction row mt-3" style={{ gap: "20px" }}>
               <div className="chart-container">
                 <h2>Top Companies Visiting</h2>
                 {/* <Bar data={horiBarData} options={{ indexAxis: 'y' }} /> */}
@@ -305,7 +307,6 @@ function Home() {
           </div>
           <div className="dougnut-chart-container">
             <h2>Company-wise Placements</h2>
-            
             {/* <Doughnut data={doughnutData} width="200px" height="200px" /> */}
             <CompanyWise/>
           </div>

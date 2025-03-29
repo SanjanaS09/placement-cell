@@ -44,7 +44,7 @@ const CompanyWise = () => {
   };
 
   return (
-    <div className="chart-container">
+    <div className="chart">
       <h2 className="chart-title">Placement Statistics</h2>
       <div className="chart-wrapper">
         <Doughnut data={data} options={options} />

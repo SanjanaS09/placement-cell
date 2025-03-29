@@ -27,6 +27,9 @@ import TPOHome from './pages/TPOHome.jsx';
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/Signup.jsx';
 import Events from './pages/event.jsx';
+import CtcHighlight from "./pages/CtcHighlight.jsx";
+//import CtcHighlight from "./CtcHighlight"; // Make sure the path is correct
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -172,5 +175,7 @@ const App = () => {
     </Router >
   );
 };
+
+
 
 export default App;

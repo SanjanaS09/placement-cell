@@ -76,8 +76,7 @@ const StatChart = () => {
     };
 
     return (
-        <div style={{ width: "400px", height: "250px",margin: "auto" }}>
-            
+        <div style={{ width: "85vw", maxWidth: "400px", maxHeight: "250px",margin: "auto" }}>
             <Bar data={chartData} options={{ responsive: true, scales: { y: { beginAtZero: true } } }} />
         </div>
     );
