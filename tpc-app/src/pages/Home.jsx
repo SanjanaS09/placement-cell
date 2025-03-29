@@ -14,11 +14,8 @@ import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
 
 import BranchWise from "./BranchWise";
-<<<<<<< HEAD
 import CompanyWise from './CompanyWise';
 import CtcHighlight from "./CtcHighlight";
-=======
->>>>>>> 08e3180d0f68e50acc5201e2c8c289f51fb43ed4
 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement);
@@ -309,12 +306,8 @@ function Home() {
           </div>
           <div className="dougnut-chart-container">
             <h2>Company-wise Placements</h2>
-<<<<<<< HEAD
             {/* <Doughnut data={doughnutData} width="200px" height="200px" /> */}
             <CompanyWise/>
-=======
-            <Doughnut data={doughnutData} width="200px" height="200px" />
->>>>>>> 08e3180d0f68e50acc5201e2c8c289f51fb43ed4
           </div>
         </div>
 
