@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/stat.css";
+import "../styles/InternshipStat.css";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } from "recharts";
 
 const data = [
