@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "../styles/Login.css";
+import "../styles/LoginPage.css";
 
 function LoginPage({ setLoggedInUser }) {
   const [email, setEmail] = useState("");
@@ -119,7 +119,11 @@ function LoginPage({ setLoggedInUser }) {
             <button type="submit">Login</button>
 
             <p className="signup-link">
-              Don't have an account? <Link to={`/Signup`}>Sign up now.</Link>
+              {activeRole === "Recruiter" && (
+                <>
+                  Don't have an account? <Link to={`/Signup`}>Sign up now.</Link>
+                </>
+              )}
             </p>
           </form>
         </div>

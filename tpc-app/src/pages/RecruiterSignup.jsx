@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import database from '../firebaseConfig';
-import "../styles/Login.css";
+import "../styles/LoginPage.css";
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -13,7 +13,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [activeRole, setActiveRole] = useState('Student');
+  const [activeRole, setActiveRole] = useState('Recruiter');
   const navigate = useNavigate();
 
   // Validate password complexity and match
@@ -106,24 +106,10 @@ const Signup = () => {
             <div className="role-tabs">
               <button
                 type="button"
-                className={`tab ${activeRole === 'Student' ? 'active' : ''}`}
-                onClick={() => setActiveRole('Student')}
-              >
-                Student
-              </button>
-              <button
-                type="button"
                 className={`tab ${activeRole === 'Recruiter' ? 'active' : ''}`}
                 onClick={() => setActiveRole('Recruiter')}
               >
                 Recruiter
-              </button>
-              <button
-                type="button"
-                className={`tab ${activeRole === 'Coordinator' ? 'active' : ''}`}
-                onClick={() => setActiveRole('Coordinator')}
-              >
-                Coordinator
               </button>
             </div>
             <form id="loginForm" onSubmit={register}>
@@ -136,7 +122,6 @@ const Signup = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              {errors.name && <span className="error-message">{errors.name}</span>}
 
               {/* Email Input */}
               <input
@@ -158,7 +143,6 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {errors.password && <span className="error-message">{errors.password}</span>}
 
               {/* Confirm Password Input */}
               <input
@@ -169,9 +153,6 @@ const Signup = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              {errors.confirmPassword && (
-                <span className="error-message">{errors.confirmPassword}</span>
-              )}
 
               {/* Toggle Password Visibility */}
               <button
@@ -183,6 +164,11 @@ const Signup = () => {
               </button>
 
               {/* General Errors */}
+              {errors.name && <span className="error-message">{errors.name}</span>}
+              {errors.password && <span className="error-message">{errors.password}</span>}
+              {errors.confirmPassword && (
+                <span className="error-message">{errors.confirmPassword}</span>
+              )}
               {errors.general && <span className="error-message">{errors.general}</span>}
 
               {/* Submit Button */}

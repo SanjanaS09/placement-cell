@@ -9,16 +9,12 @@ import Facebook from "../assets/images/facebook.png";
 import Instagram from "../assets/images/instagram.png";
 import Twitter from "../assets/images/twitter.png";
 import AboutUs from "../assets/images/AboutUs.PNG"
-import { Bar, Doughnut, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement } from 'chart.js';
+import BranchWise from "../components/BranchWise";
+import CompanyWise from '../components/CompanyWise';
+import CtcHighlight from "../components/CtcHighlight";
 
-import BranchWise from "./BranchWise";
-import CompanyWise from './CompanyWise';
-import CtcHighlight from "./CtcHighlight";
-
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, Title, Tooltip, Legend, ArcElement, LineElement);
 
 const importAll = (requireContext) =>
   requireContext.keys().map(requireContext);
@@ -117,55 +113,6 @@ function Home() {
     }
   }, [activated]);  // Ensure the dependency array is correct
 
-
-  const barData = {
-    labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
-    datasets: [{
-      label: 'Branch-wise Placements',
-      data: [67, 69, 53, 17, 9],
-      backgroundColor: [
-        'rgba(4, 4, 124, 0.7)',
-        'rgba(36, 36, 164, 0.6)',
-        'rgba(53, 53, 163, 0.5)',
-        'rgba(105, 105, 182, 0.4)',
-        'rgba(139, 139, 198, 0.3)'
-      ],
-      borderColor: 'rgb(4, 4, 152, 1)',
-      borderWidth: 1,
-    }],
-  };
-
-  const doughnutData = {
-    labels: ['Oracle', 'Deutsche Bank', 'JP Morgan Chase & Co.', 'Barclays', 'VISA', 'Colgate', 'GE Aerospace', 'Providence ', 'KPMG', 'Deloitte USI', 'Veritas', 'Bank of Americe', 'Deloitte IN', 'Seimens', 'NVIDIA', 'Rite Technologies', 'NetWeaver', 'Amdocs', 'Accenture', 'Publicis Sapient', 'HSBC', 'Capgemini', ' ExcelR', 'Argon & Co.', 'IIDE', 'Eduvaz', 'Clever Tap'],
-    datasets: [{
-      label: '# of Placements',
-      data: [1, 7, 2, 13, 4, 20, 3, 5, 9, 16, 1, 34, 14, 2, 5, 1, 4, 12, 5, 9, 2, 19, 2, 1, 10, 2, 1],
-      backgroundColor: [
-        'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)',
-        'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)',
-        'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)',
-        'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)',
-        'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)',
-        'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)',
-        'rgba(105, 105, 182, 0.4)', 'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)',
-        'rgba(36, 36, 164, 0.6)', 'rgba(53, 53, 163, 0.5)', 'rgba(105, 105, 182, 0.4)',
-        'rgba(139, 139, 198, 0.3)', 'rgba(4, 4, 124, 0.7)', 'rgba(36, 36, 164, 0.6)'
-      ],
-      borderColor: [
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)',
-        'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)', 'rgb(4, 4, 152, 1)'
-      ],
-      borderWidth: 1,
-    }],
-  };
-
   const horiBarData = {
     labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
     datasets: [{
@@ -179,17 +126,6 @@ function Home() {
         'rgba(139, 139, 198, 0.3)'
       ],
       borderColor: 'rgb(4, 4, 152, 1)',
-      borderWidth: 1,
-    }],
-  };
-
-  const lineData = {
-    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
-    datasets: [{
-      label: 'Yearly Data',
-      data: [30, 45, 60, 70, 90, 100],
-      borderColor: 'rgba(74, 4, 152, 1)',
-      backgroundColor: 'rgba(4, 4, 124, 0.7)',
       borderWidth: 1,
     }],
   };
