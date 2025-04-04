@@ -1,10 +1,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import "../styles/CompanyWise.css";
-import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
-
-
-Chart.register(ArcElement, Tooltip, Legend);
+import "./styles/CompanyWise.css";
 
 const CompanyWise = () => {
   const data = {

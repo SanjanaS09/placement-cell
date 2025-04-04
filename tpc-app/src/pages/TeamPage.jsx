@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import database from '../firebaseConfig'; // Ensure Firebase is imported
-import '../styles/Team.css';
+import '../styles/TeamPage.css';
 import logo from '../assets/images/IIIC-logo.png';
 
 const ContactUs = () => {

@@ -4,31 +4,30 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
-import Home from './pages/Home.jsx';
-import Team from './pages/Team.jsx';
-import StudentPage from './pages/StudentPage.jsx';
+import Home from './pages/LandingPage.jsx';
+import Team from './pages/TeamPage.jsx';
+import StudentPage from './pages/StudentHome.jsx';
 import RecruiterPage from './pages/RecruiterPage.jsx';
 import TPODashboard from './pages/TPODashboard.jsx';
-import Blog from './pages/Blog.jsx'
+import Blog from './pages/TPOBlog.jsx'
 import StudentProfile from './pages/StudentProfile.jsx';
 import Resume from './pages/Resume.jsx'
-import Resources from './pages/Resources.jsx'
-import JobPosting from './pages/JobPosting.jsx'
-import Announcements from './pages/Announcements.jsx'
-import EventDashboard from './pages/EventDashboard.jsx';
+import Resources from './pages/StudentResources.jsx'
+import JobPosting from './pages/StudentJobPosting.jsx'
+import Announcements from './pages/TPOAnnouncements.jsx'
+import EventDashboard from './pages/TPOEvent.jsx';
 
-import StudentDetails  from './pages/StudentDetailDashboard.jsx';
-import ManageRecruiter from './pages/ManageRecruiter.jsx';
-import ManageStudents from './pages/ManageStudent.jsx'
+import PlacementGuidelines from './pages/PlacementGuidelines.jsx';
+import StudentDetails  from './pages/TPOManageStudent.jsx';
+import ManageRecruiter from './pages/TPOManageRecruiter.jsx';
+import ManageStudents from './pages/TPOManageUsers.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
 import StudentDashboard from './pages/StudentDashboard.jsx';
 import TPOHome from './pages/TPOHome.jsx';
 
 import Login from './pages/LoginPage.jsx';
-import Signup from './pages/Signup.jsx';
+import Signup from './pages/RecruiterSignup.jsx';
 import Events from './pages/event.jsx';
-import CtcHighlight from "./pages/CtcHighlight.jsx";
-//import CtcHighlight from "./CtcHighlight"; // Make sure the path is correct
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -124,7 +123,7 @@ const App = () => {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
-
+       
         {/* Role-based routes */}
         <Route
           path="/Student"
@@ -141,6 +140,7 @@ const App = () => {
           <Route path="Resources" element={<Resources role={role} />} />
           <Route path="JobPosting" element={<JobPosting role={role} />} />
           <Route path="EventDashboard" element={<EventDashboard role={role} />} />
+          <Route path="PlacementGuidelines" element={<PlacementGuidelines role={role} />} /> 
         </Route>
         <Route
           path="/RecruiterPage"
