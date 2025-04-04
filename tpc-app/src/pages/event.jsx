@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getDatabase, ref, onValue } from "firebase/database";
-import "../styles/event.css";
+import "../styles/Event.css";
 
 const Events = () => {
   const [eventsData, setEventsData] = useState([]);
