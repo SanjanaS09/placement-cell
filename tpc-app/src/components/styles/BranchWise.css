@@ -1,5 +1,5 @@
-/* General Chart Styling */
-.Charts {
+
+/* .Charts {
     margin: 0 auto;
     background-color: #f9f9f9;
     display: flex;
@@ -10,7 +10,7 @@
     border-radius: 8px;
 }
 
-/* Horizontal Chart Variant */
+
 .Charts.horizontal {
     display: block;
 }
@@ -27,7 +27,7 @@
     padding: 0 0 10px 0;
 }
 
-/* Chart Series */
+
 .Charts--serie {
     height: 100%;
     margin: 0 30px 0 0;
@@ -50,7 +50,7 @@
     color: #808080;
 }
 
-/* Chart Items */
+
 .Charts--item {
     background-color: #43A19E;
     display: inline-block;
@@ -70,25 +70,13 @@
     color: #43A19E;
 }
 
-/* Chart Container */
-/* .chart-container {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-} */
 
-/* Animations */
 @keyframes slideUp {
     from { transform: scaleY(0); }
     to { transform: scaleY(1); }
 }
 
-/* Statistical Chart Styling */
+
 .stat-chart-container {
     width: 100%;
     max-width: 600px;
@@ -115,7 +103,6 @@
     height: auto !important;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .stat-chart-container {
         max-width: 90%;
@@ -127,4 +114,23 @@
         height: auto;
         padding: 20px;
     }
-}
+} */
+
+.chart-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-title {
+    text-align: center;
+    font-size: 24px;
+    color: #003049;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  

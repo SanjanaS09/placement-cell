@@ -7,7 +7,7 @@ const CompanyWise = () => {
     labels: ["CST", "CE", "ENC", "DS", "IT"],
     datasets: [
       {
-        data: [82, 74, 35, 45, 68], // Placement percentages
+        data: [50, 53, 6, 15, 43], // Placement percentages
         backgroundColor: [
           "#003049", // Dark Blue
           "#1B4965", // Muted Navy
@@ -45,7 +45,7 @@ const CompanyWise = () => {
       <div className="chart-wrapper">
         <Doughnut data={data} options={options} />
         <div className="chart-center">
-          <span className="percentage">82%</span>
+          <span className="percentage"></span>
           <span className="subtext">Overall Placement</span>
         </div>
       </div>
