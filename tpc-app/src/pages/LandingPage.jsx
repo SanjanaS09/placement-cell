@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { getDatabase, ref, get } from "firebase/database";
-import { Bar } from 'react-chartjs-2';
 import '../styles/LandingPage.css';
 import BranchWise from "../components/BranchWise";
 import CompanyWise from '../components/CompanyWise';
 import CtcHighlight from "../components/CtcHighlight";
+import InternshipStatistics from '../components/InternshipStat';
 
 function Home() {
   const navigate = useNavigate();
@@ -116,23 +116,6 @@ function Home() {
     }
   }, [activated]);  // Ensure the dependency array is correct
 
-  const horiBarData = {
-    labels: ['CST', 'CE', 'IT', 'DS', 'ENC'],
-    datasets: [{
-      label: 'Top Companies visiting college',
-      data: [12, 19, 3, 5, 2],
-      backgroundColor: [
-        'rgba(4, 4, 124, 0.7)',
-        'rgba(36, 36, 164, 0.6)',
-        'rgba(53, 53, 163, 0.5)',
-        'rgba(105, 105, 182, 0.4)',
-        'rgba(139, 139, 198, 0.3)'
-      ],
-      borderColor: 'rgb(4, 4, 152, 1)',
-      borderWidth: 1,
-    }],
-  };
-
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
     // Navigate to the login page and pass selectedRole as state
@@ -230,8 +213,8 @@ function Home() {
             </div>
             <div className="barlayout flex flex-direction row mt-3" style={{ gap: "20px" }}>
               <div className="chart-container">
-                <h2>Top Companies Visiting</h2>
-                <Bar data={horiBarData} options={{ indexAxis: 'y' }} />
+              <h2>Internship Offers</h2>
+              <InternshipStatistics />
               </div>
               <div className="chart-container">
                 <h2>Branch-wise Placements</h2>

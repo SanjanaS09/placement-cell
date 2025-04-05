@@ -230,8 +230,8 @@ function Home() {
             </div>
             <div className="barlayout flex flex-direction row mt-3" style={{ gap: "20px" }}>
               <div className="chart-container">
-                <h2>Top Companies Visiting</h2>
-                <Bar data={horiBarData} options={{ indexAxis: 'y' }} />
+                <h2>Internship Offers</h2>
+                <InternshipStatistics />
               </div>
               <div className="chart-container">
                 <h2>Branch-wise Placements</h2>
