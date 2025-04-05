@@ -2,14 +2,12 @@
 .events-page {
   background: #003049;
   width: 100vw;
-  /* Full viewport width */
   padding: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Arial', sans-serif;
   box-sizing: border-box;
-  /* Ensures padding doesn't add extra width */
 }
 
 /* Heading */
@@ -28,14 +26,10 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 90%;
-  /* Adjust width to prevent extra space */
   max-width: 1400px;
-  /* Ensures it doesn't stretch too much */
   gap: 30px;
 }
 
-/* Event Cards Grid */
-/* Event Cards Layout */
 .events-list {
   display: flex;
   flex-wrap: wrap;
