@@ -28,6 +28,7 @@ import TPOHome from './pages/TPOHome.jsx';
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/RecruiterSignup.jsx';
 import Events from './pages/Event.jsx';
+import './chartSetup';
 
 
 import "bootstrap/dist/css/bootstrap.min.css";

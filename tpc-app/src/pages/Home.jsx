@@ -224,18 +224,18 @@ function Home() {
         <div className="layout">
           <div className="charts-grid">
             <div className="line-chart-container">
-              <h2>Yearly Placement Data</h2>
+              <h2>CTC Highlight</h2>
               {/* <Line data={lineData} options={{ scales: { y: { beginAtZero: true } } }} /> */}
               <CtcHighlight/>
             </div>
             <div className="barlayout flex flex-direction row mt-3" style={{ gap: "20px" }}>
               <div className="chart-container">
                 <h2>Internship Offers</h2>
-                <InternshipStatistics />
+                <InternshipStat/>
               </div>
               <div className="chart-container">
-                <h2>Branch-wise Placements</h2>
-                {/* <Bar data={barData} options={{ scales: { y: { beginAtZero: true } } }} /> */}
+                {/* <h2>Branch-wise Placements</h2>
+                <Bar data={barData} options={{ scales: { y: { beginAtZero: true } } }} /> */}
                 <BranchWise />
               </div>
             </div>
