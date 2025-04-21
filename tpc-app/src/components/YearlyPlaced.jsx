@@ -126,7 +126,7 @@ const YearlyPlaced = () => {
 
   return (
     <div className="wrapper">
-      <canvas style={{height: "350px", width: "700px"}} ref={canvasRef}></canvas>
+      <canvas style={{height: "250px", width: "700px"}} ref={canvasRef}></canvas>
     </div>
   );
 };
