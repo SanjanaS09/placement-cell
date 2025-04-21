@@ -1,9 +1,10 @@
 // RecruiterDashboard.jsx
 import React, { useState, useEffect } from 'react';
-import { Bell, Briefcase, Users, Calendar, Activity, Search, Filter, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import '../styles/RecruiterHome.css'; // Import the new CSS file
 
-const RecruiterDashboard = () => {
+const RecruiterHome = () => {
   const [activeJobs, setActiveJobs] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [candidateStats, setCandidateStats] = useState({});
@@ -40,198 +41,157 @@ const RecruiterDashboard = () => {
   }, []);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* Header */}
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">Recruiter Dashboard</h1>
-          <div className="flex items-center space-x-4">
-            <button className="relative">
-              <Bell size={24} />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {notifications.length}
-              </span>
-            </button>
-            <div className="flex items-center">
-              <img
-                className="h-10 w-10 rounded-full"
-                src="/api/placeholder/40/40"
-                alt="Profile"
-              />
-              <span className="ml-2 font-medium">Recruiter Name</span>
-            </div>
-          </div>
+    <div className="main-content">
+      <div className="LeftDashboard">
+        <div className="Welcome-message">
+          <h2>Welcome! Recruiter Name</h2>
         </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-6">
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow flex items-center">
-            <div className="p-3 rounded-full bg-blue-100 text-blue-600">
-              <Briefcase size={24} />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-sm font-medium text-gray-500">Active Jobs</h2>
-              <p className="text-2xl font-semibold">{activeJobs.length}</p>
-            </div>
+        
+        {/* Stats Cards */}
+        <div className="card-box">
+          <div className="card-item">
+            <h5>Active Jobs</h5>
+            <p>{activeJobs.length}</p>
           </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow flex items-center">
-            <div className="p-3 rounded-full bg-green-100 text-green-600">
-              <Users size={24} />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-sm font-medium text-gray-500">Total Candidates</h2>
-              <p className="text-2xl font-semibold">{candidateStats.total || 0}</p>
-            </div>
+          <div className="card-item">
+            <h5>Total Candidates</h5>
+            <p>{candidateStats.total || 0}</p>
           </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow flex items-center">
-            <div className="p-3 rounded-full bg-purple-100 text-purple-600">
-              <Calendar size={24} />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-sm font-medium text-gray-500">Upcoming Events</h2>
-              <p className="text-2xl font-semibold">{upcomingEvents.length}</p>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow flex items-center">
-            <div className="p-3 rounded-full bg-orange-100 text-orange-600">
-              <Activity size={24} />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-sm font-medium text-gray-500">Interviews</h2>
-              <p className="text-2xl font-semibold">{candidateStats.interview || 0}</p>
-            </div>
+          <div className="card-item">
+            <h5>Upcoming Events</h5>
+            <p>{upcomingEvents.length}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Active Jobs */}
-          <div className="lg:col-span-2">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold">Active Job Postings</h2>
-                <Link to="/recruiter/jobs/new" className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                  <Plus size={18} className="mr-1" />
-                  <span>New Job</span>
-                </Link>
-              </div>
-              
-              <div className="overflow-x-auto">
-                <table className="min-w-full">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">Job Title</th>
-                      <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">Department</th>
-                      <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">Applicants</th>
-                      <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">Deadline</th>
-                      <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {activeJobs.map(job => (
-                      <tr key={job.id} className="border-b hover:bg-gray-50">
-                        <td className="py-4 px-4">
-                          <Link to={`/recruiter/jobs/${job.id}`} className="text-blue-600 hover:underline">
-                            {job.title}
-                          </Link>
-                        </td>
-                        <td className="py-4 px-4">{job.department}</td>
-                        <td className="py-4 px-4">{job.applicants}</td>
-                        <td className="py-4 px-4">{job.deadline}</td>
-                        <td className="py-4 px-4">
-                          <div className="flex space-x-2">
-                            <button className="text-blue-600 hover:text-blue-800">Edit</button>
-                            <button className="text-gray-600 hover:text-gray-800">View</button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+        {/* Chart Container */}
+        <div className="chart-container">
+          <h5>Hiring Performance</h5>
+          <p>Recent Recruitment Activity</p>
+          {/* Add chart here using Chart.js or other libraries */}
+        </div>
 
-          {/* Upcoming Events and Notifications */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Upcoming Events */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold mb-4">Upcoming Events</h2>
-              {upcomingEvents.map(event => (
-                <div key={event.id} className="mb-4 pb-4 border-b last:border-0">
-                  <div className="flex justify-between">
-                    <h3 className="font-medium">{event.title}</h3>
-                    <span className="text-sm text-gray-500">{event.date}</span>
-                  </div>
-                  <p className="text-gray-600 text-sm mt-1">
-                    {event.candidate ? `Candidate: ${event.candidate}` : event.location} • {event.time}
-                  </p>
-                </div>
-              ))}
-              <Link to="/recruiter/events" className="text-blue-600 hover:underline text-sm">
-                View all events
+        {/* Active Jobs Section */}
+        <div className="jobs-section">
+          <div className="section-title">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2>Active Job Postings</h2>
+              <Link to="/recruiter/jobs/new" className="custom-button">
+                <Plus size={16} />
+                <span>New Job</span>
               </Link>
             </div>
-
-            {/* Notifications */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold mb-4">Recent Notifications</h2>
-              {notifications.map(notification => (
-                <div key={notification.id} className="mb-3 pb-3 border-b last:border-0">
-                  <p className="text-gray-800">{notification.message}</p>
-                  <span className="text-xs text-gray-500">{notification.time}</span>
+          </div>
+          
+          {activeJobs.length > 0 ? (
+            <div className="jobs-container">
+              {activeJobs.map(job => (
+                <div key={job.id} className="job-card">
+                  <div className="job-image">
+                    <img src="/api/placeholder/80/80" alt={job.title} />
+                  </div>
+                  <div className="job-details">
+                    <h3 className="job-title">{job.title}</h3>
+                    <p className="job-info">Department: {job.department}</p>
+                    <p className="job-info">Deadline: {job.deadline}</p>
+                  </div>
+                  <div className="job-applicants">
+                    <p>{job.applicants} Applicants</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
+          ) : (
+            <p className="no-jobs">No active jobs available.</p>
+          )}
         </div>
 
         {/* Candidate Pipeline */}
-        <div className="mt-6">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-4">Candidate Pipeline</h2>
-            <div className="flex flex-wrap">
-              <div className="w-full md:w-1/5 p-3 text-center">
-                <div className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="font-medium">New Applications</h3>
-                  <p className="text-2xl font-bold mt-2">{candidateStats.new || 0}</p>
-                </div>
-              </div>
-              <div className="w-full md:w-1/5 p-3 text-center">
-                <div className="bg-blue-100 p-4 rounded-lg">
-                  <h3 className="font-medium">Screening</h3>
-                  <p className="text-2xl font-bold mt-2">{candidateStats.screening || 0}</p>
-                </div>
-              </div>
-              <div className="w-full md:w-1/5 p-3 text-center">
-                <div className="bg-purple-100 p-4 rounded-lg">
-                  <h3 className="font-medium">Interview</h3>
-                  <p className="text-2xl font-bold mt-2">{candidateStats.interview || 0}</p>
-                </div>
-              </div>
-              <div className="w-full md:w-1/5 p-3 text-center">
-                <div className="bg-green-100 p-4 rounded-lg">
-                  <h3 className="font-medium">Offer</h3>
-                  <p className="text-2xl font-bold mt-2">{candidateStats.offered || 0}</p>
-                </div>
-              </div>
-              <div className="w-full md:w-1/5 p-3 text-center">
-                <div className="bg-red-100 p-4 rounded-lg">
-                  <h3 className="font-medium">Rejected</h3>
-                  <p className="text-2xl font-bold mt-2">{candidateStats.rejected || 0}</p>
-                </div>
-              </div>
+        <div className="pipeline-container">
+          <div className="pipeline-title">
+            <h5>Candidate Pipeline</h5>
+            <button className="view-all" onClick={() => console.log('View All clicked')}>View All</button>
+          </div>
+          <div className="pipeline-stages">
+            <div className="pipeline-stage stage-new">
+              <h3>New Applications</h3>
+              <p>{candidateStats.new || 0}</p>
+            </div>
+            <div className="pipeline-stage stage-screening">
+              <h3>Screening</h3>
+              <p>{candidateStats.screening || 0}</p>
+            </div>
+            <div className="pipeline-stage stage-interview">
+              <h3>Interview</h3>
+              <p>{candidateStats.interview || 0}</p>
+            </div>
+            <div className="pipeline-stage stage-offer">
+              <h3>Offer</h3>
+              <p>{candidateStats.offered || 0}</p>
+            </div>
+            <div className="pipeline-stage stage-rejected">
+              <h3>Rejected</h3>
+              <p>{candidateStats.rejected || 0}</p>
             </div>
           </div>
         </div>
-      </main>
+      </div>
+
+      <div className="RightBarDashboard">
+        {/* Profile Card */}
+        <div className="profile-card">
+          <img src="/api/placeholder/80/80" alt="Profile" />
+          <h5>Recruiter Name</h5>
+          <p>recruiter@company.com</p>
+        </div>
+
+        {/* Upcoming Events */}
+        <div className="announcement-card">
+          <h5>Upcoming Events</h5>
+          <div className="announcement-list">
+            {upcomingEvents.length > 0 ? (
+              upcomingEvents.map(event => (
+                <div key={event.id} className="announcement">
+                  <div className="profile">
+                    <img src="/api/placeholder/40/40" alt="Event" />
+                    <div>
+                      <p className="mb-0">{event.title}</p>
+                      <small>{event.candidate ? `Candidate: ${event.candidate}` : event.location}</small>
+                    </div>
+                  </div>
+                  <div className="timestamp">{event.date} • {event.time}</div>
+                </div>
+              ))
+            ) : (
+              <p>No upcoming events.</p>
+            )}
+          </div>
+        </div>
+        
+        {/* Notifications */}
+        <div className="announcement-card">
+          <h5>{notifications.length} Notifications</h5>
+          <div className="announcement-list">
+            {notifications.length > 0 ? (
+              notifications.map((notification, index) => (
+                <div key={notification.id} className="announcement">
+                  <div className="profile">
+                    <img src="/api/placeholder/40/40" alt="Notification" />
+                    <div>
+                      <p className="mb-0">{notification.message}</p>
+                      <small>System Notification</small>
+                    </div>
+                  </div>
+                  <div className="timestamp">{notification.time}</div>
+                </div>
+              ))
+            ) : (
+              <p>No notifications available.</p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default RecruiterDashboard;
+export default RecruiterHome;

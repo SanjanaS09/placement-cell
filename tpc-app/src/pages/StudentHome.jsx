@@ -88,8 +88,8 @@ const Dashboard = ({ userData }) => {
           {/* Stats Cards */}
           <div className="card-box d-flex">
             <div className="card-item">
-              <h5>Students</h5>
-              <p>50,078</p>
+              <h5>Profile Complete</h5>
+              <p>40%</p>
             </div>
             <div className="card-item">
               <h5>Awards</h5>

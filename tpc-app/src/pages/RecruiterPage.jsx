@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
-import logo from '../assets/images/sndt-logo.png';
 import '../styles/RecruiterPage.css';
 
 function RecruiterPage() {
@@ -115,7 +114,7 @@ function RecruiterPage() {
 
     return (
         <div>
-            <div className="container">
+            <div className="recruiter-container">
                 <div className="section">
                     <h2>Company Details</h2>
                     <form onSubmit={handleSubmit}>

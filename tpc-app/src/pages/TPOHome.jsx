@@ -7,9 +7,9 @@ import vilasKharat from '../assets/images/vilasKharat.jpeg';
 
 const TPOHome = () => {
   const [stats, setStats] = useState({
-    totalStudents: 0,
-    totalRecruiters: 0,
-    totalPlaced: 0,
+    totalStudents: 462,
+    totalRecruiters: 15,
+    totalPlaced: 5,
     totalNotPlaced: 0,
     companies: [],
     interviewDates: [],
@@ -125,9 +125,7 @@ const TPOHome = () => {
   }, []);
 
   return (
-    <div className="studentpage">
-      {/* Main Content */}
-      <div className="main-content">
+    <div className = "main-content" >
         <div className="LeftDashboard">
           <div className="Welcome-message">
             <h2>Welcome to TPO Dashboard</h2>
@@ -236,7 +234,6 @@ const TPOHome = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
