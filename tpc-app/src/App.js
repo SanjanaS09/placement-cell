@@ -6,32 +6,38 @@ import 'firebase/compat/database';
 
 import Home from './pages/LandingPage.jsx';
 import Team from './pages/TeamPage.jsx';
-import StudentPage from './pages/StudentHome.jsx';
-import RecruiterPage from './pages/RecruiterPage.jsx';
-import TPODashboard from './pages/TPODashboard.jsx';
-import Blog from './pages/TPOBlog.jsx'
-import StudentProfile from './pages/StudentProfile.jsx';
-import Resume from './pages/Resume.jsx'
-import Resources from './pages/StudentResources.jsx'
-import JobPosting from './pages/StudentJobPosting.jsx'
-import Announcements from './pages/TPOAnnouncements.jsx'
-import EventDashboard from './pages/TPOEvent.jsx';
-
-import PlacementGuidelines from './pages/PlacementGuidelines.jsx';
-import StudentDetails  from './pages/TPOManageStudent.jsx';
-import ManageRecruiter from './pages/TPOManageRecruiter.jsx';
-import ManageStudents from './pages/TPOManageUsers.jsx'
-import PageNotFound from './pages/PageNotFound.jsx';
-import StudentDashboard from './pages/StudentDashboard.jsx';
-import TPOHome from './pages/TPOHome.jsx';
-
 import Login from './pages/LoginPage.jsx';
 import Signup from './pages/RecruiterSignup.jsx';
 import Events from './pages/Event.jsx';
+import PageNotFound from './pages/PageNotFound.jsx';
+
+import RecruiterHome from './pages/RecruiterHome.jsx';
+import RecruiterDashboard from './pages/RecruiterDashboard.jsx';
+import RecruiterPage from './pages/RecruiterPage.jsx';
+import RecruiterJDManager from './pages/RecruiterJDManager.jsx';
+// import RecruiterProfile from './pages/RecruiterProfile.jsx';
+import StudentApplied from './pages/StudentApplied.jsx';
+
+import StudentHome from './pages/StudentHome.jsx';
+import StudentDashboard from './pages/StudentDashboard.jsx';
+import StudentProfile from './pages/StudentProfile.jsx';
+import Resume from './pages/Resume.jsx';
+import Resources from './pages/StudentResources.jsx';
+import JobPosting from './pages/StudentJobPosting.jsx'
+import PlacementGuidelines from './pages/PlacementGuidelines.jsx';
+
+import TPOHome from './pages/TPOHome.jsx';
+import TPODashboard from './pages/TPODashboard.jsx';
+import Blog from './pages/TPOBlog.jsx'
+import StudentDetails  from './pages/TPOManageStudent.jsx';
+import ManageRecruiter from './pages/TPOManageRecruiter.jsx';
+import ManageStudents from './pages/TPOManageUsers.jsx'
+import Announcements from './pages/TPOAnnouncements.jsx'
+import EventDashboard from './pages/TPOEvent.jsx';
+
 import './chartSetup';
-
-
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(null); // Store logged-in user ID
@@ -135,7 +141,7 @@ const App = () => {
               <Navigate to="/Login" />
             )
           }>
-          <Route path="Dashboard" element={<StudentPage role={role} userData={userData} />} />
+          <Route path="Dashboard" element={<StudentHome role={role} userData={userData} />} />
           <Route path="Profile" element={<StudentProfile role={role} />} />
           <Route path="Resume" element={<Resume role={role} />} />
           <Route path="Resources" element={<Resources role={role} />} />
@@ -143,16 +149,22 @@ const App = () => {
           <Route path="EventDashboard" element={<EventDashboard role={role} />} />
           <Route path="PlacementGuidelines" element={<PlacementGuidelines role={role} />} /> 
         </Route>
+
         <Route
-          path="/RecruiterPage"
+          path="/Recruiter"
           element={
             loggedInUser ? (
-              <RecruiterPage role={role} />
+              <RecruiterDashboard role={role} />
             ) : (
               <Navigate to="/Login" />
             )
           }
-        />
+        >
+          <Route path="Dashboard" element={<RecruiterHome role={role} userData={userData} />} />
+          <Route path="JobDescription" element={<RecruiterPage role={role} />} />
+          <Route path="RecruiterJDManager" element={<RecruiterJDManager role={role} />} />
+          <Route path="StudentsApplied" element={<StudentApplied role={role} />} />
+        </Route>
 
         <Route path="/TPOPage" element={
           loggedInUser ? (

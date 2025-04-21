@@ -581,9 +581,9 @@ nav {
 }
 
 .line-chart-container canvas {
-  width: 780px !important;
+  width: 700px;
   /* Force width */
-  height: 250px !important;
+  height: 350px;
   /* Force height */
 }
 

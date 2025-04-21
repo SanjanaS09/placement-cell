@@ -99,35 +99,37 @@ const Events = () => {
       {/* Events Conducted List */}
       <div className="events-list">
         <h3>Events Conducted</h3>
-        {conductedEvents.map((event, index) => (
-          <div key={index} className="event-card" onClick={() => setSelectedEvent(event)}>
-            <motion.img
-              src={event.image && event.image[0]}
-              alt={event.name}
-              className="event-image"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
-            />
-            <h3>{event.name}</h3>
-            <p>{event.date} | {event.time} | {event.venue}</p>
-            <p>{event.description}</p>
-            <div className="speaker-info">
-              {event.speakerImage && (
-                <motion.img
-                  src={event.speakerImage}
-                  alt={event.speaker}
-                  className="speaker-image"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              )}
-              <p><strong>{event.speaker}</strong></p>
+        <div class="d-flex flex-row flex-wrap justify-content-between">
+          {conductedEvents.map((event, index) => (
+            <div key={index} className="event-card" onClick={() => setSelectedEvent(event)}>
+              <motion.img
+                src={event.image && event.image[0]}
+                alt={event.name}
+                className="event-image"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <h3>{event.name}</h3>
+              <p>{event.date} | {event.time} | {event.venue}</p>
+              <p>{event.description}</p>
+              <div className="speaker-info">
+                {event.speakerImage && (
+                  <motion.img
+                    src={event.speakerImage}
+                    alt={event.speaker}
+                    className="speaker-image"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+                <p><strong>{event.speaker}</strong></p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Event Details Modal */}
+      {/* Event Details Modal
       {selectedEvent && (
         <div className="event-details-modal">
           <div className="modal-content">
@@ -144,13 +146,9 @@ const Events = () => {
               )}
               <p><strong>{selectedEvent.speaker}</strong></p>
             </div>
-            <div className="event-report">
-              <h3>Event Report</h3>
-              <p>{selectedEvent.report}</p>
-            </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

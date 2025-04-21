@@ -10,8 +10,6 @@ const YearlyPlaced = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    const cw = (canvas.width = 700);
-    const ch = (canvas.height = 350);
     const cx = cw / 2,
       cy = ch / 2;
     const rad = Math.PI / 180;
@@ -128,8 +126,7 @@ const YearlyPlaced = () => {
 
   return (
     <div className="wrapper">
-      <h3 className="label"></h3>
-      <canvas ref={canvasRef}></canvas>
+      <canvas style={{height: "350px", width: "700px"}} ref={canvasRef}></canvas>
     </div>
   );
 };

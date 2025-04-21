@@ -83,8 +83,7 @@ const PlacementChart = () => {
   };
 
   return (
-    <div className="chart-container">
-      <h2 className="chart-title">Placement Statistics</h2>
+    <div>
       <Bar data={data} options={options} />
     </div>
   );

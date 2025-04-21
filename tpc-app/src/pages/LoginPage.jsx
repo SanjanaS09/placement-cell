@@ -35,7 +35,7 @@ function LoginPage({ setLoggedInUser }) {
         setLoggedInUser(loggedInUserId);
         // Navigate to the respective page
         if (activeRole === "Student") navigate("/Student/Dashboard");
-        else if (activeRole === "Recruiter") navigate("/RecruiterPage");
+        else if (activeRole === "Recruiter") navigate("/Recruiter/Dashboard");
         else if (activeRole === "Coordinator") navigate("/TPOPage/Home");
       } else {
         // Logout user since they are not authorized for this role

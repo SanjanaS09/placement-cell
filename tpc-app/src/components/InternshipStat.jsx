@@ -58,7 +58,7 @@ const InternshipStatistics = () => {
           <YAxis
             type="category"
             dataKey="name"
-            tick={{ fill: "#003049", fontSize: 10 }} // Reduced font size
+            tick={{ fill: "005577", fontSize: 10 }} // Reduced font size
             width={80}
           />
           <Tooltip />
@@ -68,7 +68,7 @@ const InternshipStatistics = () => {
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
               <stop offset="5%" stopColor="#003049" stopOpacity={1} />
-              <stop offset="95%" stopColor="#003049" stopOpacity={0.5} />
+              <stop offset="95%" stopColor="#005577" stopOpacity={1} />
             </linearGradient>
           </defs>
         </BarChart>
